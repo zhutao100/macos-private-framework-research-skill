@@ -83,6 +83,8 @@ ipsw class-dump "$CACHE" DiskManagement --headers --output /tmp/DiskManagement.h
 
 If `--objc`/`--stubs` flags fail or stall on an older/newer `ipsw`, retry without them and use `ipsw class-dump` plus `ipsw dyld macho --symbols --strings` as separate, more bounded steps.
 
+For cache-resident frameworks, run `ipsw class-dump` against the dyld cache path first. A flat file produced by `ipsw dyld extract` can be useful for Mach-O load-command inspection while still failing Objective-C metadata address mapping during class-dump on newer caches.
+
 Manual `dyld-shared-cache-extractor` examples:
 
 ```bash

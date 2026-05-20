@@ -15,11 +15,11 @@ Produce build-specific, verifiable research notes for `SkyLight.framework` witho
 
 ## Work loop
 
-1. Inventory target: run `tools/collect_skylight_inventory.zsh out/<target-id>`.
+1. Inventory target: run `tools/collect_skylight_inventory.zsh out/<target-id>` and ingest `SUMMARY.json` before opening long symbol lists.
 2. Symbol/class presence: run `swift tools/dlopen_probe_symbols.swift > out/<target-id>/dlsym_probe.tsv` and `swift tools/dlopen_probe_symbols.swift --json > out/<target-id>/dlsym_probe.json`.
 3. Header call validation: run `tools/verify_skylight_readonly_header.zsh out/<target-id>/readonly_header_probe.json` before using `headers/SkyLightReadOnly.h`.
 4. Normalize: parse outputs into JSON using `tools/extract_symbol_refs.py` where applicable.
-5. Compare: use `tools/diff_symbol_manifests.py old.json new.json` across OS builds.
+5. Compare: use `tools/diff_symbol_manifests.py --status present old.json new.json` across OS builds when inputs are probe summaries.
 6. Analyze: map symbols into `references/symbol_clusters.md` categories.
 7. Report: fill `templates/report_template.md` with exact commands, outputs, and confidence level.
 

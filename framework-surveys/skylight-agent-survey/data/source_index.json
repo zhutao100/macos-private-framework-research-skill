@@ -23,7 +23,7 @@
       "id": "macos26_25C56_local_probe",
       "kind": "local_build_observation",
       "path": "references/build_observations/macos26_25C56.md",
-      "purpose": "Verified SkyLight packaging, dyld-cache, header, and symbol/class probe findings for macOS 26.2 build 25C56."
+      "purpose": "Verified SkyLight packaging, dyld-cache, header, symbol/class probe, and read-only header-call findings for macOS 26.2 build 25C56."
     },
     {
       "id": "macos15_24G325_local_probe",

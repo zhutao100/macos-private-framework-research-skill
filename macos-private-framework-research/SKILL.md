@@ -58,7 +58,7 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
      --headers --output /tmp/FrameworkName.headers
    ```
 
-   When available, use RuntimeViewer for Swift + Objective-C interfaces and Hopper for disassembly/pseudocode/xrefs. RuntimeBrowser is useful for live Objective-C runtime enumeration but will miss code that is not loaded and non-ObjC surfaces.
+   For cache-resident frameworks on macOS 15/26+, prefer class-dump directly against the dyld cache path. A single-framework extracted Mach-O is still useful for load-command and focused symbol inspection, but ObjC metadata address mapping can fail when class-dump is run against the flat extracted file. When available, use RuntimeViewer for Swift + Objective-C interfaces and Hopper for disassembly/pseudocode/xrefs. RuntimeBrowser is useful for live Objective-C runtime enumeration but will miss code that is not loaded and non-ObjC surfaces.
 
 5. Triage underspecified declarations.
 

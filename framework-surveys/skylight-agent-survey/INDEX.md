@@ -22,7 +22,7 @@
 
 - `data/seed_symbol_manifest.json` — extracted symbol-name observations.
 - `data/macos15_24G325_probe_summary.json` — compact symbol/class/header-call probe for macOS 15.7.2 build 24G325.
-- `data/macos26_25C56_probe_summary.json` — compact symbol/class presence probe for macOS 26.2 build 25C56.
+- `data/macos26_25C56_probe_summary.json` — compact symbol/class and read-only header-call probe for macOS 26.2 build 25C56.
 - `data/source_index.json` — structured source list and why each source matters.
 
 ## Headers

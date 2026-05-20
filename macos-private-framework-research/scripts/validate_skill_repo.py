@@ -11,6 +11,7 @@ from pathlib import Path
 
 NAME_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,63}$")
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n", re.DOTALL)
+IGNORED_REPO_NAMES = {".DS_Store", "__pycache__"}
 
 
 @dataclass
@@ -102,7 +103,11 @@ def validate_skill(skill_dir: Path, repo_root: Path) -> list[Finding]:
         directory = skill_dir / directory_name
         if not directory.exists():
             continue
-        for child in sorted(path for path in directory.iterdir() if path.is_file()):
+        for child in sorted(
+            path
+            for path in directory.iterdir()
+            if path.is_file() and path.name not in IGNORED_REPO_NAMES
+        ):
             rel = child.relative_to(skill_dir)
             if child.name not in text and str(rel) not in text:
                 findings.append(

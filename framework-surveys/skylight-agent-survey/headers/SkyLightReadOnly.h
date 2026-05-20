@@ -10,12 +10,14 @@
   - exported from SkyLight.framework on macOS 15.7.2 build 24G325;
   - prototype-compatible with non-mutating calls in
     tools/verify_skylight_readonly_header.zsh on macOS 15.7.2 build 24G325;
-  - overlapping symbols were dlsym-present on macOS 26.2 build 25C56, but
-    rerun the probe before using this header on a new build;
+  - the same non-mutating calls passed on macOS 26.2 build 25C56;
+  - clang syntax validation passed on macOS SDK 26.4;
   - cross-checked against yabai `extern.h` and Hammerspoon `hs.spaces`
     declarations as caller evidence.
 
   Use these declarations through dlsym. Avoid hard-linking to SkyLight.
+  Call SkyLightReadOnlyInit or zero-initialize SkyLightReadOnlySymbols before
+  SkyLightReadOnlyLoad.
 */
 #pragma once
 
@@ -24,6 +26,7 @@
 #include <dlfcn.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -91,6 +94,12 @@ typedef struct SkyLightReadOnlySymbols {
     SLSGetWindowOwnerFunction SLSGetWindowOwner;
     SLSGetWindowLevelFunction SLSGetWindowLevel;
 } SkyLightReadOnlySymbols;
+
+static inline void SkyLightReadOnlyInit(SkyLightReadOnlySymbols *symbols) {
+    if (symbols) {
+        memset(symbols, 0, sizeof(*symbols));
+    }
+}
 
 static inline bool SkyLightReadOnlyOpen(SkyLightReadOnlySymbols *symbols) {
     if (!symbols) {

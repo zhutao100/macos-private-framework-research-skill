@@ -125,6 +125,8 @@ python3 -m py_compile framework-surveys/skylight-agent-survey/tools/*.py
 On a macOS host, also run the inventory script, a small app/binary discovery pass, and the SkyLight read-only header verifier when touching the survey package.
 
 ```bash
+swift framework-surveys/skylight-agent-survey/tools/dlopen_probe_symbols.swift --json \
+  >/tmp/skylight-dlsym-probe.json
 framework-surveys/skylight-agent-survey/tools/verify_skylight_readonly_header.zsh \
   /tmp/skylight-readonly-verify.json
 ```

@@ -14,13 +14,54 @@ struct ProbeSummary: Encodable {
     let byKind: [String: [String: Int]]
 }
 
+struct BuildInfo: Encodable {
+    let productVersion: String
+    let buildVersion: String
+    let darwinVersion: String
+    let architecture: String
+}
+
 struct ProbeReport: Encodable {
+    let schemaVersion: Int
+    let build: BuildInfo
     let loadedPath: String
     let summary: ProbeSummary
     let records: [ProbeRecord]
 }
 
 let jsonOutput = CommandLine.arguments.contains("--json")
+
+func sysctlString(_ name: String) -> String {
+    var size: size_t = 0
+    if sysctlbyname(name, nil, &size, nil, 0) != 0 || size == 0 {
+        return "unknown"
+    }
+    var buffer = [CChar](repeating: 0, count: size)
+    if sysctlbyname(name, &buffer, &size, nil, 0) != 0 {
+        return "unknown"
+    }
+    return String(cString: buffer)
+}
+
+func cCharTupleString<T>(_ tuple: T) -> String {
+    var mutable = tuple
+    return withUnsafeBytes(of: &mutable) { rawBuffer in
+        let bytes = rawBuffer.prefix { $0 != 0 }
+        return String(decoding: bytes, as: UTF8.self)
+    }
+}
+
+func currentBuildInfo() -> BuildInfo {
+    let version = ProcessInfo.processInfo.operatingSystemVersion
+    var uts = utsname()
+    uname(&uts)
+    return BuildInfo(
+        productVersion: "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)",
+        buildVersion: sysctlString("kern.osversion"),
+        darwinVersion: cCharTupleString(uts.release),
+        architecture: cCharTupleString(uts.machine)
+    )
+}
 
 let candidates = [
     "/System/Library/PrivateFrameworks/SkyLight.framework/SkyLight",
@@ -100,6 +141,8 @@ for className in objcClasses.sorted() {
     )
 }
 
+let buildInfo = currentBuildInfo()
+
 if jsonOutput {
     var byKind: [String: [String: Int]] = [:]
     for record in records {
@@ -115,12 +158,22 @@ if jsonOutput {
     let encoder = JSONEncoder()
     encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
     let data = try encoder.encode(
-        ProbeReport(loadedPath: loadedPath ?? "unknown", summary: summary, records: records)
+        ProbeReport(
+            schemaVersion: 1,
+            build: buildInfo,
+            loadedPath: loadedPath ?? "unknown",
+            summary: summary,
+            records: records
+        )
     )
     FileHandle.standardOutput.write(data)
     print("")
 } else {
     print("loaded_path\t\(loadedPath ?? "unknown")")
+    print("product_version\t\(buildInfo.productVersion)")
+    print("build_version\t\(buildInfo.buildVersion)")
+    print("darwin_version\t\(buildInfo.darwinVersion)")
+    print("architecture\t\(buildInfo.architecture)")
     print("kind\tname\tstatus")
     for record in records {
         print("\(record.kind)\t\(record.name)\t\(record.status)")

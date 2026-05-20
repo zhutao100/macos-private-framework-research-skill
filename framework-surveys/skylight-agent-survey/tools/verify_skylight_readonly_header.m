@@ -59,7 +59,8 @@ int main(void) {
                                       (long)version.patchVersion];
         report[@"build_version"] = SystemBuildVersion();
 
-        SkyLightReadOnlySymbols symbols = {0};
+        SkyLightReadOnlySymbols symbols;
+        SkyLightReadOnlyInit(&symbols);
         bool loaded = SkyLightReadOnlyLoad(&symbols);
         report[@"loaded_path"] = symbols.loaded_path ? @(symbols.loaded_path) : @"";
         report[@"header_loaded"] = @(loaded);

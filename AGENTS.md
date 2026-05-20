@@ -27,6 +27,7 @@ python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
 zsh -n framework-surveys/skylight-agent-survey/tools/*.zsh
 python3 -m py_compile framework-surveys/skylight-agent-survey/tools/*.py
+swift framework-surveys/skylight-agent-survey/tools/dlopen_probe_symbols.swift --json >/tmp/skylight-dlsym-probe.json
 framework-surveys/skylight-agent-survey/tools/verify_skylight_readonly_header.zsh /tmp/skylight-readonly-verify.json
 ```
 

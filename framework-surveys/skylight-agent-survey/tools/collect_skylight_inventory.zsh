@@ -132,14 +132,24 @@ symbol_count=$(
         "$out_dir/skylight_ipsw_symbol_names.txt"
 )
 
+created_utc="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+product_version="$(sw_vers -productVersion 2>/dev/null || true)"
+build_version="$(sw_vers -buildVersion 2>/dev/null || true)"
+darwin_version="$(uname -r 2>/dev/null || true)"
+arch_name="$(arch 2>/dev/null || true)"
+framework_binary_present=0
+if [[ -e "$skylight_bin_a" ]]; then
+    framework_binary_present=1
+fi
+
 {
     printf '# SkyLight Inventory Summary\n\n'
-    printf '- Created UTC: `%s`\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-    printf '- Product: `%s %s`\n' "$(sw_vers -productVersion 2>/dev/null || true)" "$(sw_vers -buildVersion 2>/dev/null || true)"
-    printf '- Darwin: `%s`\n' "$(uname -r 2>/dev/null || true)"
-    printf '- Architecture: `%s`\n' "$(arch 2>/dev/null || true)"
+    printf '- Created UTC: `%s`\n' "$created_utc"
+    printf '- Product: `%s %s`\n' "$product_version" "$build_version"
+    printf '- Darwin: `%s`\n' "$darwin_version"
+    printf '- Architecture: `%s`\n' "$arch_name"
     printf '- Primary dyld cache: `%s`\n' "${primary_cache:-not found}"
-    if [[ -e "$skylight_bin_a" ]]; then
+    if [[ "$framework_binary_present" -eq 1 ]]; then
         printf '- Framework binary on filesystem: `present`\n'
     else
         printf '- Framework binary on filesystem: `absent; dyld-cache resident`\n'
@@ -153,6 +163,58 @@ symbol_count=$(
         "$out_dir/skylight_symbol_prefix_counts.tsv"
     printf '\nSee `skylight_ipsw_symbol_names.txt` for the full symbol-name list and `dyld_shared_caches.txt` for cache details.\n'
 } >"$out_dir/SUMMARY.md"
+
+if command -v python3 >/dev/null 2>&1; then
+    SKYLIGHT_CREATED_UTC="$created_utc" \
+    SKYLIGHT_PRODUCT_VERSION="$product_version" \
+    SKYLIGHT_BUILD_VERSION="$build_version" \
+    SKYLIGHT_DARWIN_VERSION="$darwin_version" \
+    SKYLIGHT_ARCH="$arch_name" \
+    SKYLIGHT_PRIMARY_CACHE="${primary_cache:-}" \
+    SKYLIGHT_BINARY_PRESENT="$framework_binary_present" \
+    SKYLIGHT_WINDOWSERVER="$windowserver_bin" \
+    SKYLIGHT_SYMBOL_COUNT="$symbol_count" \
+    python3 - "$out_dir/skylight_symbol_prefix_counts.tsv" "$out_dir/SUMMARY.json" <<'PY'
+from __future__ import annotations
+
+import json
+import os
+import sys
+from pathlib import Path
+
+counts_path = Path(sys.argv[1])
+output_path = Path(sys.argv[2])
+
+prefix_counts: dict[str, int] = {}
+for line in counts_path.read_text().splitlines()[1:]:
+    if not line.strip():
+        continue
+    prefix, count = line.split("\t", 1)
+    prefix_counts[prefix] = int(count)
+
+summary = {
+    "schema_version": 1,
+    "created_utc": os.environ["SKYLIGHT_CREATED_UTC"],
+    "product_version": os.environ["SKYLIGHT_PRODUCT_VERSION"],
+    "build_version": os.environ["SKYLIGHT_BUILD_VERSION"],
+    "darwin_version": os.environ["SKYLIGHT_DARWIN_VERSION"],
+    "architecture": os.environ["SKYLIGHT_ARCH"],
+    "primary_dyld_cache": os.environ["SKYLIGHT_PRIMARY_CACHE"] or None,
+    "framework_binary_on_filesystem": os.environ["SKYLIGHT_BINARY_PRESENT"] == "1",
+    "windowserver_resource": os.environ["SKYLIGHT_WINDOWSERVER"],
+    "symbol_count": int(os.environ["SKYLIGHT_SYMBOL_COUNT"]),
+    "prefix_counts": prefix_counts,
+    "outputs": {
+        "markdown_summary": "SUMMARY.md",
+        "symbol_names": "skylight_ipsw_symbol_names.txt",
+        "dyld_caches": "dyld_shared_caches.txt",
+    },
+}
+output_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
+PY
+else
+    printf '{"schema_version":1,"status":"skipped","reason":"python3 unavailable"}\n' >"$out_dir/SUMMARY.json"
+fi
 
 if [[ "${SKYLIGHT_COLLECT_LOGS:-0}" == "1" ]]; then
     run skylight_unified_log_last_1h.txt log show --last 1h --style compact --predicate 'subsystem == "com.apple.SkyLight" OR process == "WindowServer"'

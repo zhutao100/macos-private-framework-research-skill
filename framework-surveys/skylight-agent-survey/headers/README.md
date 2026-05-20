@@ -2,7 +2,7 @@
 
 ## Ready-To-Use
 
-- `SkyLightReadOnly.h`: dlsym-based C declarations for read-only connection, display, Space, and window observation probes. Validated on macOS 15.7.2 build 24G325 with `tools/verify_skylight_readonly_header.zsh`.
+- `SkyLightReadOnly.h`: dlsym-based C declarations for read-only connection, display, Space, and window observation probes. Validated on macOS 15.7.2 build 24G325 and macOS 26.2 build 25C56 with `tools/verify_skylight_readonly_header.zsh`.
 - `skylight_symbol_names.h`: symbol-name and Objective-C class-name constants for presence probes. It intentionally avoids callable signatures.
 
 ## Generated Headers

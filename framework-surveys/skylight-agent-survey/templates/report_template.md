@@ -24,6 +24,7 @@
 | Artifact | Purpose | Notes |
 |---|---|---|
 | `SUMMARY.md` | compact inventory summary |  |
+| `SUMMARY.json` | machine-readable compact inventory summary |  |
 | `sw_vers.txt` | OS version |  |
 | `dyld_shared_caches.txt` | cache paths/sizes and optional hashes |  |
 | `skylight_symbol_prefix_counts.tsv` | compact symbol-prefix counts |  |

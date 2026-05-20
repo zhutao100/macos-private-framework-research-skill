@@ -27,12 +27,12 @@ Done when: every candidate symbol has source path, category, and confidence C0.
 
 ## T3: Cross-build drift
 
-Input: two or more symbol manifests.
+Input: two or more symbol manifests or probe summaries.
 
 Steps:
 
-1. Normalize each manifest to `{"symbols":[{"symbol":"..."}]}`.
-2. Run `tools/diff_symbol_manifests.py old.json new.json`.
+1. Use `{"symbols":[{"symbol":"..."}]}` manifests or probe-summary `records[]` files.
+2. Run `tools/diff_symbol_manifests.py --status present old.json new.json` for probe summaries.
 3. Highlight added/removed symbols in report.
 
 Done when: drift table is produced and risky disappearing symbols are flagged.

@@ -44,7 +44,7 @@ Use this for third-party projects and local experiments. Do not treat source ref
 ## Phase D: cross-build diff
 
 ```sh
-python3 tools/diff_symbol_manifests.py out/mac15.json out/mac26.json
+python3 tools/diff_symbol_manifests.py --status present out/mac15.json out/mac26.json
 ```
 
 Focus on symbols that appear/disappear or move between prefixes.
