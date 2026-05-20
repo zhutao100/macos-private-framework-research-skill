@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+from collections import Counter
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -399,6 +400,7 @@ def render_markdown(
     counts: dict[str, int] = {"error": 0, "warning": 0, "info": 0}
     for diagnostic in diagnostics:
         counts[diagnostic.severity] = counts.get(diagnostic.severity, 0) + 1
+    code_counts = Counter(diagnostic.code for diagnostic in diagnostics)
     compile_failed = bool(compile_result is not None and compile_result.returncode not in (0, None))
     lines: list[str] = [
         "# Objective-C Signature Lint",
@@ -412,6 +414,15 @@ def render_markdown(
         "",
     ]
     if diagnostics:
+        lines.append("## Diagnostic Code Counts")
+        lines.append("")
+        lines.append("| Code | Count |")
+        lines.append("|---|---:|")
+        for code, count in code_counts.most_common():
+            lines.append(f"| `{code}` | {count} |")
+        lines.append("")
+        lines.append("## Diagnostics")
+        lines.append("")
         lines.extend(["| Severity | Code | Location | Message |", "|---|---|---|---|"])
         visible_diagnostics = (
             diagnostics[:diagnostic_limit]
@@ -528,6 +539,7 @@ def main() -> int:
             "errors": sum(1 for item in diagnostics if item.severity == "error")
             + (1 if compile_result and compile_result.returncode not in (0, None) else 0),
             "warnings": sum(1 for item in diagnostics if item.severity == "warning"),
+            "by_code": dict(sorted(Counter(item.code for item in diagnostics).items())),
         },
     }
     if args.output:

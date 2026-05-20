@@ -31,6 +31,16 @@ swift tools/dlopen_probe_symbols.swift --json > out/$(hostname -s)/dlsym_probe.j
 
 This script checks whether known C symbols resolve and whether selected Objective-C classes are visible after `dlopen`. It does not call the resolved function pointers or instantiate classes.
 
+For ad hoc symbols outside this package's fixed list, use the generalized skill probe:
+
+```sh
+macos-private-framework-research/scripts/dlopen_symbol_probe.swift \
+  --image /System/Library/PrivateFrameworks/SkyLight.framework/SkyLight \
+  --symbol SLSMainConnectionID \
+  --class SLContentFilter \
+  --json
+```
+
 ## Phase C: source-reference extraction
 
 Against a local source tree:

@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import <dlfcn.h>
 #import <sys/sysctl.h>
 
 #import "SkyLightReadOnly.h"
@@ -48,6 +49,32 @@ static NSNumber *FirstWindowID(void) {
     return nil;
 }
 
+static NSDictionary *SymbolResolution(NSString *name, uintptr_t address) {
+    NSMutableDictionary *record = [@{
+        @"name": name,
+        @"present": @(address != 0),
+    } mutableCopy];
+    if (address == 0) {
+        return record;
+    }
+
+    Dl_info info;
+    memset(&info, 0, sizeof(info));
+    if (dladdr((const void *)address, &info) != 0) {
+        if (info.dli_fname) {
+            record[@"image_path"] = @(info.dli_fname);
+        }
+        if (info.dli_sname) {
+            record[@"resolved_symbol"] = @(info.dli_sname);
+        }
+    }
+    record[@"address"] = [NSString stringWithFormat:@"0x%llx", (unsigned long long)address];
+    return record;
+}
+
+#define ADD_SYMBOL_RESOLUTION(records, symbols, field) \
+    [records addObject:SymbolResolution(@#field, (uintptr_t)((symbols).field))]
+
 int main(void) {
     @autoreleasepool {
         NSMutableArray<NSDictionary *> *records = [NSMutableArray array];
@@ -64,6 +91,20 @@ int main(void) {
         bool loaded = SkyLightReadOnlyLoad(&symbols);
         report[@"loaded_path"] = symbols.loaded_path ? @(symbols.loaded_path) : @"";
         report[@"header_loaded"] = @(loaded);
+        NSMutableArray<NSDictionary *> *symbolResolutions = [NSMutableArray array];
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSMainConnectionID);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, CGSMainConnectionID);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSCopyManagedDisplays);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSCopyManagedDisplaySpaces);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSCopySpacesForWindows);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSCopyWindowsWithOptionsAndTags);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSGetActiveSpace);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSManagedDisplayGetCurrentSpace);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSSpaceGetType);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSGetWindowBounds);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSGetWindowOwner);
+        ADD_SYMBOL_RESOLUTION(symbolResolutions, symbols, SLSGetWindowLevel);
+        report[@"symbol_resolutions"] = symbolResolutions;
         if (!loaded) {
             AddRecord(records, @"SkyLightReadOnlyLoad", @"failed", nil);
             report[@"records"] = records;
@@ -79,8 +120,12 @@ int main(void) {
         SLSConnectionID cid = symbols.SLSMainConnectionID();
         AddRecord(records, @"SLSMainConnectionID", @"called", @{@"connection_id": @(cid)});
 
-        SLSConnectionID cgsCid = symbols.CGSMainConnectionID();
-        AddRecord(records, @"CGSMainConnectionID", @"called", @{@"connection_id": @(cgsCid)});
+        if (symbols.CGSMainConnectionID) {
+            SLSConnectionID cgsCid = symbols.CGSMainConnectionID();
+            AddRecord(records, @"CGSMainConnectionID", @"called", @{@"connection_id": @(cgsCid)});
+        } else {
+            AddRecord(records, @"CGSMainConnectionID", @"skipped", @{@"reason": @"symbol absent"});
+        }
 
         CFArrayRef displays = symbols.SLSCopyManagedDisplays(cid);
         CFIndex displayCount = displays ? CFArrayGetCount(displays) : -1;

@@ -7,7 +7,7 @@
   - read-only window geometry/owner/level observation.
 
   Verification baseline:
-  - exported from SkyLight.framework on macOS 15.7.2 build 24G325;
+  - resolved through a SkyLight.framework dlopen handle on macOS 15.7.2 build 24G325;
   - prototype-compatible with non-mutating calls in
     tools/verify_skylight_readonly_header.zsh on macOS 15.7.2 build 24G325;
   - the same non-mutating calls passed on macOS 26.2 build 25C56;
@@ -163,7 +163,6 @@ static inline bool SkyLightReadOnlyLoad(SkyLightReadOnlySymbols *symbols) {
         (SLSGetWindowLevelFunction)dlsym(symbols->handle, "SLSGetWindowLevel");
 
     return symbols->SLSMainConnectionID &&
-           symbols->CGSMainConnectionID &&
            symbols->SLSCopyManagedDisplays &&
            symbols->SLSCopyManagedDisplaySpaces &&
            symbols->SLSCopySpacesForWindows &&
@@ -186,6 +185,7 @@ static inline void SkyLightReadOnlyClose(SkyLightReadOnlySymbols *symbols) {
 
 #ifdef SKYLIGHT_ENABLE_DIRECT_PRIVATE_DECLARATIONS
 extern SLSConnectionID SLSMainConnectionID(void);
+/* Optional compatibility alias; use SLSMainConnectionID as the required symbol. */
 extern SLSConnectionID CGSMainConnectionID(void);
 extern CFArrayRef SLSCopyManagedDisplays(SLSConnectionID cid);
 extern CFArrayRef SLSCopyManagedDisplaySpaces(SLSConnectionID cid);

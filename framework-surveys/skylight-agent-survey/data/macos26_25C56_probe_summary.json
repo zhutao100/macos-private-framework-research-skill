@@ -65,9 +65,30 @@
     ],
     "notes": [
       "SLSMainConnectionID and CGSMainConnectionID returned the same connection ID.",
+      "The read-only verifier resolved both SLSMainConnectionID and CGSMainConnectionID to the same SkyLight text address and nearest symbol SLSMainConnectionID.",
       "SLSCopyManagedDisplays and SLSCopyManagedDisplaySpaces returned non-empty arrays on the test VM.",
       "Window probes returned status code 0 for a WindowServer-provided window ID."
     ]
+  },
+  "tool_evidence": {
+    "runtimeviewer": {
+      "version": "2.0.1",
+      "object_count": 332,
+      "matched_probe_classes": 10,
+      "notes": [
+        "RuntimeViewerCore loaded SkyLight through the framework path and exported rich interfaces for all 10 probe classes.",
+        "Selected exports include ivar offsets and IMP addresses absent from the ipsw class-dump headers."
+      ]
+    },
+    "hopper": {
+      "version": "6.2.9",
+      "procedure_count": 23245,
+      "notes": [
+        "Focused snapshots corroborated read-only SLS wrapper shapes for managed displays, Spaces, window owner, window level, and window bounds.",
+        "SLSGetActiveSpace did not consume the passed connection argument in Hopper pseudocode on this build; the project header keeps the connection-argument form for source compatibility and cross-build caution.",
+        "SLSEventAuthenticationMessage factory/init selector shapes were corroborated, but SLSEventRecord layout remains unpromoted."
+      ]
+    }
   },
   "schema_version": 1
 }

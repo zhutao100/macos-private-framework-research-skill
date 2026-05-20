@@ -7,6 +7,7 @@ Usage: verify_skylight_readonly_header.zsh [output.json]
 
 Compile and run the SkyLightReadOnly.h non-mutating prototype probe.
 The probe writes JSON to stdout or to output.json when provided.
+JSON includes dlsym/dladdr symbol-resolution records and non-mutating call results.
 USAGE
 }
 

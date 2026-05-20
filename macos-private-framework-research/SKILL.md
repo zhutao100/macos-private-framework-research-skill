@@ -67,6 +67,18 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 
    For cache-resident frameworks on macOS 15/26+, prefer class-dump directly against the dyld cache path. A single-framework extracted Mach-O is still useful for load-command and focused symbol inspection, but ObjC metadata address mapping can fail when class-dump is run against the flat extracted file. When available, use RuntimeViewer for Swift + Objective-C interfaces and Hopper for disassembly/pseudocode/xrefs. RuntimeBrowser is useful for live Objective-C runtime enumeration but will miss code that is not loaded and non-ObjC surfaces.
 
+   For a compact runtime presence check that does not call private functions:
+
+   ```bash
+   scripts/dlopen_symbol_probe.swift \
+     --image /System/Library/PrivateFrameworks/FrameworkName.framework/FrameworkName \
+     --symbol CandidateFunction \
+     --class CandidateClass \
+     --json
+   ```
+
+   This records host build metadata, `dlopen` success, `dlsym` presence, Objective-C class lookup, and `dladdr` resolution for C symbols. Use it to verify names before investing in signature inference.
+
 5. Triage underspecified declarations.
 
    ```bash
@@ -117,6 +129,7 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 | Single framework extraction | plain `ipsw dyld extract` via `scripts/extract_dyld_framework.sh` | `dyld-shared-cache-extractor`, Hopper dyld cache loader |
 | ObjC baseline headers | `ipsw class-dump`, RuntimeViewer export | RuntimeBrowser, Hopper ObjC header export |
 | Swift metadata/interface | RuntimeViewer | Hopper/IDA/Ghidra plus Swift demangling |
+| Runtime name presence | `scripts/dlopen_symbol_probe.swift` | small custom `dlopen`/`dlsym` probe |
 | Disassembly/xrefs | Hopper skill/MCP or Hopper GUI | `xcrun llvm-objdump`, LLDB focused disassembly |
 | Type inference | MOTIF-style tool + feedback loop | manual constraint table and linter diagnostics |
 | Missing optional toolchain | `scripts/resolve_toolchains.py TOOL` using `agents/tool-installation.yaml` | choose a built-in fallback or a different evidence source |
@@ -127,6 +140,8 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 - `scripts/macos_private_framework_inventory.py`: Inventory macOS, dyld caches, framework directories, SIP, Xcode, and analysis tools.
 - `scripts/discover_private_frameworks.py`: Resolve app/binary targets and list linked private frameworks with supporting evidence; Markdown binary details are capped while JSON remains complete.
 - `scripts/extract_dyld_framework.sh`: Extract a named framework from the active dyld shared cache using `ipsw` or `dyld-shared-cache-extractor`; use `--enrich-objc-stubs` only when needed.
+- `scripts/dlopen_symbol_probe.swift`: Read-only `dlopen`/`dlsym`/`NSClassFromString` presence probe for arbitrary local framework images, with compact TSV or JSON output.
+- `scripts/diff_symbol_manifests.py`: Diff symbol-name manifests or probe-summary records across builds with bounded output.
 - `scripts/resolve_toolchains.py`: Check optional non-built-in toolchains and report or run the configured installation source from `agents/tool-installation.yaml` only when needed.
 - `scripts/objc_header_triage.py`: Scan reconstructed headers and rank underspecified Objective-C declarations with bounded Markdown and complete JSON.
 - `scripts/build_motif_context.py`: Build complete JSON and bounded Markdown prompt bundles for a single candidate signature.

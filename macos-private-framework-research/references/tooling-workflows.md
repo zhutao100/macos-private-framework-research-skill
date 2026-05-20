@@ -130,7 +130,33 @@ mkdir -p /tmp/FrameworkName.headers/{ipsw,runtimeviewer,hopper}
 diff -ru /tmp/FrameworkName.headers/ipsw /tmp/FrameworkName.headers/runtimeviewer | less
 ```
 
-## 5. Hopper Companion Workflow
+## 5. Runtime Presence Probe
+
+Before treating a name as callable or using it as class metadata, run a read-only presence probe:
+
+```bash
+scripts/dlopen_symbol_probe.swift \
+  --image /System/Library/PrivateFrameworks/FrameworkName.framework/FrameworkName \
+  --symbol CandidateFunction \
+  --class CandidateClass \
+  --json > /tmp/FrameworkName.probe.json
+```
+
+Use repeated `--image` arguments for framework-path fallbacks and repeated `--symbol`/`--class` arguments for a short candidate set. For larger lists, use newline-delimited files:
+
+```bash
+scripts/dlopen_symbol_probe.swift \
+  --image /System/Library/PrivateFrameworks/FrameworkName.framework/FrameworkName \
+  --symbol-file /tmp/FrameworkName.symbols.txt \
+  --class-file /tmp/FrameworkName.classes.txt \
+  --json
+```
+
+The probe records host build metadata, the loaded path, `dlsym` status, `NSClassFromString` status, and `dladdr` image/symbol resolution for present C symbols. It does not call resolved function pointers or instantiate classes. Treat `present` as name evidence only; signatures still require static metadata, caller evidence, and linter/compile validation.
+
+Use `scripts/diff_symbol_manifests.py --status present old.json new.json` to compare two probe JSON files or symbol manifests across builds.
+
+## 6. Hopper Companion Workflow
 
 When the Hopper skill is installed, use it for binary evidence:
 
@@ -159,7 +185,7 @@ hopper-disassembler-analysis/scripts/hopper_evidence_search.py \
   'selectorName|ClassName|UniqueString'
 ```
 
-## 6. RuntimeViewer Workflow
+## 7. RuntimeViewer Workflow
 
 Use RuntimeViewer when Swift metadata or an MCP bridge can improve the agent loop.
 
@@ -179,7 +205,7 @@ MCP procedure:
 
 Use `assets/runtimeviewer-mcp-config.example.json` only as a placeholder; RuntimeViewer should provide the authoritative config.
 
-## 7. RuntimeBrowser Workflow
+## 8. RuntimeBrowser Workflow
 
 RuntimeBrowser remains useful for fast ObjC runtime browsing:
 
@@ -190,7 +216,7 @@ RuntimeBrowser remains useful for fast ObjC runtime browsing:
 
 Do not rely on RuntimeBrowser for Swift-only types, pure C/C++ APIs, or unloaded framework surfaces.
 
-## 8. Built-In Tool Fallbacks
+## 9. Built-In Tool Fallbacks
 
 ```bash
 file /path/to/binary
@@ -205,7 +231,7 @@ xcrun swift-demangle '$s...'
 
 For symbols and strings, keep output bounded. Large raw dumps are less useful to agents than compact evidence snippets tied to one candidate.
 
-## 9. Cache-Resident Framework Paths
+## 10. Cache-Resident Framework Paths
 
 On modern macOS, a framework bundle can exist on disk while the Mach-O image is cache-resident. In that case, `file`, `nm`, `dyldinfo`, or `strings` on `/System/Library/PrivateFrameworks/Name.framework/Name` may fail even though `dlopen` succeeds.
 

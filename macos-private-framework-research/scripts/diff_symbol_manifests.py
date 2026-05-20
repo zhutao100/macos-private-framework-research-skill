@@ -63,7 +63,13 @@ def cap(values: list[str], limit: int) -> tuple[list[str], int]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Diff two symbol manifests or probe-summary JSON files.")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Diff two private-framework symbol manifests or dlopen probe summaries. "
+            "Inputs may be strings, {symbol: ...} entries, {name/status: ...} records, "
+            "or dictionaries containing symbols[]/records[]."
+        )
+    )
     parser.add_argument("old", type=Path)
     parser.add_argument("new", type=Path)
     parser.add_argument(

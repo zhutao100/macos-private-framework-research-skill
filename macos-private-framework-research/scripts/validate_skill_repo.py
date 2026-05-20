@@ -139,6 +139,16 @@ def validate_skill(skill_dir: Path, repo_root: Path) -> list[Finding]:
                         findings.append(
                             Finding("warning", str(rel), f"bash syntax not checked: {output}")
                         )
+                elif child.suffix == ".swift":
+                    rc, output = run_syntax(["swiftc", "-parse", str(child)])
+                    if rc not in (0, None):
+                        findings.append(
+                            Finding("error", str(rel), f"swift syntax failed: {output[:500]}")
+                        )
+                    elif rc is None:
+                        findings.append(
+                            Finding("warning", str(rel), f"swift syntax not checked: {output}")
+                        )
     return findings
 
 

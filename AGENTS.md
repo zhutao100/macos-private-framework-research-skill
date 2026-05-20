@@ -26,6 +26,7 @@ macos-private-framework-research/scripts/validate_skill_repo.py .
 macos-private-framework-research/scripts/resolve_toolchains.py --json-output /tmp/macos-pf-toolchains.json >/tmp/macos-pf-toolchains.md
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
+macos-private-framework-research/scripts/dlopen_symbol_probe.swift --help >/tmp/macos-pf-dlopen-help.txt
 zsh -n framework-surveys/skylight-agent-survey/tools/*.zsh
 python3 -m py_compile framework-surveys/skylight-agent-survey/tools/*.py
 swift framework-surveys/skylight-agent-survey/tools/dlopen_probe_symbols.swift --json >/tmp/skylight-dlsym-probe.json

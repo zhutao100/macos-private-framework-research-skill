@@ -16,4 +16,4 @@ Hopper:
   note: "Commercial software. Ask the human developer to install Hopper Disassembler.app when Hopper evidence is required."
 
 HopperMCPServer:
-  note: "Install and configure the Hopper companion server only when MCP-backed Hopper inspection is required."
+  note: "Often bundled inside Hopper Disassembler.app; configure the companion server only when MCP-backed Hopper inspection is required."

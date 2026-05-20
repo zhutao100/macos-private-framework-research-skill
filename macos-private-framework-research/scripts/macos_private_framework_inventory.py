@@ -44,6 +44,12 @@ APP_CANDIDATES = {
     "RuntimeBrowser": [Path("/Applications/RuntimeBrowser.app")],
 }
 
+BUNDLED_TOOL_CANDIDATES = {
+    "HopperMCPServer": [
+        Path("/Applications/Hopper Disassembler.app/Contents/MacOS/HopperMCPServer"),
+    ],
+}
+
 
 @dataclass(frozen=True)
 class CommandResult:
@@ -152,9 +158,19 @@ def tool_command(name: str) -> list[str]:
     return [name]
 
 
+def resolve_tool_path(name: str, command: list[str]) -> str | None:
+    path = shutil.which(command[0])
+    if path:
+        return path
+    for candidate in BUNDLED_TOOL_CANDIDATES.get(name, []):
+        if candidate.exists() and candidate.is_file():
+            return str(candidate)
+    return None
+
+
 def tool_info(name: str) -> dict[str, Any]:
     command = tool_command(name)
-    path = shutil.which(command[0])
+    path = resolve_tool_path(name, command)
     info: dict[str, Any] = {
         "name": name,
         "command": command,
@@ -169,7 +185,6 @@ def tool_info(name: str) -> dict[str, Any]:
         "dyld-shared-cache-extractor": [name, "--help"],
         "ipsw class-dump": [*command, "--help"],
         "hopper": [name, "--help"],
-        "HopperMCPServer": [name, "--help"],
         "clang": [name, "--version"],
         "lldb": [name, "--version"],
         "xcrun": [name, "--version"],

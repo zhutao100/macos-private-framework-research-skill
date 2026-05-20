@@ -106,6 +106,8 @@ Research questions:
 - On macOS 15.7.2 build 24G325, the SkyLight framework bundle also exists without a versioned binary on the filesystem; `dlopen` succeeds through the dyld shared cache. This matches the packaging pattern observed on macOS 26.2 build 25C56.
 - On macOS 26.2 build 25C56, the SkyLight framework bundle exists on disk but its `Versions/A/SkyLight` binary is absent from the filesystem; the install name is present in the arm64e dyld cache. Use dyld-cache-aware tools instead of treating the framework symlink as a normal Mach-O file.
 - `headers/SkyLightReadOnly.h` contains only read-only dlsym signatures validated on macOS 15.7.2 build 24G325 and macOS 26.2 build 25C56. Keep mutation, capture, and event-routing symbols as name-only until independently validated on the target build.
+- On macOS 26.2 build 25C56, Hopper shows several public SLS read-only wrappers using a bridged window-management operation path when enabled, with fallback calls to lower-level WindowServer client routines. Treat those wrappers as the stable call boundary for project probes; do not promote the bridged classes themselves into project APIs without separate validation.
+- RuntimeViewer is useful as an independent Objective-C runtime metadata source: for selected SkyLight classes it adds ivar offsets and IMP addresses that `ipsw class-dump` omits.
 - Objective-C class names such as `SLSEventAuthenticationMessage` must be checked with runtime class lookup or metadata dumps, not `dlsym("ClassName")`.
 - SIP protects system locations and Apple-preinstalled apps; research should not require modifying system files.
 - TCC/privacy prompts remain part of the supported capture/automation model.

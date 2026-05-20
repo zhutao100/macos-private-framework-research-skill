@@ -178,6 +178,8 @@ Probe these with Objective-C runtime metadata (`NSClassFromString`, class-dump, 
 
 ## spaces
 
+Hopper on macOS 26.2 build 25C56 shows `SLSGetActiveSpace` reading from the main connection without consuming the caller-provided connection argument; community caller evidence still passes a connection ID. Keep cross-build validation before changing source-level declarations.
+
 - `CGSMoveWindowsToManagedSpace`
 - `SLSCopySpacesForWindows`
 - `SLSCopyWindowsWithOptionsAndTags`

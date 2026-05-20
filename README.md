@@ -86,6 +86,16 @@ macos-private-framework-research/scripts/extract_dyld_framework.sh \
 
 Use `--enrich-objc-stubs` only when extraction-time enrichment is needed; run `ipsw class-dump` separately for bounded header output.
 
+Probe candidate C symbols and Objective-C classes without calling them:
+
+```bash
+macos-private-framework-research/scripts/dlopen_symbol_probe.swift \
+  --image /System/Library/PrivateFrameworks/DiskManagement.framework/DiskManagement \
+  --symbol CandidateFunction \
+  --class CandidateClass \
+  --json
+```
+
 Triage reconstructed headers for underspecified method signatures:
 
 ```bash
@@ -129,6 +139,7 @@ macos-private-framework-research/scripts/resolve_toolchains.py --json-output /tm
   >/tmp/macos-pf-toolchains.md
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
+macos-private-framework-research/scripts/dlopen_symbol_probe.swift --help >/tmp/macos-pf-dlopen-help.txt
 zsh -n framework-surveys/skylight-agent-survey/tools/*.zsh
 python3 -m py_compile framework-surveys/skylight-agent-survey/tools/*.py
 ```

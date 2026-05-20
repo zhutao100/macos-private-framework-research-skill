@@ -19,6 +19,7 @@ DEFAULT_SOURCE = SKILL_DIR / "agents" / "tool-installation.yaml"
 @dataclass(frozen=True)
 class ToolProbe:
     command: tuple[str, ...] = ()
+    executable_paths: tuple[Path, ...] = ()
     app_paths: tuple[Path, ...] = ()
 
 
@@ -39,7 +40,10 @@ TOOL_PROBES: dict[str, ToolProbe] = {
     "RuntimeBrowser": ToolProbe(app_paths=(Path("/Applications/RuntimeBrowser.app"),)),
     "Hopper": ToolProbe(app_paths=(Path("/Applications/Hopper Disassembler.app"),)),
     "hopper": ToolProbe(command=("hopper",)),
-    "HopperMCPServer": ToolProbe(command=("HopperMCPServer",)),
+    "HopperMCPServer": ToolProbe(
+        command=("HopperMCPServer",),
+        executable_paths=(Path("/Applications/Hopper Disassembler.app/Contents/MacOS/HopperMCPServer"),),
+    ),
 }
 
 
@@ -117,6 +121,12 @@ def probe_tool(name: str) -> tuple[bool, list[str]]:
             evidence.append(resolved)
         else:
             evidence.append(f"{executable}: not found in PATH")
+    for executable_path in probe.executable_paths:
+        if executable_path.exists() and executable_path.is_file():
+            available = True
+            evidence.append(str(executable_path))
+        else:
+            evidence.append(f"{executable_path}: not found")
     for app_path in probe.app_paths:
         if app_path.exists():
             available = True
