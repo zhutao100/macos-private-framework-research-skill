@@ -21,7 +21,7 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
      --json-output /tmp/macos-pf-inventory.json
    ```
 
-   Record macOS product/build, architecture, dyld cache path, Xcode/CLT version, SIP status, and available tools before interpreting results. Load `references/modern-macos-notes.md` when cache paths, Cryptex paths, or version drift matter.
+   Record macOS product/build, architecture, dyld cache path, Xcode/CLT version, SIP status, and available tools before interpreting results. Markdown is capped for agent ingestion where needed; JSON contains complete cache/tool evidence. Load `references/modern-macos-notes.md` when cache paths, Cryptex paths, or version drift matter.
 
 2. Discover client dependencies and candidate frameworks.
 
@@ -117,7 +117,7 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 
 - `scripts/install_codex_skill.sh`: Install this skill to user, repo, or legacy Codex skill locations.
 - `scripts/macos_private_framework_inventory.py`: Inventory macOS, dyld caches, framework directories, SIP, Xcode, and analysis tools.
-- `scripts/discover_private_frameworks.py`: Resolve app/binary targets and list linked private frameworks with supporting evidence.
+- `scripts/discover_private_frameworks.py`: Resolve app/binary targets and list linked private frameworks with supporting evidence; Markdown binary details are capped while JSON remains complete.
 - `scripts/extract_dyld_framework.sh`: Extract a named framework from the active dyld shared cache using `ipsw` or `dyld-shared-cache-extractor`; use `--enrich-objc-stubs` only when needed.
 - `scripts/objc_header_triage.py`: Scan reconstructed headers and rank underspecified Objective-C declarations with bounded Markdown and complete JSON.
 - `scripts/build_motif_context.py`: Build complete JSON and bounded Markdown prompt bundles for a single candidate signature.

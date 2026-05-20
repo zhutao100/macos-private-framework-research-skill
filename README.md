@@ -118,6 +118,13 @@ Portable validation that does not require macOS-specific tools:
 macos-private-framework-research/scripts/validate_skill_repo.py .
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
+zsh -n framework-surveys/skylight-agent-survey/tools/*.zsh
+python3 -m py_compile framework-surveys/skylight-agent-survey/tools/*.py
 ```
 
-On a macOS host, also run the inventory script and a small app/binary discovery pass.
+On a macOS host, also run the inventory script, a small app/binary discovery pass, and the SkyLight read-only header verifier when touching the survey package.
+
+```bash
+framework-surveys/skylight-agent-survey/tools/verify_skylight_readonly_header.zsh \
+  /tmp/skylight-readonly-verify.json
+```

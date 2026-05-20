@@ -26,6 +26,12 @@
       "purpose": "Verified SkyLight packaging, dyld-cache, header, and symbol/class probe findings for macOS 26.2 build 25C56."
     },
     {
+      "id": "macos15_24G325_local_probe",
+      "kind": "local_build_observation",
+      "path": "references/build_observations/macos15_24G325.md",
+      "purpose": "Verified SkyLight packaging, dyld-cache, header, symbol/class probe, and read-only header-call findings for macOS 15.7.2 build 24G325."
+    },
+    {
       "id": "motif",
       "kind": "web",
       "purpose": "LLM-guided private-framework type inference methodology.",

@@ -180,8 +180,10 @@ Probe these with Objective-C runtime metadata (`NSClassFromString`, class-dump, 
 
 - `CGSMoveWindowsToManagedSpace`
 - `SLSCopySpacesForWindows`
+- `SLSCopyWindowsWithOptionsAndTags`
 - `SLSGetActiveSpace`
 - `SLSHideSpaces`
+- `SLSSpaceGetType`
 - `SLSShowSpaces`
 - `SLSSpaceAddWindowsAndRemoveFromSpaces`
 - `SLSSpaceCreate`

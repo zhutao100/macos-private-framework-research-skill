@@ -8,8 +8,15 @@ struct ProbeRecord: Encodable {
     let status: String
 }
 
+struct ProbeSummary: Encodable {
+    let present: Int
+    let missing: Int
+    let byKind: [String: [String: Int]]
+}
+
 struct ProbeReport: Encodable {
     let loadedPath: String
+    let summary: ProbeSummary
     let records: [ProbeRecord]
 }
 
@@ -28,8 +35,10 @@ let cSymbols = [
     "SLSCopyManagedDisplays",
     "SLSCopyManagedDisplaySpaces",
     "SLSCopySpacesForWindows",
+    "SLSCopyWindowsWithOptionsAndTags",
     "SLSGetActiveSpace",
     "SLSManagedDisplayGetCurrentSpace",
+    "SLSSpaceGetType",
     "SLSGetWindowBounds",
     "SLSGetWindowOwner",
     "SLSGetWindowLevel",
@@ -92,10 +101,21 @@ for className in objcClasses.sorted() {
 }
 
 if jsonOutput {
+    var byKind: [String: [String: Int]] = [:]
+    for record in records {
+        var counts = byKind[record.kind] ?? [:]
+        counts[record.status, default: 0] += 1
+        byKind[record.kind] = counts
+    }
+    let summary = ProbeSummary(
+        present: records.filter { $0.status == "present" }.count,
+        missing: records.filter { $0.status == "missing" }.count,
+        byKind: byKind
+    )
     let encoder = JSONEncoder()
     encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
     let data = try encoder.encode(
-        ProbeReport(loadedPath: loadedPath ?? "unknown", records: records)
+        ProbeReport(loadedPath: loadedPath ?? "unknown", summary: summary, records: records)
     )
     FileHandle.standardOutput.write(data)
     print("")

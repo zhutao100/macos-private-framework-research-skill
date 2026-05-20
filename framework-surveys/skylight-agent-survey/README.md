@@ -42,7 +42,10 @@ seed/
 | `references/project_notes/cua_driver_notes.md` | How Cua maps to the background computer-use problem space. |
 | `references/project_notes/skylightwindow_notes.md` | How SkyLightWindow maps to system-level overlay/Space experiments. |
 | `tools/collect_skylight_inventory.zsh` | Read-only host inventory and symbol collection. |
+| `references/build_observations/macos15_24G325.md` | Verified packaging, extraction, header, probe, and read-only declaration findings from macOS 15.7.2 build 24G325. |
 | `references/build_observations/macos26_25C56.md` | Verified packaging, extraction, header, and probe findings from macOS 26.2 build 25C56. |
 | `tools/dlopen_probe_symbols.swift` | Read-only `dlopen`/`dlsym`/`NSClassFromString` presence probe; it does not call private symbols. |
+| `tools/verify_skylight_readonly_header.zsh` | Compiles `headers/SkyLightReadOnly.h` and runs non-mutating prototype calls. |
+| `headers/SkyLightReadOnly.h` | Project-ready dlsym declarations for read-only connection/display/Space/window observation. |
 | `data/seed_symbol_manifest.json` | Machine-readable symbol-name observations from seed source trees. |
 ```

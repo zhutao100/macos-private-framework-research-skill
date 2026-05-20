@@ -40,7 +40,7 @@ cache_candidates=(
 primary_cache=''
 for cache in "${cache_candidates[@]}"; do
     case "$(basename "$cache")" in
-        *.map|*.atlas|*.[0-9][0-9]) continue ;;
+        *.map | *.atlas | *.[0-9][0-9]) continue ;;
     esac
     primary_cache="$cache"
     break
@@ -83,11 +83,34 @@ fi
 
 if [[ -n "$primary_cache" && -x "$(command -v ipsw 2>/dev/null || true)" ]]; then
     run skylight_ipsw_symbol_names.txt sh -c \
-        'ipsw dyld macho "$1" SkyLight --symbols | awk -F "\t" '"'"'NF >= 2 { sym=$2; sub(/^_/, "", sym); if (sym ~ /^(SLS|CGS|SLPS|SLEvent|SLSEvent)/) print sym }'"'"' | sort -u' \
+        'ipsw dyld macho "$1" SkyLight --symbols | awk -F "\t" '"'"'NF >= 2 { sym=$2; sub(/^_/, "", sym); if (sym ~ /^(SLS|CGS|SLPS|_SLPS|SLEvent|SLSEvent)/) print sym }'"'"' | sort -u' \
         sh "$primary_cache"
 else
     printf 'Skipped: ipsw or primary dyld cache was not available.\n' >"$out_dir/skylight_ipsw_symbol_names.txt"
 fi
+
+awk '
+BEGIN {
+    order[1] = "CGS"
+    order[2] = "SLS"
+    order[3] = "SLPS"
+    order[4] = "_SLPS"
+    order[5] = "SLEvent"
+    order[6] = "SLSEvent"
+}
+/^SLSEvent/ { count["SLSEvent"]++; next }
+/^SLEvent/ { count["SLEvent"]++; next }
+/^_SLPS/ { count["_SLPS"]++; next }
+/^SLPS/ { count["SLPS"]++; next }
+/^SLS/ { count["SLS"]++; next }
+/^CGS/ { count["CGS"]++; next }
+END {
+    print "prefix\tcount"
+    for (i = 1; i <= 6; i++) {
+        print order[i] "\t" count[order[i]] + 0
+    }
+}
+' "$out_dir/skylight_ipsw_symbol_names.txt" >"$out_dir/skylight_symbol_prefix_counts.tsv"
 
 {
     printf 'primary_cache=%s\n\n' "$primary_cache"
@@ -103,6 +126,33 @@ fi
         printf '\n'
     done
 } >"$out_dir/dyld_shared_caches.txt"
+
+symbol_count=$(
+    awk '!/^Skipped:/ && NF { count++ } END { print count + 0 }' \
+        "$out_dir/skylight_ipsw_symbol_names.txt"
+)
+
+{
+    printf '# SkyLight Inventory Summary\n\n'
+    printf '- Created UTC: `%s`\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    printf '- Product: `%s %s`\n' "$(sw_vers -productVersion 2>/dev/null || true)" "$(sw_vers -buildVersion 2>/dev/null || true)"
+    printf '- Darwin: `%s`\n' "$(uname -r 2>/dev/null || true)"
+    printf '- Architecture: `%s`\n' "$(arch 2>/dev/null || true)"
+    printf '- Primary dyld cache: `%s`\n' "${primary_cache:-not found}"
+    if [[ -e "$skylight_bin_a" ]]; then
+        printf '- Framework binary on filesystem: `present`\n'
+    else
+        printf '- Framework binary on filesystem: `absent; dyld-cache resident`\n'
+    fi
+    printf '- WindowServer resource: `%s`\n' "$windowserver_bin"
+    printf '- SkyLight symbol names collected: `%s`\n' "$symbol_count"
+    printf '\n## Symbol Prefix Counts\n\n'
+    printf '| Prefix | Count |\n'
+    printf '|---|---:|\n'
+    awk 'NR > 1 { printf "| `%s` | %d |\n", $1, $2 }' \
+        "$out_dir/skylight_symbol_prefix_counts.tsv"
+    printf '\nSee `skylight_ipsw_symbol_names.txt` for the full symbol-name list and `dyld_shared_caches.txt` for cache details.\n'
+} >"$out_dir/SUMMARY.md"
 
 if [[ "${SKYLIGHT_COLLECT_LOGS:-0}" == "1" ]]; then
     run skylight_unified_log_last_1h.txt log show --last 1h --style compact --predicate 'subsystem == "com.apple.SkyLight" OR process == "WindowServer"'

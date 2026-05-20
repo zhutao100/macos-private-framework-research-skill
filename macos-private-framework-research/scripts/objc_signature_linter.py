@@ -333,8 +333,16 @@ def compile_headers(headers: Path, extra_include: list[Path]) -> CommandResult:
         return CommandResult(["clang"], None, "", "clang not found")
     header_files = iter_header_files(headers)
     with tempfile.TemporaryDirectory(prefix="objc-header-lint-") as tmp:
+        tmp_path = Path(tmp)
         wrapper = Path(tmp) / "validate_headers.m"
-        lines = ["#import <Foundation/Foundation.h>"]
+        lines = [
+            "#import <Foundation/Foundation.h>",
+            "#import <CoreFoundation/CoreFoundation.h>",
+            "#import <CoreGraphics/CoreGraphics.h>",
+            "#import <QuartzCore/QuartzCore.h>",
+            "#import <Metal/Metal.h>",
+            "#import <IOSurface/IOSurface.h>",
+        ]
         for header in header_files:
             escaped = str(header.resolve()).replace('"', '\\"')
             lines.append(f'#import "{escaped}"')
@@ -345,8 +353,12 @@ def compile_headers(headers: Path, extra_include: list[Path]) -> CommandResult:
             "-x",
             "objective-c",
             "-fsyntax-only",
+            "-fmodules",
+            f"-fmodules-cache-path={tmp_path / 'module-cache'}",
+            "-ferror-limit=12",
             "-Wno-objc-root-class",
             "-Wno-unknown-pragmas",
+            "-Wno-nullability-completeness",
         ]
         resolved_sdk = sdk_path()
         if resolved_sdk:
@@ -367,23 +379,35 @@ def abbreviate(text: str, max_chars: int) -> str:
     return f"{text[: max_chars - 3]}..."
 
 
+def abbreviate_lines(text: str, max_chars: int, max_line_chars: int) -> str:
+    line_limited = "\n".join(
+        abbreviate(line, max_line_chars) if max_line_chars > 0 else line
+        for line in text.splitlines()
+    )
+    return abbreviate(line_limited, max_chars)
+
+
 def render_markdown(
     headers: Path,
     diagnostics: list[Diagnostic],
     compile_result: CommandResult | None,
     diagnostic_limit: int = 200,
     max_message_chars: int = 220,
-    max_compile_output_chars: int = 12000,
+    max_compile_output_chars: int = 6000,
+    max_compile_line_chars: int = 500,
 ) -> str:
     counts: dict[str, int] = {"error": 0, "warning": 0, "info": 0}
     for diagnostic in diagnostics:
         counts[diagnostic.severity] = counts.get(diagnostic.severity, 0) + 1
+    compile_failed = bool(compile_result is not None and compile_result.returncode not in (0, None))
     lines: list[str] = [
         "# Objective-C Signature Lint",
         "",
         f"Headers: `{headers}`",
-        f"Errors: `{counts.get('error', 0)}`",
+        f"Structural errors: `{counts.get('error', 0)}`",
         f"Warnings: `{counts.get('warning', 0)}`",
+        f"Clang syntax check: `{'failed' if compile_failed else 'passed' if compile_result is not None else 'not run'}`",
+        f"Total blocking issues: `{counts.get('error', 0) + (1 if compile_failed else 0)}`",
         f"Rendered diagnostics: `{min(len(diagnostics), diagnostic_limit) if diagnostic_limit > 0 else len(diagnostics)}`",
         "",
     ]
@@ -414,12 +438,13 @@ def render_markdown(
         lines.append(f"- Command: `{' '.join(compile_result.command)}`")
         text = compile_result.stdout or compile_result.stderr
         if text:
+            rendered_text = abbreviate_lines(text, max_compile_output_chars, max_compile_line_chars)
             lines.append("```text")
-            lines.append(text[:max_compile_output_chars])
+            lines.append(rendered_text)
             lines.append("```")
-            if len(text) > max_compile_output_chars:
+            if rendered_text != text:
                 lines.append(
-                    "Clang output truncated in Markdown; JSON contains the complete output."
+                    "Clang output abbreviated in Markdown; JSON contains the complete output."
                 )
         else:
             lines.append("No clang output.")
@@ -464,8 +489,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max-compile-output-chars",
         type=int,
-        default=12000,
+        default=6000,
         help="Maximum clang output characters in Markdown; JSON remains complete.",
+    )
+    parser.add_argument(
+        "--max-compile-line-chars",
+        type=int,
+        default=500,
+        help="Maximum characters for each clang output line in Markdown; JSON remains complete.",
     )
     return parser.parse_args()
 
@@ -486,6 +517,7 @@ def main() -> int:
         diagnostic_limit=args.limit,
         max_message_chars=args.max_message_chars,
         max_compile_output_chars=args.max_compile_output_chars,
+        max_compile_line_chars=args.max_compile_line_chars,
     )
     data: dict[str, Any] = {
         "schema_version": "1.0",

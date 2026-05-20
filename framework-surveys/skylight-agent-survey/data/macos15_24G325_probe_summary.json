@@ -1,0 +1,73 @@
+{
+  "build": {
+    "architecture": "arm64",
+    "build_version": "24G325",
+    "darwin_version": "24.6.0",
+    "product_version": "15.7.2"
+  },
+  "loaded_path": "/System/Library/PrivateFrameworks/SkyLight.framework/SkyLight",
+  "probe_kind": "dlopen_dlsym_nsclass_and_readonly_header_call",
+  "records": [
+    {"kind": "c_symbol", "name": "CGSMainConnectionID", "status": "present"},
+    {"kind": "c_symbol", "name": "SLEventPostToPid", "status": "present"},
+    {"kind": "c_symbol", "name": "SLEventSetAuthenticationMessage", "status": "present"},
+    {"kind": "c_symbol", "name": "SLPSPostEventRecordTo", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSClearWindowTags", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSCopyManagedDisplaySpaces", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSCopyManagedDisplays", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSCopySpacesForWindows", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSCopyWindowsWithOptionsAndTags", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSGetActiveSpace", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSGetWindowBounds", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSGetWindowLevel", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSGetWindowOwner", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSHWCaptureWindowList", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSMainConnectionID", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSManagedDisplayGetCurrentSpace", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSMoveWindow", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSNewConnection", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSOrderWindow", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSReleaseConnection", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSSetWindowLevel", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSSetWindowTags", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSSpaceGetType", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSTransactionCommit", "status": "present"},
+    {"kind": "c_symbol", "name": "SLSTransactionCreate", "status": "present"},
+    {"kind": "c_symbol", "name": "_SLPSGetFrontProcess", "status": "present"},
+    {"kind": "objc_class", "name": "SLContentFilter", "status": "present"},
+    {"kind": "objc_class", "name": "SLContentStream", "status": "present"},
+    {"kind": "objc_class", "name": "SLSBridgedCopyManagedDisplaySpacesOperation", "status": "present"},
+    {"kind": "objc_class", "name": "SLSBridgedCopySpacesForWindowsOperation", "status": "present"},
+    {"kind": "objc_class", "name": "SLSBridgedMoveWindowsToManagedSpaceOperation", "status": "present"},
+    {"kind": "objc_class", "name": "SLSBridgedSpaceSetAbsoluteLevelOperation", "status": "present"},
+    {"kind": "objc_class", "name": "SLSEventAuthenticationMessage", "status": "present"},
+    {"kind": "objc_class", "name": "SLSSkyLightEventAuthenticationMessage", "status": "present"},
+    {"kind": "objc_class", "name": "SLSSkyLightKeyEventAuthenticationMessage", "status": "present"},
+    {"kind": "objc_class", "name": "SLWindowMirroringManager", "status": "present"}
+  ],
+  "readonly_header_validation": {
+    "header": "headers/SkyLightReadOnly.h",
+    "tool": "tools/verify_skylight_readonly_header.zsh",
+    "status": "passed",
+    "called_symbols": [
+      "SLSMainConnectionID",
+      "CGSMainConnectionID",
+      "SLSCopyManagedDisplays",
+      "SLSCopyManagedDisplaySpaces",
+      "SLSGetActiveSpace",
+      "SLSSpaceGetType",
+      "SLSManagedDisplayGetCurrentSpace",
+      "SLSCopyWindowsWithOptionsAndTags",
+      "SLSCopySpacesForWindows",
+      "SLSGetWindowBounds",
+      "SLSGetWindowOwner",
+      "SLSGetWindowLevel"
+    ],
+    "notes": [
+      "SLSMainConnectionID and CGSMainConnectionID returned the same connection ID.",
+      "SLSCopyManagedDisplays and SLSCopyManagedDisplaySpaces returned non-empty arrays on the test host.",
+      "Window probes returned status code 0 for a WindowServer-provided window ID."
+    ]
+  },
+  "schema_version": 1
+}

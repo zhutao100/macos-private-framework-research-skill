@@ -257,10 +257,28 @@ def primary_cache(caches: list[dict[str, Any]], machine: str) -> dict[str, Any] 
     return caches[0] if caches else None
 
 
-def render_markdown(data: dict[str, Any]) -> str:
+def visible_cache_rows(
+    caches: list[dict[str, Any]], selected_cache: dict[str, Any] | None, limit: int
+) -> list[dict[str, Any]]:
+    if limit <= 0:
+        return caches
+    rows: list[dict[str, Any]] = []
+    if selected_cache:
+        rows.append(selected_cache)
+    for cache in caches:
+        if selected_cache and cache["path"] == selected_cache["path"]:
+            continue
+        rows.append(cache)
+        if len(rows) >= limit:
+            break
+    return rows
+
+
+def render_markdown(data: dict[str, Any], cache_markdown_limit: int = 16) -> str:
     host = data["host"]
     caches = data["dyld_caches"]
     selected_cache = primary_cache(caches, host["machine"])
+    cache_rows = visible_cache_rows(caches, selected_cache, cache_markdown_limit)
     lines: list[str] = []
     lines.append("# macOS Private Framework Research Inventory")
     lines.append("")
@@ -295,9 +313,22 @@ def render_markdown(data: dict[str, Any]) -> str:
     lines.append("## Dyld Shared Caches")
     lines.append("")
     if caches:
+        primary_count = sum(1 for cache in caches if cache.get("kind") == "primary")
+        subcache_count = sum(1 for cache in caches if cache.get("kind") == "subcache")
+        map_count = sum(1 for cache in caches if cache.get("kind") == "map")
+        atlas_count = sum(1 for cache in caches if cache.get("kind") == "atlas")
+        other_count = len(caches) - primary_count - subcache_count - map_count - atlas_count
+        lines.append(
+            f"Found `{len(caches)}` cache-related files: primary=`{primary_count}`, subcache=`{subcache_count}`, map=`{map_count}`, atlas=`{atlas_count}`, other=`{other_count}`."
+        )
+        if len(cache_rows) < len(caches):
+            lines.append(
+                f"Markdown shows `{len(cache_rows)}` cache rows; JSON contains all cache records."
+            )
+        lines.append("")
         lines.append("| Cache | Arch | Kind | Size | Path |")
         lines.append("|---|---|---|---:|---|")
-        for cache in caches:
+        for cache in cache_rows:
             lines.append(
                 f"| `{cache['name']}` | `{cache['architecture']}` | `{cache['kind']}` | {human_size(cache['size_bytes'])} | `{cache['path']}` |"
             )
@@ -367,10 +398,16 @@ def main() -> int:
     )
     parser.add_argument("--output", type=Path, help="Markdown output path. Defaults to stdout.")
     parser.add_argument("--json-output", type=Path, help="JSON output path.")
+    parser.add_argument(
+        "--cache-markdown-limit",
+        type=int,
+        default=16,
+        help="Maximum dyld cache rows in Markdown. Use 0 for all rows; JSON always contains all.",
+    )
     args = parser.parse_args()
 
     data = build_inventory(args.extra_dyld_dir)
-    markdown = render_markdown(data)
+    markdown = render_markdown(data, cache_markdown_limit=args.cache_markdown_limit)
 
     if args.output:
         args.output.write_text(markdown, encoding="utf-8")

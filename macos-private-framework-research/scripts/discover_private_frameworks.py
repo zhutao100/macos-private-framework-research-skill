@@ -211,7 +211,7 @@ def summarize_frameworks(analyses: list[dict[str, Any]]) -> dict[str, list[dict[
     return summary
 
 
-def render_markdown(data: dict[str, Any]) -> str:
+def render_markdown(data: dict[str, Any], binary_detail_limit: int = 40) -> str:
     lines: list[str] = []
     lines.append("# Private Framework Discovery")
     lines.append("")
@@ -238,7 +238,18 @@ def render_markdown(data: dict[str, Any]) -> str:
     lines.append("")
     lines.append("## Binary Evidence")
     lines.append("")
-    for analysis in data["analyses"]:
+    analyses = data["analyses"]
+    visible_analyses = (
+        analyses[:binary_detail_limit]
+        if binary_detail_limit and binary_detail_limit > 0
+        else analyses
+    )
+    if len(visible_analyses) < len(analyses):
+        lines.append(
+            f"Markdown shows `{len(visible_analyses)}` of `{len(analyses)}` analyzed binaries. JSON contains all binary evidence."
+        )
+        lines.append("")
+    for analysis in visible_analyses:
         lines.append(f"### `{analysis['path']}`")
         lines.append("")
         file_stdout = analysis["file"]["stdout"] or analysis["file"]["stderr"]
@@ -315,6 +326,12 @@ def main() -> int:
     parser.add_argument(
         "--max-depth", type=int, default=6, help="Maximum directory depth for component discovery."
     )
+    parser.add_argument(
+        "--binary-detail-limit",
+        type=int,
+        default=40,
+        help="Maximum analyzed binaries rendered in Markdown. Use 0 for all; JSON always contains all.",
+    )
     parser.add_argument("--output", type=Path, help="Markdown output path. Defaults to stdout.")
     parser.add_argument("--json-output", type=Path, help="JSON output path.")
     args = parser.parse_args()
@@ -324,7 +341,7 @@ def main() -> int:
         parser.error(f"target(s) do not exist: {', '.join(missing)}")
 
     data = build_report(args.targets, args.include_entitlements, args.max_depth)
-    markdown = render_markdown(data)
+    markdown = render_markdown(data, binary_detail_limit=args.binary_detail_limit)
     if args.output:
         args.output.write_text(markdown, encoding="utf-8")
     else:

@@ -437,13 +437,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max-declaration-chars",
         type=int,
-        default=2000,
+        default=900,
         help="Maximum characters for a detailed declaration in Markdown; JSON remains complete.",
     )
     parser.add_argument(
         "--max-reason-type-chars",
         type=int,
-        default=320,
+        default=180,
         help="Maximum characters for reason type snippets in Markdown; JSON remains complete.",
     )
     return parser.parse_args()

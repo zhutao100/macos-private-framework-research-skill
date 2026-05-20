@@ -25,8 +25,9 @@ After changing scripts, metadata, assets, or references, run:
 macos-private-framework-research/scripts/validate_skill_repo.py .
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
-bash -n framework-surveys/skylight-agent-survey/tools/*.zsh
+zsh -n framework-surveys/skylight-agent-survey/tools/*.zsh
 python3 -m py_compile framework-surveys/skylight-agent-survey/tools/*.py
+framework-surveys/skylight-agent-survey/tools/verify_skylight_readonly_header.zsh /tmp/skylight-readonly-verify.json
 ```
 
 On a macOS host, also run:
