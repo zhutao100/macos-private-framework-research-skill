@@ -1,0 +1,1978 @@
+{
+  "description": "Symbol-name inventory extracted from the local SkyLightWindow and Cua source trees. Not a validated ABI manifest.",
+  "generated_at": "2026-05-20T00:00:00-07:00",
+  "symbols": [
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 686,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/Package.swift",
+        "cua/README.md",
+        "cua/blog/inside-macos-window-internals.md",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/comparison.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/faq.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/installation.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/integrations.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/introduction.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/linux.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/process-model.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/quickstart.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/swift-integration.mdx",
+        "cua/docs/content/docs/cua-driver/reference/cli-reference.mdx",
+        "cua/docs/content/docs/cua-driver/reference/limits.mdx",
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/LINUX.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/README.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/RECORDING.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/TESTS.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/cua-driver/src/cli.rs",
+        "cua/libs/cua-driver-rs/crates/cua-driver/src/main.rs",
+        "cua/libs/cua-driver-rs/crates/cua-driver/src/proxy.rs",
+        "cua/libs/cua-driver-rs/crates/cua-driver/tests/focus_check_test.rs",
+        "cua/libs/cua-driver-rs/crates/cua-driver/tests/mcp_protocol_test.rs",
+        "cua/libs/cua-driver-rs/crates/cursor-overlay/src/lib.rs",
+        "cua/libs/cua-driver-rs/crates/mcp-server/src/protocol.rs",
+        "cua/libs/cua-driver-rs/crates/mcp-server/src/recording_tools.rs"
+      ],
+      "symbol": "AX"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs"
+      ],
+      "symbol": "AXAction"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/quickstart.mdx",
+        "cua/docs/content/docs/cua-driver/reference/limits.mdx",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/docs/tool-output-format.md"
+      ],
+      "symbol": "AXApplication"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 15,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/quickstart.mdx",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/docs/tool-output-format.md"
+      ],
+      "symbol": "AXButton"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 6,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXCancel"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXCell"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXCheckBox"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 11,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXChildren"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 3,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXComboBox"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 6,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PressKeyTool.swift"
+      ],
+      "symbol": "AXConfirm"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXCopy"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 9,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXDescription"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 8,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/page.rs"
+      ],
+      "symbol": "AXElement"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXEnabled"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 12,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/AXEnablementAssertion.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/AppStateRegistry.swift"
+      ],
+      "symbol": "AXEnablementAssertion"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 14,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/TESTS.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/focus_guard.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/TESTS.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/AXEnablementAssertion.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift"
+      ],
+      "symbol": "AXEnhancedUserInterface"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 22,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXError"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 27,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/focus_guard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/SyntheticAppFocusEnforcer.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PressKeyTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ScrollTool.swift"
+      ],
+      "symbol": "AXFocused"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXFocusedUIElement"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXGroup"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 5,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXHeading"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXHelp"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXIdentifier"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXImage"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXIncrement"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 42,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/swift-integration.mdx",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/ToolRegistry.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/DoubleClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PressKeyTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/RightClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ScrollTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/TypeTextTool.swift"
+      ],
+      "symbol": "AXInput"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 17,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/DoubleClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PressKeyTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/RightClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ScrollTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/TypeTextTool.swift"
+      ],
+      "symbol": "AXInputError"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 17,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/cua-driver/src/cli.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/permissions/gate.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/permissions/panel.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/permissions/status.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCLI/CallCommand.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCLI/DiagnoseCommand.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCLI/DoctorCommand.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Permissions/Permissions.swift"
+      ],
+      "symbol": "AXIsProcessTrusted"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/permissions/gate.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/permissions/status.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Permissions/Permissions.swift"
+      ],
+      "symbol": "AXIsProcessTrustedWithOptions"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 5,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXLink"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 9,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/focus_guard.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/SyntheticAppFocusEnforcer.swift"
+      ],
+      "symbol": "AXMain"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 13,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/TESTS.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/focus_guard.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/TESTS.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/AXEnablementAssertion.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift"
+      ],
+      "symbol": "AXManualAccessibility"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXMenu"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 6,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXMenuBar"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 17,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXMenuBarItem"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift"
+      ],
+      "symbol": "AXMenuItem"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md"
+      ],
+      "symbol": "AXMenuItems"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift"
+      ],
+      "symbol": "AXMinimized"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/cache.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs"
+      ],
+      "symbol": "AXNode"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 16,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/TESTS.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver/Skills/cua-driver/TESTS.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/AXEnablementAssertion.swift"
+      ],
+      "symbol": "AXObserver"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 5,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/blog/inside-macos-window-internals.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXObserverAddNotification"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 3,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXObserverAddNotificationAndCheckRemote"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXObserverCallbackWithInfo"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXObserverCreateWithInfoCallback"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXObserverGetRunLoopSource"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 32,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/double_click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/DoubleClickTool.swift"
+      ],
+      "symbol": "AXOpen"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 11,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/swift-integration.mdx",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/page.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PageTool.swift"
+      ],
+      "symbol": "AXPageReader"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXParent"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXPerformAction"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 18,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXPick"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXPicked"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs"
+      ],
+      "symbol": "AXPlaceholderValue"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 25,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/set_value.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift"
+      ],
+      "symbol": "AXPopUpButton"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 9,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Cursor/AgentCursor.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXPosition"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 57,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/faq.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/quickstart.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/cua-driver/tests/focus_check_test.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/focus_guard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/set_value.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift"
+      ],
+      "symbol": "AXPress"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 4,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/set_value.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift"
+      ],
+      "symbol": "AXPresses"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 6,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXRadioButton"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/quickstart.mdx",
+        "cua/libs/cua-driver/docs/tool-output-format.md"
+      ],
+      "symbol": "AXRaise"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 21,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/right_click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/set_value.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/type_text.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXRole"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXRow"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 3,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXScrollArea"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXScrollToVisible"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXSearchField"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXSecureTextField"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 23,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/focus_guard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/type_text.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/stubs.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/TypeTextTool.swift"
+      ],
+      "symbol": "AXSelectedText"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 11,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/type_text.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PressKeyTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/TypeTextTool.swift"
+      ],
+      "symbol": "AXSetAttribute"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs"
+      ],
+      "symbol": "AXSheet"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 34,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/right_click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/stubs.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/RightClickTool.swift"
+      ],
+      "symbol": "AXShowMenu"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/TESTS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/TESTS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXSize"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXSlider"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXSplitGroup"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXSplitter"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 21,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/quickstart.mdx",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/TESTS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/TESTS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXStaticText"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXSubrole"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 4,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md"
+      ],
+      "symbol": "AXTab"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXTable"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 5,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXTextArea"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 9,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXTextField"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 26,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/right_click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/set_value.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/type_text.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift"
+      ],
+      "symbol": "AXTitle"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXToolbar"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 4,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/permissions/status.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Permissions/Permissions.swift"
+      ],
+      "symbol": "AXTrustedCheckOptionPrompt"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 76,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/introduction.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/swift-integration.mdx",
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Cursor/AgentCursor.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/AXEnablementAssertion.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/SyntheticAppFocusEnforcer.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/DoubleClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/GetWindowStateTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ScrollTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift"
+      ],
+      "symbol": "AXUIElement"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 6,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/DoubleClickTool.swift"
+      ],
+      "symbol": "AXUIElementCopyActionNames"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs"
+      ],
+      "symbol": "AXUIElementCopyAttributeNames"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 25,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCLI/DoctorCommand.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/SyntheticAppFocusEnforcer.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXUIElementCopyAttributeValue"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXUIElementCopyElementAtPosition"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 9,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCLI/DoctorCommand.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXUIElementCreateApplication"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXUIElementCreateSystemWide"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXUIElementGetTypeID"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 17,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/installation.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/introduction.mdx",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/quickstart.mdx",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/right_click.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/SyntheticAppFocusEnforcer.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift"
+      ],
+      "symbol": "AXUIElementPerformAction"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 48,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/cache.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/double_click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/right_click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/set_value.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/type_text.rs"
+      ],
+      "symbol": "AXUIElementRef"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs"
+      ],
+      "symbol": "AXUIElementRefs"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/set_value.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/AXEnablementAssertion.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/SyntheticAppFocusEnforcer.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXUIElementSetAttributeValue"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 3,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXUnknown"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 55,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/TESTS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/ax_actions.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/set_value.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/type_text.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/TESTS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/SetValueTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/TypeTextTool.swift"
+      ],
+      "symbol": "AXValue"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs"
+      ],
+      "symbol": "AXValueGetType"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXValueGetTypeID"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift"
+      ],
+      "symbol": "AXValueGetValue"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs"
+      ],
+      "symbol": "AXValueRef"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 8,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs"
+      ],
+      "symbol": "AXValueType"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 3,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXVisibleChildren"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 14,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift"
+      ],
+      "symbol": "AXWebArea"
+    },
+    {
+      "category": "windows",
+      "count_in_seed_sources": 16,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/quickstart.mdx",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/crates/cua-driver/tests/focus_check_test.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/browser/ax_page_reader.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Browser/AXPageReader.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/FocusGuard.swift",
+        "cua/libs/cua-driver/docs/tool-output-format.md"
+      ],
+      "symbol": "AXWindow"
+    },
+    {
+      "category": "windows",
+      "count_in_seed_sources": 8,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/tree.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "AXWindows"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 200,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/blog/inside-macos-window-internals.md",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/introduction.mdx",
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/TESTS.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/lib.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/drag.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/get_cursor_position.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/hotkey.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/press_key.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/right_click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/scroll.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/type_text.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/type_text_chars.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/examples/type_text_parity.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/stubs.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/TESTS.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/CursorControl.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/FocusWithoutRaise.swift"
+      ],
+      "symbol": "CGEvent"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "CGEventCreateKeyboardEvent"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 4,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ScrollTool.swift"
+      ],
+      "symbol": "CGEventCreateScrollWheelEvent2"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "CGEventField"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs"
+      ],
+      "symbol": "CGEventFlagAlternate"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs"
+      ],
+      "symbol": "CGEventFlagCommand"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs"
+      ],
+      "symbol": "CGEventFlagControl"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 16,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs"
+      ],
+      "symbol": "CGEventFlagNull"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs"
+      ],
+      "symbol": "CGEventFlagSecondaryFn"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs"
+      ],
+      "symbol": "CGEventFlagShift"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 38,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/KeyboardInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift"
+      ],
+      "symbol": "CGEventFlags"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/KeyboardInput.swift"
+      ],
+      "symbol": "CGEventKeyboardSetUnicodeString"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 8,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/blog/inside-macos-window-internals.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift"
+      ],
+      "symbol": "CGEventPost"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/LINUX.md",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs"
+      ],
+      "symbol": "CGEventPostToPSN"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 12,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/press_key.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PressKeyTool.swift"
+      ],
+      "symbol": "CGEventPostToPid"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "CGEventRef"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift"
+      ],
+      "symbol": "CGEventSetFlags"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "CGEventSetIntegerValueField"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "CGEventSetLocation"
+    },
+    {
+      "category": "windows",
+      "count_in_seed_sources": 20,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/double_click.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/drag.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/right_click.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Windows/WindowEnumerator.swift"
+      ],
+      "symbol": "CGEventSetWindowLocation"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 24,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/get_cursor_position.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift"
+      ],
+      "symbol": "CGEventSource"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 12,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/get_cursor_position.rs"
+      ],
+      "symbol": "CGEventSourceStateID"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/SystemFocusStealPreventer.swift"
+      ],
+      "symbol": "CGEventTap"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 22,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift"
+      ],
+      "symbol": "CGEventType"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/guide/getting-started/swift-integration.mdx",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mod.rs"
+      ],
+      "symbol": "CGEvents"
+    },
+    {
+      "category": "core_graphics_services",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/cursor/overlay.rs"
+      ],
+      "symbol": "CGS"
+    },
+    {
+      "category": "connection_identity",
+      "count_in_seed_sources": 4,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "CGSConnectionID"
+    },
+    {
+      "category": "connection_identity",
+      "count_in_seed_sources": 8,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "CGSMainConnectionID"
+    },
+    {
+      "category": "spaces",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Windows/SpaceMigrator.swift"
+      ],
+      "symbol": "CGSMoveWindowsToManagedSpace"
+    },
+    {
+      "category": "connection_identity",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Focus/SystemFocusStealPreventer.swift"
+      ],
+      "symbol": "CGSRegisterConnectionNotifyProc"
+    },
+    {
+      "category": "core_graphics_services",
+      "count_in_seed_sources": 3,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "CGSTickleActivityMonitor"
+    },
+    {
+      "category": "core_graphics_services",
+      "count_in_seed_sources": 14,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Cursor/AgentCursorView.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/AXInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Recording/Render/FrameTransform.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Recording/Render/RecordingRenderer.swift"
+      ],
+      "symbol": "CGSize"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 5,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/KeyboardInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/HotkeyTool.swift"
+      ],
+      "symbol": "SLEventPostToPSN"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 66,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/blog/inside-macos-window-internals.md",
+        "cua/docs/content/docs/cua-driver/guide/getting-started/introduction.mdx",
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/PARITY.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/README.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/WEB_APPS.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mod.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver-rs/crates/platform-windows/src/tools/impl_.rs",
+        "cua/libs/cua-driver/Skills/cua-driver/README.md",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/WEB_APPS.md",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/FocusWithoutRaise.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/KeyboardInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/MouseInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/HotkeyTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PressKeyTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/RightClickTool.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ScrollTool.swift"
+      ],
+      "symbol": "SLEventPostToPid"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLEventRef"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/KeyboardInput.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLEventSetAuthenticationMessage"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLEventSetIntegerValueField"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/Skills/cua-driver-rs/SKILL.md",
+        "cua/libs/cua-driver/Skills/cua-driver/SKILL.md"
+      ],
+      "symbol": "SLPS"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/blog/inside-macos-window-internals.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/FocusWithoutRaise.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLPSPostEventRecordTo"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 15,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/blog/inside-macos-window-internals.md",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/hotkey.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/tools/press_key.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/FocusWithoutRaise.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLPSSetFrontProcessWithOptions"
+    },
+    {
+      "category": "spaces",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Windows/SpaceMigrator.swift"
+      ],
+      "symbol": "SLSCopySpacesForWindows"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 14,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/docs/content/docs/cua-driver/reference/mcp-tools.mdx",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/keyboard.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/mouse.rs",
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/PressKeyTool.swift"
+      ],
+      "symbol": "SLSEventAuthenticationMessage"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 8,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLSEventRecord"
+    },
+    {
+      "category": "spaces",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Windows/SpaceMigrator.swift"
+      ],
+      "symbol": "SLSGetActiveSpace"
+    },
+    {
+      "category": "connection_identity",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/FocusWithoutRaise.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLSGetConnectionPSN"
+    },
+    {
+      "category": "windows",
+      "count_in_seed_sources": 10,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/FocusWithoutRaise.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLSGetWindowOwner"
+    },
+    {
+      "category": "spaces",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "SkyLightWindow/Sources/SkyLightWindow/SkyLightOperator.swift"
+      ],
+      "symbol": "SLSHideSpaces"
+    },
+    {
+      "category": "connection_identity",
+      "count_in_seed_sources": 6,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "SkyLightWindow/Sources/SkyLightWindow/SkyLightOperator.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Windows/SpaceMigrator.swift"
+      ],
+      "symbol": "SLSMainConnectionID"
+    },
+    {
+      "category": "windows",
+      "count_in_seed_sources": 1,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLSSetWindowAlpha"
+    },
+    {
+      "category": "spaces",
+      "count_in_seed_sources": 6,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "SkyLightWindow/Sources/SkyLightWindow/SkyLightOperator.swift"
+      ],
+      "symbol": "SLSShowSpaces"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverServer/Tools/ScrollTool.swift"
+      ],
+      "symbol": "SLSSkyLightKeyEventAuthenticationMessage"
+    },
+    {
+      "category": "spaces",
+      "count_in_seed_sources": 6,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "SkyLightWindow/Sources/SkyLightWindow/SkyLightOperator.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Windows/SpaceMigrator.swift"
+      ],
+      "symbol": "SLSSpaceAddWindowsAndRemoveFromSpaces"
+    },
+    {
+      "category": "spaces",
+      "count_in_seed_sources": 5,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "SkyLightWindow/Sources/SkyLightWindow/SkyLightOperator.swift"
+      ],
+      "symbol": "SLSSpaceCreate"
+    },
+    {
+      "category": "spaces",
+      "count_in_seed_sources": 5,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "SkyLightWindow/Sources/SkyLightWindow/SkyLightOperator.swift"
+      ],
+      "symbol": "SLSSpaceSetAbsoluteLevel"
+    },
+    {
+      "category": "uncategorized",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "SLSUpdateSystemActivityWithLocation"
+    },
+    {
+      "category": "accessibility",
+      "count_in_seed_sources": 2,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/blog/inside-macos-window-internals.md"
+      ],
+      "symbol": "_AXObserverAddNotificationAndCheckRemote"
+    },
+    {
+      "category": "windows",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/ax/bindings.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/AppState/AppState.swift"
+      ],
+      "symbol": "_AXUIElementGetWindow"
+    },
+    {
+      "category": "events_and_focus",
+      "count_in_seed_sources": 7,
+      "notes": "Observed in provided/reference source trees. Treat as hypothesis until verified on the target OS build.",
+      "source_paths": [
+        "cua/libs/cua-driver-rs/crates/platform-macos/src/input/skylight.rs",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/FocusWithoutRaise.swift",
+        "cua/libs/cua-driver/Sources/CuaDriverCore/Input/SkyLightEventPost.swift"
+      ],
+      "symbol": "_SLPSGetFrontProcess"
+    }
+  ]
+}

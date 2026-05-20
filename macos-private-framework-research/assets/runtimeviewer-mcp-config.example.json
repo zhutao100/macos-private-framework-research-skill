@@ -1,0 +1,10 @@
+{
+  "note": "Placeholder only. RuntimeViewer should provide the authoritative MCP client config from Settings -> MCP -> Copy Config.",
+  "mcpServers": {
+    "runtimeviewer": {
+      "command": "/path/to/runtimeviewer-mcp-bridge-or-wrapper",
+      "args": [],
+      "env": {}
+    }
+  }
+}

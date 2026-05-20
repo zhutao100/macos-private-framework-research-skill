@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-05-20T00:00:00-07:00",
+  "sources": [
+    {
+      "id": "seed_brief",
+      "kind": "local",
+      "path": "seed/research_SkyLight_framework.md",
+      "purpose": "Starting brief supplied as seed research."
+    },
+    {
+      "id": "cua_local",
+      "kind": "local_archive_notes",
+      "path": "references/project_notes/cua_driver_notes.md",
+      "purpose": "Computer-use-agent driver source map and symbol observations."
+    },
+    {
+      "id": "skylightwindow_local",
+      "kind": "local_archive_notes",
+      "path": "references/project_notes/skylightwindow_notes.md",
+      "purpose": "Overlay/Space-level project source map and symbol observations."
+    },
+    {
+      "id": "motif",
+      "kind": "web",
+      "purpose": "LLM-guided private-framework type inference methodology.",
+      "url": "https://arxiv.org/abs/2601.01673"
+    },
+    {
+      "id": "jviotti_private_frameworks",
+      "kind": "web",
+      "purpose": "Practical tooling and dyld shared cache workflow.",
+      "url": "https://www.jviotti.com/2023/11/20/exploring-macos-private-frameworks.html"
+    },
+    {
+      "id": "apple_sip",
+      "kind": "web",
+      "purpose": "Modern macOS SIP constraints.",
+      "url": "https://support.apple.com/en-us/102149"
+    },
+    {
+      "id": "apple_app_review",
+      "kind": "web",
+      "purpose": "Public API requirement for App Store apps.",
+      "url": "https://developer.apple.com/app-store/review/guidelines/"
+    },
+    {
+      "id": "apple_tahoe_26_3_security",
+      "kind": "web",
+      "purpose": "Recent WindowServer security advisories.",
+      "url": "https://support.apple.com/en-us/126348"
+    },
+    {
+      "id": "apple_sequoia_15_7_4_security",
+      "kind": "web",
+      "purpose": "Recent WindowServer security advisories.",
+      "url": "https://support.apple.com/en-us/126349"
+    },
+    {
+      "id": "yabai_extern",
+      "kind": "web",
+      "purpose": "Community SLS/CGS/SLPS declaration signposts.",
+      "url": "https://raw.githubusercontent.com/koekeishiya/yabai/refs/heads/master/src/misc/extern.h"
+    },
+    {
+      "id": "hammerspoon_spaces",
+      "kind": "web",
+      "purpose": "Concrete private Spaces API use.",
+      "url": "https://raw.githubusercontent.com/Hammerspoon/hammerspoon/refs/heads/master/extensions/spaces/libspaces.m"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+# Index
+
+## Briefs
+
+- `briefs/SkyLight_tech_brief.md` — current technical model of SkyLight.
+- `briefs/agent_research_methodology.md` — LLM-agent workflow for private-framework research.
+- `briefs/security_boundaries.md` — safe boundaries and excluded operational content.
+- `briefs/on_device_exploration_plan.md` — staged tasks for lab-machine exploration.
+
+## References
+
+- `references/public_web_sources.md` — public sources used in the survey.
+- `references/symbol_clusters.md` — SLS/CGS/SLPS/AX/CGEvent symbol families.
+- `references/private_api_surface_matrix.md` — surfaces, public alternatives, and risk.
+- `references/project_notes/cua_driver_notes.md` — Cua-related findings.
+- `references/project_notes/skylightwindow_notes.md` — SkyLightWindow-related findings.
+- `references/public_api_alternatives.md` — supported API fallback map.
+
+## Data
+
+- `data/seed_symbol_manifest.json` — extracted symbol-name observations.
+- `data/source_index.json` — structured source list and why each source matters.
+
+## Headers
+
+- `headers/skylight_symbol_names.h` — symbol-name constants for read-only probes. No function signatures.
+
+## Tools
+
+- `tools/collect_skylight_inventory.zsh` — read-only host inventory.
+- `tools/dlopen_probe_symbols.swift` — read-only symbol presence probe.
+- `tools/extract_symbol_refs.py` — parse symbol-name references from local text/source trees.
+- `tools/diff_symbol_manifests.py` — compare manifests across OS builds.
+
+## Templates
+
+- `templates/report_template.md` — final report format.
+- `templates/agent_task_cards.md` — task cards for LLM agents.

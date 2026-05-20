@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "framework": "FrameworkName",
+  "os": {
+    "product_version": "",
+    "build_version": "",
+    "architecture": ""
+  },
+  "binary": {
+    "path": "",
+    "uuid": "",
+    "slice": ""
+  },
+  "headers_root": "",
+  "candidate": {
+    "id": 1,
+    "file": "",
+    "line": 0,
+    "class_or_protocol": "",
+    "kind": "instance",
+    "selector": "",
+    "declaration": "",
+    "return_type": "",
+    "argument_types": [],
+    "reasons": []
+  },
+  "evidence": {
+    "nearby_header_context": [],
+    "symbols": [],
+    "strings": [],
+    "client_usage": [],
+    "disassembly_notes": [],
+    "tool_diagnostics": []
+  }
+}

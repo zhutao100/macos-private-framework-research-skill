@@ -1,0 +1,7 @@
+interface:
+  display_name: "macOS Private Framework Research"
+  short_description: "Discover, extract, reconstruct, and validate macOS private framework interfaces."
+  brand_color: "#475569"
+  default_prompt: "Use $macos-private-framework-research to produce an evidence-backed private-framework analysis plan or report."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,20 @@
+[submodule "reference-checkout/RuntimeViewer"]
+	path = reference-checkout/RuntimeViewer
+	url = https://github.com/MxIris-Reverse-Engineering/RuntimeViewer.git
+
+[submodule "reference-checkout/RuntimeBrowser"]
+	path = reference-checkout/RuntimeBrowser
+	url = https://github.com/nst/RuntimeBrowser.git
+
+[submodule "reference-checkout/class-dump"]
+	path = reference-checkout/class-dump
+	url = https://github.com/nygard/class-dump.git
+[submodule "reference-checkout/dyld-shared-cache-extractor"]
+	path = reference-checkout/dyld-shared-cache-extractor
+	url = https://github.com/keith/dyld-shared-cache-extractor.git
+[submodule "reference-checkout/ipsw"]
+	path = reference-checkout/ipsw
+	url = https://github.com/blacktop/ipsw.git
+[submodule "reference-checkout/hopper-disassembler-skill"]
+	path = reference-checkout/hopper-disassembler-skill
+	url = https://github.com/zhutao100/hopper-disassembler-skill.git

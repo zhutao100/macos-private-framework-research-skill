@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "candidate_id": 1,
+  "framework": "FrameworkName",
+  "class_or_protocol": "ClassName",
+  "selector": "selector:part:",
+  "original_declaration": "- (id)selector:(id)arg1 part:(id)arg2;",
+  "inferred_declaration": "- (NSString *)selector:(id)arg1 part:(NSDictionary *)options;",
+  "selector_preserved": true,
+  "positions": [
+    {
+      "position": "return",
+      "original_type": "id",
+      "inferred_type": "NSString *",
+      "confidence": "likely",
+      "evidence": []
+    }
+  ],
+  "linter": {
+    "status": "not-run",
+    "hard_errors": [],
+    "soft_warnings": []
+  },
+  "notes": []
+}

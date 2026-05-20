@@ -1,0 +1,186 @@
+# Symbol Clusters
+
+Symbols below are seed observations, not validated headers.
+
+## accessibility
+
+- `AX`
+- `AXAction`
+- `AXApplication`
+- `AXButton`
+- `AXCancel`
+- `AXCell`
+- `AXCheckBox`
+- `AXChildren`
+- `AXComboBox`
+- `AXConfirm`
+- `AXCopy`
+- `AXDescription`
+- `AXElement`
+- `AXEnabled`
+- `AXEnablementAssertion`
+- `AXEnhancedUserInterface`
+- `AXError`
+- `AXFocused`
+- `AXFocusedUIElement`
+- `AXGroup`
+- `AXHeading`
+- `AXHelp`
+- `AXIdentifier`
+- `AXImage`
+- `AXIncrement`
+- `AXInput`
+- `AXInputError`
+- `AXIsProcessTrusted`
+- `AXIsProcessTrustedWithOptions`
+- `AXLink`
+- `AXMain`
+- `AXManualAccessibility`
+- `AXMenu`
+- `AXMenuBar`
+- `AXMenuBarItem`
+- `AXMenuItem`
+- `AXMenuItems`
+- `AXMinimized`
+- `AXNode`
+- `AXObserver`
+- `AXObserverAddNotification`
+- `AXObserverAddNotificationAndCheckRemote`
+- `AXObserverCallbackWithInfo`
+- `AXObserverCreateWithInfoCallback`
+- `AXObserverGetRunLoopSource`
+- `AXOpen`
+- `AXPageReader`
+- `AXParent`
+- `AXPerformAction`
+- `AXPick`
+- `AXPicked`
+- `AXPlaceholderValue`
+- `AXPopUpButton`
+- `AXPosition`
+- `AXPress`
+- `AXPresses`
+- `AXRadioButton`
+- `AXRaise`
+- `AXRole`
+- `AXRow`
+- `AXScrollArea`
+- `AXScrollToVisible`
+- `AXSearchField`
+- `AXSecureTextField`
+- `AXSelectedText`
+- `AXSetAttribute`
+- `AXSheet`
+- `AXShowMenu`
+- `AXSize`
+- `AXSlider`
+- `AXSplitGroup`
+- `AXSplitter`
+- `AXStaticText`
+- `AXSubrole`
+- `AXTab`
+- `AXTable`
+- `AXTextArea`
+- `AXTextField`
+- `AXTitle`
+- `AXToolbar`
+- `AXTrustedCheckOptionPrompt`
+- `AXUIElement`
+- `AXUIElementCopyActionNames`
+- `AXUIElementCopyAttributeNames`
+- `AXUIElementCopyAttributeValue`
+- `AXUIElementCopyElementAtPosition`
+- `AXUIElementCreateApplication`
+- `AXUIElementCreateSystemWide`
+- `AXUIElementGetTypeID`
+- `AXUIElementPerformAction`
+- `AXUIElementRef`
+- `AXUIElementRefs`
+- `AXUIElementSetAttributeValue`
+- `AXUnknown`
+- `AXValue`
+- `AXValueGetType`
+- `AXValueGetTypeID`
+- `AXValueGetValue`
+- `AXValueRef`
+- `AXValueType`
+- `AXVisibleChildren`
+- `AXWebArea`
+- `_AXObserverAddNotificationAndCheckRemote`
+
+## connection_identity
+
+- `CGSConnectionID`
+- `CGSMainConnectionID`
+- `CGSRegisterConnectionNotifyProc`
+- `SLSGetConnectionPSN`
+- `SLSMainConnectionID`
+
+## core_graphics_services
+
+- `CGS`
+- `CGSTickleActivityMonitor`
+- `CGSize`
+
+## events_and_focus
+
+- `CGEvent`
+- `CGEventCreateKeyboardEvent`
+- `CGEventCreateScrollWheelEvent2`
+- `CGEventField`
+- `CGEventFlagAlternate`
+- `CGEventFlagCommand`
+- `CGEventFlagControl`
+- `CGEventFlagNull`
+- `CGEventFlagSecondaryFn`
+- `CGEventFlagShift`
+- `CGEventFlags`
+- `CGEventKeyboardSetUnicodeString`
+- `CGEventPost`
+- `CGEventPostToPSN`
+- `CGEventPostToPid`
+- `CGEventRef`
+- `CGEventSetFlags`
+- `CGEventSetIntegerValueField`
+- `CGEventSetLocation`
+- `CGEventSource`
+- `CGEventSourceStateID`
+- `CGEventTap`
+- `CGEventType`
+- `CGEvents`
+- `SLEventPostToPSN`
+- `SLEventPostToPid`
+- `SLEventRef`
+- `SLEventSetAuthenticationMessage`
+- `SLEventSetIntegerValueField`
+- `SLPS`
+- `SLPSPostEventRecordTo`
+- `SLPSSetFrontProcessWithOptions`
+- `SLSEventAuthenticationMessage`
+- `SLSEventRecord`
+- `SLSSkyLightKeyEventAuthenticationMessage`
+- `_SLPSGetFrontProcess`
+
+## spaces
+
+- `CGSMoveWindowsToManagedSpace`
+- `SLSCopySpacesForWindows`
+- `SLSGetActiveSpace`
+- `SLSHideSpaces`
+- `SLSShowSpaces`
+- `SLSSpaceAddWindowsAndRemoveFromSpaces`
+- `SLSSpaceCreate`
+- `SLSSpaceSetAbsoluteLevel`
+
+## uncategorized
+
+- `SLSUpdateSystemActivityWithLocation`
+
+## windows
+
+- `AXWindow`
+- `AXWindows`
+- `CGEventSetWindowLocation`
+- `SLSGetWindowOwner`
+- `SLSSetWindowAlpha`
+- `_AXUIElementGetWindow`

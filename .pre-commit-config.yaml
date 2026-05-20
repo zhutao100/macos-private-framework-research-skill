@@ -48,3 +48,4 @@ repos:
         language: system
         entry: shellcheck -x
         types: [shell]
+        exclude: ^.*\.zsh$
