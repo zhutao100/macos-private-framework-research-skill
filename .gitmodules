@@ -18,3 +18,6 @@
 [submodule "reference-checkout/hopper-disassembler-skill"]
 	path = reference-checkout/hopper-disassembler-skill
 	url = https://github.com/zhutao100/hopper-disassembler-skill.git
+[submodule "reference-checkout/hammerspoon"]
+	path = reference-checkout/hammerspoon
+	url = https://github.com/Hammerspoon/hammerspoon.git
