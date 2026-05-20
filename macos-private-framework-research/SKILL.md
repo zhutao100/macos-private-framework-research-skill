@@ -22,6 +22,13 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
    ```
 
    Record macOS product/build, architecture, dyld cache path, Xcode/CLT version, SIP status, and available tools before interpreting results. Markdown is capped for agent ingestion where needed; JSON contains complete cache/tool evidence. Load `references/modern-macos-notes.md` when cache paths, Cryptex paths, or version drift matter.
+   Optional non-built-in toolchains are resolved on demand, not as a startup prerequisite. When a selected workflow needs a missing tool, check `agents/tool-installation.yaml` through:
+
+   ```bash
+   scripts/resolve_toolchains.py ipsw dyld-shared-cache-extractor
+   ```
+
+   Run configured install commands only for the specific missing toolchain required by the current evidence path, then rerun inventory or the resolver and record the observed version/source.
 
 2. Discover client dependencies and candidate frameworks.
 
@@ -112,6 +119,7 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 | Swift metadata/interface | RuntimeViewer | Hopper/IDA/Ghidra plus Swift demangling |
 | Disassembly/xrefs | Hopper skill/MCP or Hopper GUI | `xcrun llvm-objdump`, LLDB focused disassembly |
 | Type inference | MOTIF-style tool + feedback loop | manual constraint table and linter diagnostics |
+| Missing optional toolchain | `scripts/resolve_toolchains.py TOOL` using `agents/tool-installation.yaml` | choose a built-in fallback or a different evidence source |
 
 ## Bundled Scripts
 
@@ -119,10 +127,15 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 - `scripts/macos_private_framework_inventory.py`: Inventory macOS, dyld caches, framework directories, SIP, Xcode, and analysis tools.
 - `scripts/discover_private_frameworks.py`: Resolve app/binary targets and list linked private frameworks with supporting evidence; Markdown binary details are capped while JSON remains complete.
 - `scripts/extract_dyld_framework.sh`: Extract a named framework from the active dyld shared cache using `ipsw` or `dyld-shared-cache-extractor`; use `--enrich-objc-stubs` only when needed.
+- `scripts/resolve_toolchains.py`: Check optional non-built-in toolchains and report or run the configured installation source from `agents/tool-installation.yaml` only when needed.
 - `scripts/objc_header_triage.py`: Scan reconstructed headers and rank underspecified Objective-C declarations with bounded Markdown and complete JSON.
 - `scripts/build_motif_context.py`: Build complete JSON and bounded Markdown prompt bundles for a single candidate signature.
 - `scripts/objc_signature_linter.py`: Validate reconstructed Objective-C headers with structural checks, bounded Markdown, complete JSON, and optional `clang -fsyntax-only`.
 - `scripts/validate_skill_repo.py`: Validate this repository layout and script syntax without external dependencies.
+
+## Agent Metadata
+
+- `agents/tool-installation.yaml`: Installation sources and notes for optional non-built-in toolchains. Treat it as a resolver source, not a requirement to install every listed tool.
 
 ## References
 

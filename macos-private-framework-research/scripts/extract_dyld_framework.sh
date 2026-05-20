@@ -34,6 +34,7 @@ tool="auto"
 enrich_objc_stubs=0
 force=0
 keep_full_extract=0
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -138,7 +139,11 @@ if [[ "$tool" == "auto" ]]; then
     elif command -v dyld-shared-cache-extractor >/dev/null 2>&1; then
         tool="dsc"
     else
-        echo "error: neither ipsw nor dyld-shared-cache-extractor is available in PATH" >&2
+        cat >&2 <<NOTE
+error: neither ipsw nor dyld-shared-cache-extractor is available in PATH
+hint: check configured install sources with:
+  $script_dir/resolve_toolchains.py ipsw dyld-shared-cache-extractor
+NOTE
         exit 1
     fi
 fi
@@ -177,7 +182,7 @@ extract_with_ipsw() {
 
 extract_with_dsc() {
     if ! command -v dyld-shared-cache-extractor >/dev/null 2>&1; then
-        echo "error: dyld-shared-cache-extractor not found" >&2
+        echo "error: dyld-shared-cache-extractor not found; run $script_dir/resolve_toolchains.py dyld-shared-cache-extractor" >&2
         exit 1
     fi
     echo "+ dyld-shared-cache-extractor $cache $output_dir" >&2
@@ -193,7 +198,7 @@ NOTE
 case "$tool" in
     ipsw)
         if ! command -v ipsw >/dev/null 2>&1; then
-            echo "error: ipsw not found" >&2
+            echo "error: ipsw not found; run $script_dir/resolve_toolchains.py ipsw" >&2
             exit 1
         fi
         extract_with_ipsw

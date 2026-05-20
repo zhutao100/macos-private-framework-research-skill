@@ -2,7 +2,7 @@
 
 This repository contains one installable skill: `macos-private-framework-research`.
 
-Use the inventory → dependency discovery → dyld extraction → header reconstruction → candidate triage → type-inference context → linter feedback → report loop as the default. Keep claims grounded in commands, file paths, tool versions, and the exact macOS build being analyzed.
+Use the inventory → on-demand optional toolchain resolution → dependency discovery → dyld extraction → header reconstruction → candidate triage → type-inference context → linter feedback → report loop as the default. Keep claims grounded in commands, file paths, tool versions, and the exact macOS build being analyzed.
 
 ## Standards
 
@@ -23,6 +23,7 @@ After changing scripts, metadata, assets, or references, run:
 
 ```bash
 macos-private-framework-research/scripts/validate_skill_repo.py .
+macos-private-framework-research/scripts/resolve_toolchains.py --json-output /tmp/macos-pf-toolchains.json >/tmp/macos-pf-toolchains.md
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
 zsh -n framework-surveys/skylight-agent-survey/tools/*.zsh

@@ -1,0 +1,19 @@
+ipsw:
+  command: "brew install ipsw"
+
+dyld-shared-cache-extractor:
+  command: "brew install keith/formulae/dyld-shared-cache-extractor"
+
+RuntimeViewer:
+  command: "brew install --cask RuntimeViewer"
+  note: "If macOS blocks launch after download, run 'xattr -d com.apple.quarantine /Applications/RuntimeViewer.app'."
+
+RuntimeBrowser:
+  url: "http://seriot.ch/misc/RuntimeBrowser-0.997.zip"
+  note: "If macOS blocks launch after download, run 'xattr -d com.apple.quarantine /Applications/RuntimeBrowser.app'."
+
+Hopper:
+  note: "Commercial software. Ask the human developer to install Hopper Disassembler.app when Hopper evidence is required."
+
+HopperMCPServer:
+  note: "Install and configure the Hopper companion server only when MCP-backed Hopper inspection is required."

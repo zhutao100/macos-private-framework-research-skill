@@ -147,6 +147,8 @@ def dyld_cache_kind(name: str) -> str:
 def tool_command(name: str) -> list[str]:
     if name == "xcrun swift-demangle":
         return ["xcrun", "swift-demangle"]
+    if name == "ipsw class-dump":
+        return ["ipsw", "class-dump"]
     return [name]
 
 
@@ -165,7 +167,7 @@ def tool_info(name: str) -> dict[str, Any]:
     version_commands = {
         "ipsw": [name, "version"],
         "dyld-shared-cache-extractor": [name, "--help"],
-        "class-dump": [name, "--version"],
+        "ipsw class-dump": [*command, "--help"],
         "hopper": [name, "--help"],
         "HopperMCPServer": [name, "--help"],
         "clang": [name, "--version"],

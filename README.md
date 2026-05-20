@@ -61,6 +61,12 @@ macos-private-framework-research/scripts/macos_private_framework_inventory.py \
   --json-output /tmp/macos-pf-inventory.json
 ```
 
+Resolve optional non-built-in toolchains only when a workflow needs them:
+
+```bash
+macos-private-framework-research/scripts/resolve_toolchains.py ipsw dyld-shared-cache-extractor
+```
+
 Discover private-framework usage by a system app or client binary:
 
 ```bash
@@ -119,6 +125,8 @@ Portable validation that does not require macOS-specific tools:
 
 ```bash
 macos-private-framework-research/scripts/validate_skill_repo.py .
+macos-private-framework-research/scripts/resolve_toolchains.py --json-output /tmp/macos-pf-toolchains.json \
+  >/tmp/macos-pf-toolchains.md
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
 zsh -n framework-surveys/skylight-agent-survey/tools/*.zsh

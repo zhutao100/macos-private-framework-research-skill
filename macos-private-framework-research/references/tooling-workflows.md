@@ -19,6 +19,17 @@ Check:
 - `csrutil status` and `csrutil authenticated-root status` for research notes only; do not ask to disable protections.
 - availability of `ipsw`, `dyld-shared-cache-extractor`, `class-dump`, Hopper, RuntimeViewer, RuntimeBrowser, LLDB, and LLVM tools.
 
+### Optional Toolchain Resolution
+
+Do not install every optional toolchain up front. When a selected workflow needs a missing non-built-in tool, check the configured source first:
+
+```bash
+scripts/resolve_toolchains.py ipsw dyld-shared-cache-extractor
+scripts/resolve_toolchains.py RuntimeViewer RuntimeBrowser Hopper HopperMCPServer
+```
+
+The resolver reads `agents/tool-installation.yaml`, checks commands and application bundles, and reports install commands, URLs, and notes. Use `--run-install` only for a specific missing toolchain required by the current task, then rerun the resolver or inventory and record the observed version/source in the report.
+
 ## 2. Client-Driven Discovery
 
 Given a client app:
