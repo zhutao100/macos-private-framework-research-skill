@@ -8,11 +8,6 @@
 	url = https://github.com/nst/RuntimeBrowser.git
 	shallow = true
 
-[submodule "reference-checkout/class-dump"]
-	path = reference-checkout/class-dump
-	url = https://github.com/nygard/class-dump.git
-	shallow = true
-
 [submodule "reference-checkout/dyld-shared-cache-extractor"]
 	path = reference-checkout/dyld-shared-cache-extractor
 	url = https://github.com/keith/dyld-shared-cache-extractor.git

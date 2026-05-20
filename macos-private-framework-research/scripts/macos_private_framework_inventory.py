@@ -32,18 +32,15 @@ TOOL_NAMES = [
     "clang",
     "xcrun swift-demangle",
     "ipsw",
+    "ipsw class-dump",
     "dyld-shared-cache-extractor",
-    "class-dump",
     "hopper",
     "HopperMCPServer",
 ]
 
 APP_CANDIDATES = {
-    "Hopper": [Path("/Applications/Hopper Disassembler.app"), Path("/Applications/Hopper.app")],
-    "RuntimeViewer": [
-        Path("/Applications/Runtime Viewer.app"),
-        Path("/Applications/RuntimeViewer.app"),
-    ],
+    "Hopper": [Path("/Applications/Hopper Disassembler.app")],
+    "RuntimeViewer": [Path("/Applications/RuntimeViewer.app"),],
     "RuntimeBrowser": [Path("/Applications/RuntimeBrowser.app")],
 }
 

@@ -55,6 +55,13 @@ The `reference-checkout/` directory contains optional source repositories for to
 
 Do not initialize these repositories with `git clone --recurse-submodules --shallow-submodules`. Git drives recursive submodule checkout with `--no-single-branch`, so high-ref repositories can fetch every branch/tag tip even at depth 1. Prefer:
 
+- `MxIris-Reverse-Engineering/RuntimeViewer`
+- `nst/RuntimeBrowser`
+- `blacktop/ipsw`
+- `keith/dyld-shared-cache-extractor`
+- `zhutao100/hopper-disassembler-skill`
+- `Hammerspoon/hammerspoon`
+
 ```bash
 git submodule update --init --recursive --depth 1 --single-branch --jobs 4
 ```
@@ -64,11 +71,3 @@ git submodule update --init --recursive --depth 1 --single-branch --jobs 4
 ```bash
 git submodule update --init --depth 1 --single-branch --checkout -- reference-checkout/hammerspoon
 ```
-
-- `MxIris-Reverse-Engineering/RuntimeViewer`
-- `nst/RuntimeBrowser`
-- `nygard/class-dump`
-- `blacktop/ipsw`
-- `keith/dyld-shared-cache-extractor`
-- `zhutao100/hopper-disassembler-skill`
-- `Hammerspoon/hammerspoon`

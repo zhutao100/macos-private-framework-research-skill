@@ -2,21 +2,6 @@
 
 Installable agent skill repository for researching modern macOS private frameworks with a repeatable, evidence-backed workflow.
 
-## Contents
-
-```text
-README.md
-AGENTS.md
-macos-private-framework-research/
-├── SKILL.md
-├── agents/openai.yaml
-├── scripts/
-├── references/
-└── assets/
-framework-surveys/
-└── skylight-agent-survey/
-```
-
 ## Skill
 
 `macos-private-framework-research` helps agents discover private-framework dependencies, extract dyld shared cache images, reconstruct Objective-C/Swift interfaces, triage underspecified signatures, and run an LLM-assisted type-inference loop with static validation.
