@@ -51,7 +51,19 @@ macos-private-framework-research/scripts/discover_private_frameworks.py \
 
 ## Reference Checkouts
 
-The `reference-checkout/` directory contains source repositories of the tools and skills used in this research; refer to them when you need to understand how a tool works.
+The `reference-checkout/` directory contains optional source repositories for tools and client examples used in this research; refer to them when you need to understand how a tool or client works.
+
+Do not initialize these repositories with `git clone --recurse-submodules --shallow-submodules`. Git drives recursive submodule checkout with `--no-single-branch`, so high-ref repositories can fetch every branch/tag tip even at depth 1. Prefer:
+
+```bash
+git submodule update --init --recursive --depth 1 --single-branch --jobs 4
+```
+
+`reference-checkout/hammerspoon` is intentionally opt-in in `.gitmodules`; initialize it only when needed:
+
+```bash
+git submodule update --init --depth 1 --single-branch --checkout -- reference-checkout/hammerspoon
+```
 
 - `MxIris-Reverse-Engineering/RuntimeViewer`
 - `nst/RuntimeBrowser`
@@ -59,3 +71,4 @@ The `reference-checkout/` directory contains source repositories of the tools an
 - `blacktop/ipsw`
 - `keith/dyld-shared-cache-extractor`
 - `zhutao100/hopper-disassembler-skill`
+- `Hammerspoon/hammerspoon`

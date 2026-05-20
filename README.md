@@ -27,6 +27,24 @@ Primary entrypoint:
 macos-private-framework-research/SKILL.md
 ```
 
+## Clone
+
+Reference checkouts are optional source signposts. Avoid initializing them from `git clone --recurse-submodules --shallow-submodules`: Git runs recursive submodule checkout with `--no-single-branch`, which makes high-ref repositories fetch every branch/tag tip at depth 1.
+
+Use a two-step checkout when reference sources are needed:
+
+```bash
+git clone -o zhutao100 https://github.com/zhutao100/macos-private-framework-research-skill.git
+cd macos-private-framework-research-skill
+git submodule update --init --recursive --depth 1 --single-branch --jobs 4
+```
+
+`reference-checkout/hammerspoon` is opt-in because the recursive clone path is especially large. Initialize it only when needed:
+
+```bash
+git submodule update --init --depth 1 --single-branch --checkout -- reference-checkout/hammerspoon
+```
+
 ## Install
 
 User-scoped install for Codex CLI and other Open Agent Skills-compatible clients:

@@ -1,23 +1,36 @@
 [submodule "reference-checkout/RuntimeViewer"]
 	path = reference-checkout/RuntimeViewer
 	url = https://github.com/MxIris-Reverse-Engineering/RuntimeViewer.git
+	shallow = true
 
 [submodule "reference-checkout/RuntimeBrowser"]
 	path = reference-checkout/RuntimeBrowser
 	url = https://github.com/nst/RuntimeBrowser.git
+	shallow = true
 
 [submodule "reference-checkout/class-dump"]
 	path = reference-checkout/class-dump
 	url = https://github.com/nygard/class-dump.git
+	shallow = true
+
 [submodule "reference-checkout/dyld-shared-cache-extractor"]
 	path = reference-checkout/dyld-shared-cache-extractor
 	url = https://github.com/keith/dyld-shared-cache-extractor.git
+	shallow = true
+
 [submodule "reference-checkout/ipsw"]
 	path = reference-checkout/ipsw
 	url = https://github.com/blacktop/ipsw.git
+	shallow = true
+
 [submodule "reference-checkout/hopper-disassembler-skill"]
 	path = reference-checkout/hopper-disassembler-skill
 	url = https://github.com/zhutao100/hopper-disassembler-skill.git
+	shallow = true
+
 [submodule "reference-checkout/hammerspoon"]
 	path = reference-checkout/hammerspoon
 	url = https://github.com/Hammerspoon/hammerspoon.git
+	branch = master
+	shallow = true
+	update = none
