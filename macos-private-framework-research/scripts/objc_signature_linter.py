@@ -15,7 +15,7 @@ from typing import Any
 
 METHOD_START_RE = re.compile(r"^\s*[+-]\s*\(")
 METHOD_RE = re.compile(r"^\s*([+-])\s*\(([^)]*)\)\s*(.*?)\s*;\s*$")
-LABEL_RE = re.compile(r"([A-Za-z_][\w$]*)\s*:")
+IDENTIFIER_RE = re.compile(r"[A-Za-z_][\w$]*\Z")
 INTERFACE_OR_PROTOCOL_RE = re.compile(r"^\s*@(interface|protocol)\s+([A-Za-z_][\w$]*)")
 
 
@@ -95,8 +95,34 @@ def collapse_method_lines(text: str) -> list[tuple[int, str, bool]]:
     return result
 
 
+def selector_labels_from_body(body: str) -> list[str]:
+    labels: list[str] = []
+    paren_depth = 0
+    brace_depth = 0
+    for index, char in enumerate(body):
+        if char == "(":
+            paren_depth += 1
+        elif char == ")" and paren_depth:
+            paren_depth -= 1
+        elif char == "{":
+            brace_depth += 1
+        elif char == "}" and brace_depth:
+            brace_depth -= 1
+        elif char == ":" and paren_depth == 0 and brace_depth == 0:
+            end = index
+            while end > 0 and body[end - 1].isspace():
+                end -= 1
+            start = end
+            while start > 0 and (body[start - 1].isalnum() or body[start - 1] in "_$"):
+                start -= 1
+            label = body[start:end]
+            if IDENTIFIER_RE.match(label):
+                labels.append(label)
+    return labels
+
+
 def selector_from_body(body: str) -> str:
-    labels = LABEL_RE.findall(body)
+    labels = selector_labels_from_body(body)
     if labels:
         return "".join(f"{label}:" for label in labels)
     return re.split(r"\s+", body.strip(), maxsplit=1)[0].strip(";")
@@ -333,8 +359,21 @@ def compile_headers(headers: Path, extra_include: list[Path]) -> CommandResult:
         return run_command(command, timeout=90)
 
 
+def abbreviate(text: str, max_chars: int) -> str:
+    if max_chars <= 0 or len(text) <= max_chars:
+        return text
+    if max_chars <= 3:
+        return "." * max_chars
+    return f"{text[: max_chars - 3]}..."
+
+
 def render_markdown(
-    headers: Path, diagnostics: list[Diagnostic], compile_result: CommandResult | None
+    headers: Path,
+    diagnostics: list[Diagnostic],
+    compile_result: CommandResult | None,
+    diagnostic_limit: int = 200,
+    max_message_chars: int = 220,
+    max_compile_output_chars: int = 12000,
 ) -> str:
     counts: dict[str, int] = {"error": 0, "warning": 0, "info": 0}
     for diagnostic in diagnostics:
@@ -345,13 +384,24 @@ def render_markdown(
         f"Headers: `{headers}`",
         f"Errors: `{counts.get('error', 0)}`",
         f"Warnings: `{counts.get('warning', 0)}`",
+        f"Rendered diagnostics: `{min(len(diagnostics), diagnostic_limit) if diagnostic_limit > 0 else len(diagnostics)}`",
         "",
     ]
     if diagnostics:
         lines.extend(["| Severity | Code | Location | Message |", "|---|---|---|---|"])
-        for diagnostic in diagnostics:
+        visible_diagnostics = (
+            diagnostics[:diagnostic_limit]
+            if diagnostic_limit and diagnostic_limit > 0
+            else diagnostics
+        )
+        for diagnostic in visible_diagnostics:
             lines.append(
-                f"| {diagnostic.severity} | `{diagnostic.code}` | `{diagnostic.file}:{diagnostic.line}` | {diagnostic.message} |"
+                f"| {diagnostic.severity} | `{diagnostic.code}` | `{diagnostic.file}:{diagnostic.line}` | {abbreviate(diagnostic.message, max_message_chars)} |"
+            )
+        if len(visible_diagnostics) < len(diagnostics):
+            lines.append("")
+            lines.append(
+                f"Markdown is limited to the first `{len(visible_diagnostics)}` diagnostics. JSON contains all `{len(diagnostics)}` diagnostics."
             )
         lines.append("")
     else:
@@ -365,8 +415,12 @@ def render_markdown(
         text = compile_result.stdout or compile_result.stderr
         if text:
             lines.append("```text")
-            lines.append(text[:24000])
+            lines.append(text[:max_compile_output_chars])
             lines.append("```")
+            if len(text) > max_compile_output_chars:
+                lines.append(
+                    "Clang output truncated in Markdown; JSON contains the complete output."
+                )
         else:
             lines.append("No clang output.")
         lines.append("")
@@ -395,6 +449,24 @@ def parse_args() -> argparse.Namespace:
         default=[],
         help="Extra include path for clang. Can be repeated.",
     )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=200,
+        help="Limit diagnostics rendered in Markdown. Use 0 for all diagnostics. JSON always contains all diagnostics.",
+    )
+    parser.add_argument(
+        "--max-message-chars",
+        type=int,
+        default=220,
+        help="Maximum characters for each diagnostic message in Markdown.",
+    )
+    parser.add_argument(
+        "--max-compile-output-chars",
+        type=int,
+        default=12000,
+        help="Maximum clang output characters in Markdown; JSON remains complete.",
+    )
     return parser.parse_args()
 
 
@@ -407,7 +479,14 @@ def main() -> int:
     for header in iter_header_files(args.headers):
         diagnostics.extend(lint_header(header, root))
     compile_result = compile_headers(args.headers, args.include) if args.compile else None
-    markdown = render_markdown(args.headers, diagnostics, compile_result)
+    markdown = render_markdown(
+        args.headers,
+        diagnostics,
+        compile_result,
+        diagnostic_limit=args.limit,
+        max_message_chars=args.max_message_chars,
+        max_compile_output_chars=args.max_compile_output_chars,
+    )
     data: dict[str, Any] = {
         "schema_version": "1.0",
         "headers": str(args.headers),

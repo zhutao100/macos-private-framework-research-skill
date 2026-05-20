@@ -24,15 +24,16 @@
 | Artifact | Purpose | Notes |
 |---|---|---|
 | `sw_vers.txt` | OS version |  |
-| `dyld_shared_caches.txt` | cache paths/hash |  |
+| `dyld_shared_caches.txt` | cache paths/sizes and optional hashes |  |
 | `skylight_nm_global.txt` | exported names if available |  |
-| `dlsym_probe.txt` | symbol presence |  |
+| `dlsym_probe.tsv` | C-symbol and Objective-C-class presence |  |
+| `dlsym_probe.json` | machine-readable probe output |  |
 
 ## Symbol findings
 
-| Symbol | Category | Evidence | Confidence | Notes |
-|---|---|---|---|---|
-|  |  |  | C0-C4 |  |
+| Name | Kind | Category | Evidence | Confidence | Notes |
+|---|---|---|---|---|---|
+|  | c_symbol / objc_class |  |  | C0-C4 |  |
 
 ## Public API fallback map
 

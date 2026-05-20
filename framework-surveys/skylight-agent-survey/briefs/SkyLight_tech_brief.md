@@ -103,6 +103,8 @@ Research questions:
 
 - Private frameworks have no public headers and no compatibility guarantee.
 - Much of the system library surface is packaged through the dyld shared cache/Cryptex path on modern macOS.
+- On macOS 26.2 build 25C56, the SkyLight framework bundle exists on disk but its `Versions/A/SkyLight` binary is absent from the filesystem; the install name is present in the arm64e dyld cache. Use dyld-cache-aware tools instead of treating the framework symlink as a normal Mach-O file.
+- Objective-C class names such as `SLSEventAuthenticationMessage` must be checked with runtime class lookup or metadata dumps, not `dlsym("ClassName")`.
 - SIP protects system locations and Apple-preinstalled apps; research should not require modifying system files.
 - TCC/privacy prompts remain part of the supported capture/automation model.
 - App Store distribution expects public APIs, so SkyLight-backed functionality should be isolated to non-App-Store/private builds or optional private backends.

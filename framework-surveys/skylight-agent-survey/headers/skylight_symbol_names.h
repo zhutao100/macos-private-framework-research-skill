@@ -5,7 +5,7 @@
 */
 #pragma once
 
-static const char * const SKYLIGHT_SYMBOL_NAMES[] = {
+static const char * const SKYLIGHT_C_SYMBOL_NAMES[] = {
     "CGS",
     "CGSConnectionID",
     "CGSMainConnectionID",
@@ -22,7 +22,6 @@ static const char * const SKYLIGHT_SYMBOL_NAMES[] = {
     "SLPSPostEventRecordTo",
     "SLPSSetFrontProcessWithOptions",
     "SLSCopySpacesForWindows",
-    "SLSEventAuthenticationMessage",
     "SLSEventRecord",
     "SLSGetActiveSpace",
     "SLSGetConnectionPSN",
@@ -31,11 +30,24 @@ static const char * const SKYLIGHT_SYMBOL_NAMES[] = {
     "SLSMainConnectionID",
     "SLSSetWindowAlpha",
     "SLSShowSpaces",
-    "SLSSkyLightKeyEventAuthenticationMessage",
     "SLSSpaceAddWindowsAndRemoveFromSpaces",
     "SLSSpaceCreate",
     "SLSSpaceSetAbsoluteLevel",
     "SLSUpdateSystemActivityWithLocation",
     "_SLPSGetFrontProcess",
+    0
+};
+
+static const char * const SKYLIGHT_OBJC_CLASS_NAMES[] = {
+    "SLContentFilter",
+    "SLContentStream",
+    "SLSEventAuthenticationMessage",
+    "SLSSkyLightEventAuthenticationMessage",
+    "SLSSkyLightKeyEventAuthenticationMessage",
+    "SLSBridgedCopyManagedDisplaySpacesOperation",
+    "SLSBridgedCopySpacesForWindowsOperation",
+    "SLSBridgedMoveWindowsToManagedSpaceOperation",
+    "SLSBridgedSpaceSetAbsoluteLevelOperation",
+    "SLWindowMirroringManager",
     0
 };

@@ -13,6 +13,8 @@ macos-private-framework-research/
 ├── scripts/
 ├── references/
 └── assets/
+framework-surveys/
+└── skylight-agent-survey/
 ```
 
 ## Skill
@@ -73,6 +75,8 @@ macos-private-framework-research/scripts/extract_dyld_framework.sh \
   --output-dir /tmp/macos-private-frameworks
 ```
 
+Use `--enrich-objc-stubs` only when extraction-time enrichment is needed; run `ipsw class-dump` separately for bounded header output.
+
 Triage reconstructed headers for underspecified method signatures:
 
 ```bash
@@ -81,6 +85,8 @@ macos-private-framework-research/scripts/objc_header_triage.py \
   --output /tmp/DiskManagement.candidates.md \
   --json-output /tmp/DiskManagement.candidates.json
 ```
+
+Markdown reports are bounded by default for agent ingestion; JSON outputs remain complete.
 
 Build an LLM-ready MOTIF-style inference context for one candidate:
 

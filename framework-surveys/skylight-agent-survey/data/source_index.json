@@ -20,6 +20,12 @@
       "purpose": "Overlay/Space-level project source map and symbol observations."
     },
     {
+      "id": "macos26_25C56_local_probe",
+      "kind": "local_build_observation",
+      "path": "references/build_observations/macos26_25C56.md",
+      "purpose": "Verified SkyLight packaging, dyld-cache, header, and symbol/class probe findings for macOS 26.2 build 25C56."
+    },
+    {
       "id": "motif",
       "kind": "web",
       "purpose": "LLM-guided private-framework type inference methodology.",

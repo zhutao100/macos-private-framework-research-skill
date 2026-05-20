@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import platform
+import re
 import shutil
 import subprocess
 from dataclasses import asdict, dataclass
@@ -116,6 +117,8 @@ def discover_dyld_caches(extra_dirs: list[Path]) -> list[dict[str, Any]]:
                 {
                     "path": str(cache),
                     "name": cache.name,
+                    "architecture": dyld_cache_architecture(cache.name),
+                    "kind": dyld_cache_kind(cache.name),
                     "size_bytes": stat.st_size,
                     "mtime": stat.st_mtime,
                 }
@@ -123,9 +126,42 @@ def discover_dyld_caches(extra_dirs: list[Path]) -> list[dict[str, Any]]:
     return caches
 
 
+def dyld_cache_architecture(name: str) -> str:
+    prefix = "dyld_shared_cache_"
+    if not name.startswith(prefix):
+        return ""
+    arch = name.removeprefix(prefix).split(".", 1)[0]
+    return arch
+
+
+def dyld_cache_kind(name: str) -> str:
+    if name.endswith(".map"):
+        return "map"
+    if name.endswith(".atlas"):
+        return "atlas"
+    suffix = name.removeprefix(f"dyld_shared_cache_{dyld_cache_architecture(name)}")
+    if re.match(r"^\.\d+$", suffix):
+        return "subcache"
+    if suffix == "":
+        return "primary"
+    return "other"
+
+
+def tool_command(name: str) -> list[str]:
+    if name == "xcrun swift-demangle":
+        return ["xcrun", "swift-demangle"]
+    return [name]
+
+
 def tool_info(name: str) -> dict[str, Any]:
-    path = shutil.which(name)
-    info: dict[str, Any] = {"name": name, "path": path, "available": path is not None}
+    command = tool_command(name)
+    path = shutil.which(command[0])
+    info: dict[str, Any] = {
+        "name": name,
+        "command": command,
+        "path": path,
+        "available": path is not None,
+    }
     if not path:
         return info
 
@@ -138,7 +174,7 @@ def tool_info(name: str) -> dict[str, Any]:
         "clang": [name, "--version"],
         "lldb": [name, "--version"],
         "xcrun": [name, "--version"],
-        "xcrun swift-demangle": [name, "--version"],
+        "xcrun swift-demangle": [*command, "--version"],
     }
     cmd = version_commands.get(name)
     if cmd:
@@ -209,8 +245,22 @@ def human_size(size: int | None) -> str:
     return f"{size} B"
 
 
+def primary_cache(caches: list[dict[str, Any]], machine: str) -> dict[str, Any] | None:
+    preferred_arches = ["arm64e", "arm64"] if machine == "arm64" else ["x86_64h", "x86_64"]
+    for arch in preferred_arches:
+        for cache in caches:
+            if cache.get("kind") == "primary" and cache.get("architecture") == arch:
+                return cache
+    for cache in caches:
+        if cache.get("kind") == "primary":
+            return cache
+    return caches[0] if caches else None
+
+
 def render_markdown(data: dict[str, Any]) -> str:
     host = data["host"]
+    caches = data["dyld_caches"]
+    selected_cache = primary_cache(caches, host["machine"])
     lines: list[str] = []
     lines.append("# macOS Private Framework Research Inventory")
     lines.append("")
@@ -218,6 +268,8 @@ def render_markdown(data: dict[str, Any]) -> str:
     lines.append("")
     lines.append(f"- Platform: `{host['platform_system']} {host['platform_release']}`")
     lines.append(f"- Machine: `{host['machine']}`")
+    if selected_cache:
+        lines.append(f"- Suggested dyld cache: `{selected_cache['path']}`")
     sw = host["sw_vers"]
     if sw["stdout"]:
         lines.append("- `sw_vers`:")
@@ -242,13 +294,12 @@ def render_markdown(data: dict[str, Any]) -> str:
     lines.append("")
     lines.append("## Dyld Shared Caches")
     lines.append("")
-    caches = data["dyld_caches"]
     if caches:
-        lines.append("| Cache | Size | Path |")
-        lines.append("|---|---:|---|")
+        lines.append("| Cache | Arch | Kind | Size | Path |")
+        lines.append("|---|---|---|---:|---|")
         for cache in caches:
             lines.append(
-                f"| `{cache['name']}` | {human_size(cache['size_bytes'])} | `{cache['path']}` |"
+                f"| `{cache['name']}` | `{cache['architecture']}` | `{cache['kind']}` | {human_size(cache['size_bytes'])} | `{cache['path']}` |"
             )
     else:
         lines.append("No dyld shared cache files found in standard locations.")
@@ -284,9 +335,13 @@ def render_markdown(data: dict[str, Any]) -> str:
     lines.append("## Suggested Next Commands")
     lines.append("")
     cache_path = (
-        caches[0]["path"]
-        if caches
-        else "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e"
+        selected_cache["path"]
+        if selected_cache
+        else (
+            caches[0]["path"]
+            if caches
+            else "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e"
+        )
     )
     lines.append("```bash")
     lines.append(f"ipsw dyld info {json.dumps(cache_path)}")

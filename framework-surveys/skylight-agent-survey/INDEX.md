@@ -15,10 +15,12 @@
 - `references/project_notes/cua_driver_notes.md` — Cua-related findings.
 - `references/project_notes/skylightwindow_notes.md` — SkyLightWindow-related findings.
 - `references/public_api_alternatives.md` — supported API fallback map.
+- `references/build_observations/macos26_25C56.md` — verified host findings for macOS 26.2 build 25C56.
 
 ## Data
 
 - `data/seed_symbol_manifest.json` — extracted symbol-name observations.
+- `data/macos26_25C56_probe_summary.json` — compact symbol/class presence probe for macOS 26.2 build 25C56.
 - `data/source_index.json` — structured source list and why each source matters.
 
 ## Headers
@@ -28,7 +30,7 @@
 ## Tools
 
 - `tools/collect_skylight_inventory.zsh` — read-only host inventory.
-- `tools/dlopen_probe_symbols.swift` — read-only symbol presence probe.
+- `tools/dlopen_probe_symbols.swift` — read-only C-symbol and Objective-C-class presence probe.
 - `tools/extract_symbol_refs.py` — parse symbol-name references from local text/source trees.
 - `tools/diff_symbol_manifests.py` — compare manifests across OS builds.
 

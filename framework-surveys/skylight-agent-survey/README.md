@@ -14,7 +14,7 @@ It is designed for progressive loading:
 
 ## Safety boundary
 
-This package intentionally excludes operational SIP/AMFI/TCC bypass procedures, Apple-process injection recipes, exploit chains, privilege-escalation steps, and code that invokes private event-injection routines. It includes safe, read-only inventory tools and methodology for legitimate reverse-engineering, compatibility research, and defensive assessment.
+This package intentionally excludes operational SIP/AMFI/TCC weakening procedures, Apple-process attachment recipes, unauthorized execution paths, authorization-boundary violations, and code that invokes private event-routing routines. It includes safe, read-only inventory tools and methodology for compatibility research and defensive assessment.
 
 ## Contents
 
@@ -42,6 +42,7 @@ seed/
 | `references/project_notes/cua_driver_notes.md` | How Cua maps to the background computer-use problem space. |
 | `references/project_notes/skylightwindow_notes.md` | How SkyLightWindow maps to system-level overlay/Space experiments. |
 | `tools/collect_skylight_inventory.zsh` | Read-only host inventory and symbol collection. |
-| `tools/dlopen_probe_symbols.swift` | Read-only `dlopen`/`dlsym` presence probe; it does not call private symbols. |
+| `references/build_observations/macos26_25C56.md` | Verified packaging, extraction, header, and probe findings from macOS 26.2 build 25C56. |
+| `tools/dlopen_probe_symbols.swift` | Read-only `dlopen`/`dlsym`/`NSClassFromString` presence probe; it does not call private symbols. |
 | `data/seed_symbol_manifest.json` | Machine-readable symbol-name observations from seed source trees. |
 ```

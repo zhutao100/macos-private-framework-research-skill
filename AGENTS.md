@@ -25,6 +25,8 @@ After changing scripts, metadata, assets, or references, run:
 macos-private-framework-research/scripts/validate_skill_repo.py .
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
+bash -n framework-surveys/skylight-agent-survey/tools/*.zsh
+python3 -m py_compile framework-surveys/skylight-agent-survey/tools/*.py
 ```
 
 On a macOS host, also run:
@@ -47,7 +49,7 @@ macos-private-framework-research/scripts/discover_private_frameworks.py \
 
 ## Reference Checkouts
 
-The `reference-checkouts/` directory contains source repositories of the tools and skills used in this research; refer to them when you need to understand how a tool works.
+The `reference-checkout/` directory contains source repositories of the tools and skills used in this research; refer to them when you need to understand how a tool works.
 
 - `MxIris-Reverse-Engineering/RuntimeViewer`
 - `nst/RuntimeBrowser`

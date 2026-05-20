@@ -161,6 +161,21 @@ Symbols below are seed observations, not validated headers.
 - `SLSSkyLightKeyEventAuthenticationMessage`
 - `_SLPSGetFrontProcess`
 
+## objc_classes
+
+Probe these with Objective-C runtime metadata (`NSClassFromString`, class-dump, RuntimeViewer), not raw `dlsym("ClassName")`.
+
+- `SLContentFilter`
+- `SLContentStream`
+- `SLSEventAuthenticationMessage`
+- `SLSSkyLightEventAuthenticationMessage`
+- `SLSSkyLightKeyEventAuthenticationMessage`
+- `SLSBridgedCopyManagedDisplaySpacesOperation`
+- `SLSBridgedCopySpacesForWindowsOperation`
+- `SLSBridgedMoveWindowsToManagedSpaceOperation`
+- `SLSBridgedSpaceSetAbsoluteLevelOperation`
+- `SLWindowMirroringManager`
+
 ## spaces
 
 - `CGSMoveWindowsToManagedSpace`

@@ -45,6 +45,8 @@ Use `scripts/macos_private_framework_inventory.py` instead of hardcoding a singl
 
 Modern macOS places substantial OS content in sealed/read-only system locations and Cryptex paths. Do not attempt to patch or rebuild live dyld caches. Extract into `/tmp` or an explicit research workspace and analyze copies.
 
+Some framework bundles retain resources and signatures on disk while the Mach-O image is only present in the dyld shared cache. Treat a missing `Versions/A/FrameworkName` binary as a packaging fact, not proof that the framework is unavailable. Check the dyld cache map and use cache-aware tools before drawing conclusions.
+
 ## macOS 26+ Naming
 
 Apple's 2025 platform naming introduced macOS Tahoe 26. Future annual releases may continue version-number naming while preserving private-framework and dyld-cache mechanics with incremental changes. Avoid version-specific assumptions unless verified on the host.

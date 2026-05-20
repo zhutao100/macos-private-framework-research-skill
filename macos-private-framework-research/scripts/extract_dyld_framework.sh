@@ -14,6 +14,7 @@ Options:
   --cache PATH            Dyld shared cache path. Defaults to the first standard cache matching host arch.
   --output-dir DIR        Destination directory. Default: /tmp/macos-private-frameworks.
   --tool auto|ipsw|dsc    Extraction tool. Default: auto.
+  --enrich-objc-stubs     Ask ipsw to emit ObjC/stub enrichment during extraction.
   --force                 Pass force flags where supported and permit reuse of the output directory.
   --keep-full-extract     Do not delete non-target files after a full dyld-shared-cache-extractor run.
   -h, --help              Show this help.
@@ -21,7 +22,8 @@ Options:
 Notes:
   - This script writes only to --output-dir.
   - It does not modify dyld caches, system frameworks, installed apps, or code signatures.
-  - ipsw is preferred because it can extract a single dylib/framework and enrich symbols.
+  - ipsw is preferred because it can extract a single dylib/framework.
+  - Use --enrich-objc-stubs only when the additional metadata is needed; it can be slow on large/new caches.
 USAGE
 }
 
@@ -29,6 +31,7 @@ framework=""
 cache=""
 output_dir="/tmp/macos-private-frameworks"
 tool="auto"
+enrich_objc_stubs=0
 force=0
 keep_full_extract=0
 
@@ -49,6 +52,10 @@ while [[ $# -gt 0 ]]; do
         --tool)
             tool="${2:-}"
             shift 2
+            ;;
+        --enrich-objc-stubs)
+            enrich_objc_stubs=1
+            shift
             ;;
         --force)
             force=1
@@ -144,7 +151,8 @@ find_target_outputs() {
         -path "*/System/Library/PrivateFrameworks/${framework}.framework/*/${framework}" -o \
         -path "*/System/Library/PrivateFrameworks/${framework}.framework/${framework}" -o \
         -path "*/${framework}.framework/*/${framework}" -o \
-        -path "*/${framework}.framework/${framework}" \
+        -path "*/${framework}.framework/${framework}" -o \
+        -path "$root/${framework}" \
         \) 2>/dev/null | sort
 }
 
@@ -154,12 +162,15 @@ extract_with_ipsw() {
         args+=(--force)
     fi
 
-    echo "+ ipsw ${args[*]} --objc --stubs" >&2
-    if ipsw "${args[@]}" --objc --stubs; then
-        return 0
+    if [[ "$enrich_objc_stubs" -eq 1 ]]; then
+        echo "+ ipsw ${args[*]} --objc --stubs" >&2
+        if ipsw "${args[@]}" --objc --stubs; then
+            return 0
+        fi
+
+        echo "warning: ipsw extraction with --objc --stubs failed; retrying without enrichment flags" >&2
     fi
 
-    echo "warning: ipsw extraction with --objc --stubs failed; retrying without enrichment flags" >&2
     echo "+ ipsw ${args[*]}" >&2
     ipsw "${args[@]}"
 }

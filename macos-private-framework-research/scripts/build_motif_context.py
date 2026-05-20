@@ -113,6 +113,14 @@ def limited_lines(text: str, max_lines: int = 80, max_chars: int = 16000) -> str
     return joined[:max_chars]
 
 
+def abbreviate(text: str, max_chars: int) -> str:
+    if max_chars <= 0 or len(text) <= max_chars:
+        return text
+    if max_chars <= 3:
+        return "." * max_chars
+    return f"{text[: max_chars - 3]}..."
+
+
 def strings_evidence(binary: Path, terms: list[str], max_matches: int = 80) -> dict[str, Any]:
     if not binary or not binary.exists():
         return {"error": "binary not found", "matches": []}
@@ -197,16 +205,28 @@ def prompt_text(context: dict[str, Any]) -> str:
         f"- Container: `{candidate.get('container_kind', 'unknown')} {candidate.get('container', 'unknown')}`"
     )
     lines.append(f"- Selector: `{candidate.get('selector', '')}`")
-    lines.append(f"- Current declaration: `{candidate.get('declaration', '')}`")
+    declaration = str(candidate.get("declaration", ""))
+    rendered_declaration = abbreviate(declaration, 2000)
+    lines.append(f"- Current declaration: `{rendered_declaration}`")
+    if rendered_declaration != declaration:
+        lines.append(
+            "  - Declaration truncated in Markdown; context JSON contains the complete declaration."
+        )
     lines.append(f"- Return type: `{candidate.get('return_type', '')}`")
-    lines.append(f"- Parameter types: `{', '.join(candidate.get('parameter_types', []))}`")
+    parameter_types = ", ".join(candidate.get("parameter_types", []))
+    rendered_parameter_types = abbreviate(parameter_types, 2000)
+    lines.append(f"- Parameter types: `{rendered_parameter_types}`")
+    if rendered_parameter_types != parameter_types:
+        lines.append(
+            "  - Parameter types truncated in Markdown; context JSON contains the complete list."
+        )
     lines.append("")
     lines.append("## Nearby Header Context")
     lines.append("")
     lines.append("```objc")
     for line in context["header_context"].get("lines", []):
         prefix = ">" if line["line"] == candidate.get("line") else " "
-        lines.append(f"{prefix}{line['line']:5d}: {line['text']}")
+        lines.append(f"{prefix}{line['line']:5d}: {abbreviate(line['text'], 1200)}")
     lines.append("```")
     lines.append("")
     if binary := context.get("binary"):

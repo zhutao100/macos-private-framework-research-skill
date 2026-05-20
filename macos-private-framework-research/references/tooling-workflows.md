@@ -61,17 +61,27 @@ scripts/extract_dyld_framework.sh \
   --output-dir /tmp/macos-private-frameworks
 ```
 
+`ipsw` can also emit ObjC/stub enrichment during extraction, but that can be expensive on large or new caches. Start with the plain extraction above, then opt in only when needed:
+
+```bash
+scripts/extract_dyld_framework.sh \
+  --framework DiskManagement \
+  --output-dir /tmp/macos-private-frameworks \
+  --enrich-objc-stubs
+```
+
 Manual `ipsw` examples:
 
 ```bash
 CACHE=/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e
 ipsw dyld info "$CACHE"
+ipsw dyld extract "$CACHE" DiskManagement -o /tmp/macos-private-frameworks --force
 ipsw dyld extract "$CACHE" DiskManagement -o /tmp/macos-private-frameworks --objc --stubs --force
 ipsw dyld macho "$CACHE" DiskManagement --objc --symbols --strings
 ipsw class-dump "$CACHE" DiskManagement --headers --output /tmp/DiskManagement.headers
 ```
 
-If `--objc`/`--stubs` flags fail on an older `ipsw`, retry without them.
+If `--objc`/`--stubs` flags fail or stall on an older/newer `ipsw`, retry without them and use `ipsw class-dump` plus `ipsw dyld macho --symbols --strings` as separate, more bounded steps.
 
 Manual `dyld-shared-cache-extractor` examples:
 
@@ -181,3 +191,16 @@ xcrun swift-demangle '$s...'
 ```
 
 For symbols and strings, keep output bounded. Large raw dumps are less useful to agents than compact evidence snippets tied to one candidate.
+
+## 9. Cache-Resident Framework Paths
+
+On modern macOS, a framework bundle can exist on disk while the Mach-O image is cache-resident. In that case, `file`, `nm`, `dyldinfo`, or `strings` on `/System/Library/PrivateFrameworks/Name.framework/Name` may fail even though `dlopen` succeeds.
+
+Check the cache map and switch to cache-aware tools:
+
+```bash
+CACHE=/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e
+grep '/System/Library/PrivateFrameworks/Name.framework' "$CACHE.map"
+ipsw dyld macho "$CACHE" Name --symbols
+ipsw class-dump "$CACHE" Name --headers --output /tmp/Name.headers
+```

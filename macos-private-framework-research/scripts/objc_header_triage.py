@@ -14,7 +14,7 @@ INTERFACE_RE = re.compile(r"^\s*@interface\s+([A-Za-z_][\w$]*)\b")
 PROTOCOL_RE = re.compile(r"^\s*@protocol\s+([A-Za-z_][\w$]*)\b")
 CATEGORY_RE = re.compile(r"^\s*@interface\s+([A-Za-z_][\w$]*)\s*\(([^)]*)\)")
 METHOD_RE = re.compile(r"^\s*([+-])\s*\(([^)]*)\)\s*(.*?)\s*;\s*$")
-LABEL_RE = re.compile(r"([A-Za-z_][\w$]*)\s*:")
+IDENTIFIER_RE = re.compile(r"[A-Za-z_][\w$]*\Z")
 
 SEVERE_PATTERNS = [
     (
@@ -139,8 +139,34 @@ def container_at_line(lines: list[tuple[int, str]], target_line: int) -> tuple[s
     return kind, name
 
 
+def selector_labels_from_method_body(body: str) -> list[str]:
+    labels: list[str] = []
+    paren_depth = 0
+    brace_depth = 0
+    for index, char in enumerate(body):
+        if char == "(":
+            paren_depth += 1
+        elif char == ")" and paren_depth:
+            paren_depth -= 1
+        elif char == "{":
+            brace_depth += 1
+        elif char == "}" and brace_depth:
+            brace_depth -= 1
+        elif char == ":" and paren_depth == 0 and brace_depth == 0:
+            end = index
+            while end > 0 and body[end - 1].isspace():
+                end -= 1
+            start = end
+            while start > 0 and (body[start - 1].isalnum() or body[start - 1] in "_$"):
+                start -= 1
+            label = body[start:end]
+            if IDENTIFIER_RE.match(label):
+                labels.append(label)
+    return labels
+
+
 def selector_from_method_body(body: str) -> str:
-    labels = LABEL_RE.findall(body)
+    labels = selector_labels_from_method_body(body)
     if labels:
         return "".join(f"{label}:" for label in labels)
     token = re.split(r"\s+", body.strip(), maxsplit=1)[0]
@@ -301,14 +327,33 @@ def build_candidates(headers: Path) -> list[Candidate]:
     return candidates
 
 
-def render_markdown(headers: Path, candidates: list[Candidate]) -> str:
+def abbreviate(text: str, max_chars: int) -> str:
+    if max_chars <= 0 or len(text) <= max_chars:
+        return text
+    if max_chars <= 3:
+        return "." * max_chars
+    return f"{text[: max_chars - 3]}..."
+
+
+def render_markdown(
+    headers: Path,
+    candidates: list[Candidate],
+    total_count: int | None = None,
+    detail_limit: int = 10,
+    max_cell_chars: int = 160,
+    max_declaration_chars: int = 2000,
+    max_reason_type_chars: int = 320,
+) -> str:
+    total = total_count if total_count is not None else len(candidates)
     lines: list[str] = [
         "# Objective-C Header Triage",
         "",
         f"Headers: `{headers}`",
-        f"Candidates: `{len(candidates)}`",
-        "",
+        f"Candidates: `{total}`",
     ]
+    if total != len(candidates):
+        lines.append(f"Rendered candidates: `{len(candidates)}`")
+    lines.append("")
     if not candidates:
         lines.append(
             "No underspecified Objective-C declarations matched the built-in triage rules."
@@ -324,12 +369,18 @@ def render_markdown(headers: Path, candidates: list[Candidate]) -> str:
     for candidate in candidates:
         reason_codes = ", ".join(dict.fromkeys(reason["code"] for reason in candidate.reasons))
         lines.append(
-            f"| {candidate.id} | {candidate.score} | `{candidate.container}` | `{candidate.selector}` | `{candidate.file}:{candidate.line}` | {reason_codes} |"
+            f"| {candidate.id} | {candidate.score} | `{abbreviate(candidate.container, max_cell_chars)}` | `{abbreviate(candidate.selector, max_cell_chars)}` | `{candidate.file}:{candidate.line}` | {reason_codes} |"
         )
     lines.append("")
     lines.append("## Candidate Details")
     lines.append("")
-    for candidate in candidates:
+    detail_candidates = candidates if detail_limit == 0 else candidates[:detail_limit]
+    if len(detail_candidates) < len(candidates):
+        lines.append(
+            f"Showing details for the first `{len(detail_candidates)}` rendered candidates. Use `--detail-limit 0` for all rendered details."
+        )
+        lines.append("")
+    for candidate in detail_candidates:
         lines.append(f"### {candidate.id}. `{candidate.container} {candidate.selector}`")
         lines.append("")
         lines.append(f"- Location: `{candidate.file}:{candidate.line}`")
@@ -338,11 +389,17 @@ def render_markdown(headers: Path, candidates: list[Candidate]) -> str:
             lines.append(f"- Context hint: {candidate.context_hint}")
         lines.append("- Declaration:")
         lines.append("  ```objc")
-        lines.append(f"  {candidate.declaration}")
+        declaration = abbreviate(candidate.declaration, max_declaration_chars)
+        lines.append(f"  {declaration}")
         lines.append("  ```")
+        if declaration != candidate.declaration:
+            lines.append(
+                "  Declaration truncated in Markdown; JSON contains the complete declaration."
+            )
         lines.append("- Reasons:")
         for reason in candidate.reasons:
-            lines.append(f"  - `{reason['code']}` on `{reason['type']}`: {reason['message']}")
+            reason_type = abbreviate(reason["type"], max_reason_type_chars)
+            lines.append(f"  - `{reason['code']}` on `{reason_type}`: {reason['message']}")
         lines.append("")
     return "\n".join(lines)
 
@@ -362,8 +419,32 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--limit",
         type=int,
-        default=0,
-        help="Limit rendered candidates in Markdown; JSON always contains all candidates.",
+        default=50,
+        help="Limit rendered candidates in Markdown. Use 0 for all candidates. JSON always contains all candidates.",
+    )
+    parser.add_argument(
+        "--detail-limit",
+        type=int,
+        default=10,
+        help="Limit detailed Markdown sections within the rendered candidates. Use 0 for all rendered details.",
+    )
+    parser.add_argument(
+        "--max-cell-chars",
+        type=int,
+        default=160,
+        help="Maximum characters for long table cells in Markdown.",
+    )
+    parser.add_argument(
+        "--max-declaration-chars",
+        type=int,
+        default=2000,
+        help="Maximum characters for a detailed declaration in Markdown; JSON remains complete.",
+    )
+    parser.add_argument(
+        "--max-reason-type-chars",
+        type=int,
+        default=320,
+        help="Maximum characters for reason type snippets in Markdown; JSON remains complete.",
     )
     return parser.parse_args()
 
@@ -374,7 +455,15 @@ def main() -> int:
         raise SystemExit(f"headers path not found: {args.headers}")
     candidates = build_candidates(args.headers)
     visible_candidates = candidates[: args.limit] if args.limit and args.limit > 0 else candidates
-    markdown = render_markdown(args.headers, visible_candidates)
+    markdown = render_markdown(
+        args.headers,
+        visible_candidates,
+        total_count=len(candidates),
+        detail_limit=args.detail_limit,
+        max_cell_chars=args.max_cell_chars,
+        max_declaration_chars=args.max_declaration_chars,
+        max_reason_type_chars=args.max_reason_type_chars,
+    )
     data: dict[str, Any] = {
         "schema_version": "1.0",
         "headers": str(args.headers),

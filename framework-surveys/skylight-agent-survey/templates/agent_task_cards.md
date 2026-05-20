@@ -7,10 +7,11 @@ Input: target macOS host.
 Steps:
 
 1. Run `tools/collect_skylight_inventory.zsh out/<target>`.
-2. Run `swift tools/dlopen_probe_symbols.swift > out/<target>/dlsym_probe.txt`.
-3. Record commands and outputs in `templates/report_template.md`.
+2. Run `swift tools/dlopen_probe_symbols.swift > out/<target>/dlsym_probe.tsv`.
+3. Run `swift tools/dlopen_probe_symbols.swift --json > out/<target>/dlsym_probe.json`.
+4. Record commands and outputs in `templates/report_template.md`.
 
-Done when: OS metadata, dyld cache path/hash, and symbol-presence output are saved.
+Done when: OS metadata, dyld cache path, and symbol/class-presence output are saved. Include cache hashes when `SKYLIGHT_HASH_CACHES=1` was used.
 
 ## T2: Source cross-reference
 

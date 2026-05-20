@@ -7,16 +7,16 @@ Produce build-specific, verifiable research notes for `SkyLight.framework` witho
 ## Rules
 
 - Prefer public APIs first: AppKit/SwiftUI, Accessibility, ScreenCaptureKit, `CGWindowListCopyWindowInfo`, and public `CGEvent` paths.
-- Treat private SLS/CGS/SLPS symbols as hypotheses until verified on the target OS build.
-- Do not disable SIP, bypass AMFI, edit TCC databases, inject into Apple processes, patch system binaries, or attach to protected Apple daemons as part of this package's workflows.
+- Treat private SLS/CGS/SLPS symbols and Objective-C class names as hypotheses until verified on the target OS build.
+- Do not disable SIP, weaken AMFI, edit TCC databases, attach to Apple processes, patch system binaries, or inspect protected Apple daemons as part of this package's workflows.
 - Use a disposable VM or lab Mac for any observation that could perturb WindowServer state.
-- Keep all outputs build-specific: record `sw_vers`, `uname -a`, architecture, dyld shared cache path/hash, SIP status, and tool versions.
-- Never convert a symbol-name observation into a callable signature without independent static + runtime validation.
+- Keep all outputs build-specific: record `sw_vers`, `uname -a`, architecture, dyld shared cache path, SIP status, and tool versions. Set `SKYLIGHT_HASH_CACHES=1` when a cache hash is required.
+- Never convert a symbol-name or Objective-C-class observation into a callable signature without independent static + runtime validation.
 
 ## Work loop
 
 1. Inventory target: run `tools/collect_skylight_inventory.zsh out/<target-id>`.
-2. Symbol presence: run `swift tools/dlopen_probe_symbols.swift > out/<target-id>/dlsym_probe.txt`.
+2. Symbol/class presence: run `swift tools/dlopen_probe_symbols.swift > out/<target-id>/dlsym_probe.tsv` and `swift tools/dlopen_probe_symbols.swift --json > out/<target-id>/dlsym_probe.json`.
 3. Normalize: parse outputs into JSON using `tools/extract_symbol_refs.py` where applicable.
 4. Compare: use `tools/diff_symbol_manifests.py old.json new.json` across OS builds.
 5. Analyze: map symbols into `references/symbol_clusters.md` categories.

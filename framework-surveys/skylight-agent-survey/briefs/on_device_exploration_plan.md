@@ -18,15 +18,18 @@ Expected outputs:
 - best-effort exported-symbol inventory;
 - optional SkyLight unified logs only when `SKYLIGHT_COLLECT_LOGS=1` is set.
 
+Set `SKYLIGHT_HASH_CACHES=1` for SHA-256 cache hashes when build identity requires them; default collection records paths and sizes without hashing multi-GB cache files.
+
 ## Phase B: symbol presence probe
 
 Run:
 
 ```sh
-swift tools/dlopen_probe_symbols.swift > out/$(hostname -s)/dlsym_probe.txt
+swift tools/dlopen_probe_symbols.swift > out/$(hostname -s)/dlsym_probe.tsv
+swift tools/dlopen_probe_symbols.swift --json > out/$(hostname -s)/dlsym_probe.json
 ```
 
-This script only checks whether known symbol names resolve. It does not call the resolved function pointers.
+This script checks whether known C symbols resolve and whether selected Objective-C classes are visible after `dlopen`. It does not call the resolved function pointers or instantiate classes.
 
 ## Phase C: source-reference extraction
 
