@@ -12,7 +12,6 @@ This package is a technical survey and on-device exploration guide for the macOS
 | `LLM_LOAD_ORDER.md` | Progressive context-loading plan for agents. |
 | `briefs/IntelligenceFlow_tech_brief.md` | Current technical model, evidence, hypotheses, and claims to avoid. |
 | `briefs/agentic_private_framework_research_best_practices.md` | LLM-agent methodology for modern macOS private-framework research. |
-| `briefs/safety_boundary_and_non_goals.md` | What this package intentionally excludes and safe substitutes. |
 | `evidence/` | Evidence register, framework inventory seeds, entitlement seeds, claim cards. |
 | `data/` | Build-specific local observation summaries. |
 | `headers/` | Project-ready presence header and generated-header validation notes. |
@@ -23,12 +22,6 @@ This package is a technical survey and on-device exploration guide for the macOS
 | `templates/` | Observation records, claim cards, lab runbook, agent prompts. |
 | `schemas/` | JSON schemas for manifests and observations. |
 | `source_materials/` | Seed research snapshot supplied with the task. |
-
-## Scope boundaries
-
-No Apple private binaries, private headers, entitlement-bearing Apple executables, or generated private headers are redistributed here. The scripts only collect metadata from a researcher-controlled macOS machine and write local outputs.
-
-This package also excludes host-modifying system-integrity, AMFI, TCC, and Apple-process mutation recipes. It replaces those with observable control-plane mapping: entitlements, Mach/XPC service names, launchd jobs, dyld/shared-cache metadata, unified logs, App Intents trials, and Apple Intelligence privacy reports.
 
 ## Verified local baseline
 

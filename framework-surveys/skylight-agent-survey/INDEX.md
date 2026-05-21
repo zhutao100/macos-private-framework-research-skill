@@ -4,7 +4,6 @@
 
 - `briefs/SkyLight_tech_brief.md` — current technical model of SkyLight.
 - `briefs/agent_research_methodology.md` — LLM-agent workflow for private-framework research.
-- `briefs/security_boundaries.md` — safe boundaries and excluded operational content.
 - `briefs/on_device_exploration_plan.md` — staged tasks for lab-machine exploration.
 
 ## References

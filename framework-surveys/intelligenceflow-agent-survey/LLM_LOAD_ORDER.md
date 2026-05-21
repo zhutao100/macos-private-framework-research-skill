@@ -8,7 +8,6 @@ Load:
 
 - `README.md`
 - `INDEX.md`
-- `briefs/safety_boundary_and_non_goals.md`
 
 Stop when the agent can state the package boundaries and task lanes.
 

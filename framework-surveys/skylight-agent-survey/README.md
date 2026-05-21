@@ -12,10 +12,6 @@ It is designed for progressive loading:
 4. Run only the read-only tools under `tools/` on a disposable or lab macOS machine.
 5. Record results into `templates/report_template.md`.
 
-## Safety boundary
-
-This package intentionally excludes operational SIP/AMFI/TCC weakening procedures, Apple-process attachment recipes, unauthorized execution paths, authorization-boundary violations, and code that invokes private event-routing routines. It includes safe, read-only inventory tools and methodology for compatibility research and defensive assessment.
-
 ## Contents
 
 ```text
@@ -37,7 +33,6 @@ seed/
 |---|---|
 | `briefs/SkyLight_tech_brief.md` | Technical overview of SkyLight surfaces and modern macOS constraints. |
 | `briefs/agent_research_methodology.md` | Work plan for LLM-assisted, versioned on-device exploration. |
-| `briefs/security_boundaries.md` | What is in-scope and out-of-scope for safe research. |
 | `references/symbol_clusters.md` | Symbol families and investigation questions. |
 | `references/project_notes/cua_driver_notes.md` | How Cua maps to the background computer-use problem space. |
 | `references/project_notes/skylightwindow_notes.md` | How SkyLightWindow maps to system-level overlay/Space experiments. |

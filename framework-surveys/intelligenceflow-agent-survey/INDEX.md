@@ -3,10 +3,9 @@
 ## Read first
 
 1. `README.md`
-2. `briefs/safety_boundary_and_non_goals.md`
-3. `briefs/IntelligenceFlow_tech_brief.md`
-4. `evidence/evidence_register.md`
-5. `LLM_LOAD_ORDER.md`
+2. `briefs/IntelligenceFlow_tech_brief.md`
+3. `evidence/evidence_register.md`
+4. `LLM_LOAD_ORDER.md`
 
 ## Agent task lanes
 
