@@ -7,6 +7,9 @@
   - verify representative Objective-C class/protocol registration where available.
 
   Verification baseline:
+  - macOS 15.7.2 build 24G325;
+  - framework family version 218.5.0;
+  - compiled with the macOS 26.2 SDK;
   - macOS 26.2 build 25C56;
   - framework family version 3505.5.1;
   - compiled with the macOS 26.4 SDK;

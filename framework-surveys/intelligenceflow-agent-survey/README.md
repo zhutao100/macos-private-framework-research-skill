@@ -23,9 +23,10 @@ This package is a technical survey and on-device exploration guide for the macOS
 | `schemas/` | JSON schemas for manifests and observations. |
 | `source_materials/` | Seed research snapshot supplied with the task. |
 
-## Verified local baseline
+## Verified local baselines
 
-`data/macos26_25C56_probe_summary.json` records a local macOS 26.2 build 25C56 pass. The pass confirmed nine `IntelligenceFlow*` dyld-cache images at version `3505.5.1.0.0`, found `intelligenceflowd` and `intelligencecontextd` launchd/service evidence, and validated `headers/IntelligenceFlowPresence.h` as a project-ready non-calling presence header.
+- `data/macos15_24G325_probe_summary.json` records a local macOS 15.7.2 build 24G325 pass. The pass confirmed nine `IntelligenceFlow*` dyld-cache images at version `218.5.0.0.0`, found `intelligenceflowd` and `intelligencecontextd` launchd/service evidence, and validated `headers/IntelligenceFlowPresence.h` as a project-ready non-calling presence header.
+- `data/macos26_25C56_probe_summary.json` records a local macOS 26.2 build 25C56 pass. The pass confirmed nine `IntelligenceFlow*` dyld-cache images at version `3505.5.1.0.0`, found `intelligenceflowd` and `intelligencecontextd` launchd/service evidence, and validated the same presence header.
 
 ## Suggested first run
 

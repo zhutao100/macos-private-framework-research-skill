@@ -20,6 +20,26 @@ mach_lookup_names_to_search:
   - com.apple.intelligenceflow.transcript-entity-querying
   - com.apple.intelligenceflow.uiContext
   - com.apple.biome.access.user
+confirmed_on_macos15_24G325:
+  intelligenceflowd:
+    - com.apple.intelligenceflow.context
+    - com.apple.intelligenceflow.querydecoration
+    - com.apple.intelligenceflow.uiContext
+    - com.apple.private.biome.read-only
+    - com.apple.private.biome.read-write
+    - com.apple.modelmanager.inference
+  intelligencecontextd:
+    - com.apple.private.biome.client-identifier
+    - com.apple.private.biome.read-only
+    - com.apple.private.biome.read-write
+    - com.apple.private.intelligenceplatform.use-cases
+    - com.apple.private.intelligenceplatform.views.read-only
+    - com.apple.modelmanager.inference
+  IntelligenceFlowDiagnostics.appex:
+    - com.apple.intelligenceflow.context
+    - com.apple.private.biome.read-only
+    - com.apple.private.intelligenceplatform.use-cases
+    - com.apple.security.temporary-exception.mach-lookup.global-name
 confirmed_on_macos26_25C56:
   intelligenceflowd:
     - com.apple.intelligenceflow.context

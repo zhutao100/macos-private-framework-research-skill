@@ -70,7 +70,8 @@ Before opening long `otool`, `nm`, or string dumps, capture a capped manifest:
 scripts/framework_macho_manifest.py \
   --framework DiskManagement \
   --json-output /tmp/DiskManagement.manifest.json \
-  --markdown-output /tmp/DiskManagement.manifest.md
+  --markdown-output /tmp/DiskManagement.manifest.md \
+  --cache-evidence
 ```
 
 For flat extracted images:
@@ -84,6 +85,17 @@ scripts/framework_macho_manifest.py \
 ```
 
 Use the Markdown table for initial agent context and the JSON for complete capped evidence with `total_count` and `truncated` metadata.
+
+For entitlement-heavy targets, use focused entitlement summaries instead of opening raw `codesign` or plist dumps:
+
+```bash
+scripts/collect_code_entitlements.py \
+  --paths-file /tmp/candidate-paths.txt \
+  --focus-pattern 'diskmanagement|mach-lookup|xpc|sandbox|biome|model|transcript' \
+  --only-matching \
+  --output /tmp/DiskManagement.entitlements.md \
+  --json-output /tmp/DiskManagement.entitlements.json
+```
 
 ## 4. Dyld Shared Cache Extraction
 

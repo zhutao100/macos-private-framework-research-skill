@@ -98,6 +98,13 @@
     "notes": "Extract macOS dyld shared cache for local analysis."
   },
   {
+    "id": "local_macos15_24G325_probe_summary",
+    "title": "Local macOS 15.7.2 build 24G325 IntelligenceFlow probe summary",
+    "url": "../data/macos15_24G325_probe_summary.json",
+    "type": "local_build_evidence",
+    "notes": "Build-specific dyld, entitlement, launchd, resource, and header-validation evidence generated on the host."
+  },
+  {
     "id": "local_macos26_25C56_probe_summary",
     "title": "Local macOS 26.2 build 25C56 IntelligenceFlow probe summary",
     "url": "../data/macos26_25C56_probe_summary.json",

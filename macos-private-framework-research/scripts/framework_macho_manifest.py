@@ -5,6 +5,7 @@ import argparse
 import json
 import plistlib
 import platform
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -28,6 +29,26 @@ def limited_lines(text: str, limit: int) -> dict[str, Any]:
         "rendered_count": len(rendered),
         "truncated": limit >= 0 and len(lines) > limit,
     }
+
+
+def filtered_limited_lines(text: str, limit: int, pattern: str = "") -> dict[str, Any]:
+    lines: list[str] = []
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        if line == "Symtab" or set(line) == {"-"}:
+            continue
+        if line.startswith("[") and line.endswith("]"):
+            continue
+        lines.append(line)
+    if pattern:
+        try:
+            regex = re.compile(pattern, re.IGNORECASE)
+            lines = [line for line in lines if regex.search(line)]
+        except re.error:
+            pass
+    return limited_lines("\n".join(lines), limit)
 
 
 def otool_dependency_text(text: str) -> str:
@@ -126,6 +147,40 @@ def dyld_lookup_name(target: Path) -> str:
     return str(target)
 
 
+def dyld_macho_name(target: Path) -> str:
+    if target.suffix == ".framework":
+        return target.stem
+    if target.is_file() and target.suffix == "":
+        return target.name
+    return dyld_lookup_name(target)
+
+
+def cache_macho_evidence(target: Path, args: argparse.Namespace) -> dict[str, Any]:
+    if not args.cache_evidence:
+        return {}
+    if not args.cache or not Path(args.cache).is_file() or not shutil.which("ipsw"):
+        return {
+            "available": False,
+            "reason": "missing cache path or ipsw",
+        }
+    name = dyld_macho_name(target)
+    evidence: dict[str, Any] = {
+        "available": True,
+        "dylib": name,
+    }
+    if args.cache_symbol_limit != 0:
+        symbols = run(["ipsw", "dyld", "macho", args.cache, name, "--symbols"])
+        evidence["focused_symbols"] = filtered_limited_lines(
+            symbols, args.cache_symbol_limit, args.string_pattern
+        )
+    if args.cache_string_limit != 0:
+        strings = run(["ipsw", "dyld", "macho", args.cache, name, "--strings"])
+        evidence["focused_strings"] = filtered_limited_lines(
+            strings, args.cache_string_limit, args.string_pattern
+        )
+    return evidence
+
+
 def manifest_for_binary(path: Path, args: argparse.Namespace) -> dict[str, Any]:
     stat = path.stat()
     sha = run(["shasum", "-a", "256", str(path)])
@@ -152,6 +207,9 @@ def manifest_for_binary(path: Path, args: argparse.Namespace) -> dict[str, Any]:
         "uuid": run(["dwarfdump", "--uuid", str(path)]),
         "build": run(["vtool", "-show-build", str(path)]).splitlines(),
         "dependencies": limited_lines(otool_dependency_text(dependencies), args.dependency_limit),
+        "focused_dependencies": filtered_limited_lines(
+            otool_dependency_text(dependencies), args.dependency_limit, args.string_pattern
+        ),
         "defined_external_symbols": limited_lines(symbols, args.symbol_limit),
         "focused_strings": limited_lines(strings, args.string_limit),
         "load_commands": limited_lines(load_commands, args.load_command_limit),
@@ -177,7 +235,15 @@ def manifest_for_target(target: Path, args: argparse.Namespace, cache_images: di
     }
     if binary:
         entry["binary"] = manifest_for_binary(binary, args)
+    cache_evidence = cache_macho_evidence(target, args)
+    if cache_evidence:
+        entry["cache_macho"] = cache_evidence
     return entry
+
+
+def clipped(value: str, limit: int = 180) -> str:
+    value = value.replace("`", "'")
+    return value if len(value) <= limit else value[: limit - 3] + "..."
 
 
 def write_markdown(result: dict[str, Any], output: Path) -> None:
@@ -187,24 +253,62 @@ def write_markdown(result: dict[str, Any], output: Path) -> None:
         f"Cache: `{result.get('dyld_cache') or 'not used'}`",
         f"Targets: `{len(result['targets'])}`",
         "",
-        "| Target | Binary | Dyld version | UUID | Deps | Symbols |",
-        "|---|---:|---|---|---:|---:|",
+        "| Target | Binary | Dyld version | UUID | Deps | Symbols | Cache symbols | Cache strings |",
+        "|---|---:|---|---|---:|---:|---:|---:|",
     ]
     for entry in result["targets"]:
         binary = entry.get("binary", {})
         dyld = entry.get("dyld_cache_image", {})
         deps = binary.get("dependencies", {})
         symbols = binary.get("defined_external_symbols", {})
+        cache_macho = entry.get("cache_macho", {})
+        cache_symbols = cache_macho.get("focused_symbols", {})
+        cache_strings = cache_macho.get("focused_strings", {})
         uuid_text = str(binary.get("uuid") or dyld.get("uuid", "")).replace("\n", " ")
         uuid_parts = uuid_text.split()
         uuid = uuid_parts[1] if len(uuid_parts) > 1 and uuid_parts[0] == "UUID:" else uuid_text
         name = entry.get("framework_name") or Path(entry["target"]).name
         lines.append(
             f"| `{name}` | `{entry['binary_present']}` | `{dyld.get('version', '')}` | `{uuid}` | "
-            f"{deps.get('total_count', 0)} | {symbols.get('total_count', 0)} |"
+            f"{deps.get('total_count', 0)} | {symbols.get('total_count', 0)} | "
+            f"{cache_symbols.get('total_count', '')} | {cache_strings.get('total_count', '')} |"
         )
     lines.append("")
     lines.append("JSON output contains capped arrays with `total_count`, `rendered_count`, and `truncated` metadata.")
+    detail_limit = int(result.get("markdown_detail_limit", 0) or 0)
+    if detail_limit > 0:
+        lines.append("")
+        lines.append("## Focused Evidence")
+        lines.append("")
+        for entry in result["targets"]:
+            name = entry.get("framework_name") or Path(entry["target"]).name
+            binary = entry.get("binary", {})
+            cache_macho = entry.get("cache_macho", {})
+            groups = [
+                ("dependencies", binary.get("focused_dependencies", {})),
+                ("binary strings", binary.get("focused_strings", {})),
+                ("cache symbols", cache_macho.get("focused_symbols", {})),
+                ("cache strings", cache_macho.get("focused_strings", {})),
+            ]
+            rendered_any = False
+            section_lines: list[str] = []
+            for label, group in groups:
+                group_lines = group.get("lines", [])[:detail_limit]
+                if not group_lines:
+                    continue
+                rendered_any = True
+                section_lines.append(f"- {label}:")
+                for item in group_lines:
+                    section_lines.append(f"  - `{clipped(str(item))}`")
+                remaining = group.get("total_count", 0) - len(group_lines)
+                if remaining > 0:
+                    section_lines.append(
+                        f"  - ... {remaining} more matching lines; JSON includes up to its configured limit"
+                    )
+            if rendered_any:
+                lines.append(f"### `{name}`")
+                lines.extend(section_lines)
+                lines.append("")
     output.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -222,6 +326,29 @@ def main() -> int:
     parser.add_argument("--load-command-limit", type=int, default=0)
     parser.add_argument("--include-load-commands", action="store_true")
     parser.add_argument("--string-pattern", default="")
+    parser.add_argument(
+        "--cache-evidence",
+        action="store_true",
+        help="Use `ipsw dyld macho` to collect focused symbol/string evidence from cache-resident images.",
+    )
+    parser.add_argument(
+        "--cache-symbol-limit",
+        type=int,
+        default=120,
+        help="Maximum focused cache symbol lines. Use -1 for all or 0 to skip.",
+    )
+    parser.add_argument(
+        "--cache-string-limit",
+        type=int,
+        default=120,
+        help="Maximum focused cache string lines. Use -1 for all or 0 to skip.",
+    )
+    parser.add_argument(
+        "--markdown-detail-limit",
+        type=int,
+        default=8,
+        help="Focused evidence lines per target/group in Markdown. Use 0 to hide details.",
+    )
     args = parser.parse_args()
 
     targets = expand_targets(args)
@@ -232,6 +359,7 @@ def main() -> int:
         "schema_version": 1,
         "generated_by": "framework_macho_manifest.py",
         "dyld_cache": args.cache,
+        "markdown_detail_limit": args.markdown_detail_limit,
         "targets": [manifest_for_target(target, args, cache_images) for target in targets],
     }
     if args.markdown_output:

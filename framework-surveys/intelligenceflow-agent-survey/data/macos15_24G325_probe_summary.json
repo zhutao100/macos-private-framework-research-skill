@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "os": {
+    "product_name": "macOS",
+    "product_version": "15.7.2",
+    "build_version": "24G325",
+    "darwin_version": "24.6.0",
+    "architecture": "arm64"
+  },
+  "dyld_cache": {
+    "path": "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e",
+    "uuid": "B395A5F6-C55F-3776-8D60-908CE43D7959"
+  },
+  "frameworks": [
+    {
+      "name": "IntelligenceFlow",
+      "version": "218.5.0.0.0",
+      "uuid": "B7C846A9-96F8-3254-B3F2-F9D8B1D4CF8D",
+      "extracted_size": 4151848,
+      "direct_dependency_count": 46,
+      "notable_dependencies": [
+        "BiomeLibrary",
+        "ToolKit"
+      ],
+      "focused_string_count": 297,
+      "objc_header_count": 36
+    },
+    {
+      "name": "IntelligenceFlowAppIntentsPreviewToolSupport",
+      "version": "218.5.0.0.0",
+      "uuid": "12BD72A2-4A48-3191-A46B-955FA9AEBD8D",
+      "extracted_size": 120568,
+      "direct_dependency_count": 40,
+      "notable_dependencies": [
+        "AppIntents",
+        "IntelligenceFlow",
+        "ToolKit"
+      ],
+      "focused_string_count": 12,
+      "objc_header_count": 0
+    },
+    {
+      "name": "IntelligenceFlowContext",
+      "version": "218.5.0.0.0",
+      "uuid": "CF667261-95C1-31A7-AD27-F0C59B43F2F2",
+      "extracted_size": 541912,
+      "direct_dependency_count": 34,
+      "notable_dependencies": [
+        "IntelligenceFlow",
+        "ToolKit"
+      ],
+      "focused_string_count": 41,
+      "objc_header_count": 7
+    },
+    {
+      "name": "IntelligenceFlowContextRuntime",
+      "version": "218.5.0.0.0",
+      "uuid": "2CAD7668-9093-3758-9134-A138184D692F",
+      "extracted_size": 680576,
+      "direct_dependency_count": 72,
+      "notable_dependencies": [
+        "IntelligenceFlow",
+        "AppIntents",
+        "AssistantServices",
+        "BiomeLibrary",
+        "BiomeStreams",
+        "IntelligencePlatform",
+        "Siri",
+        "ToolKit"
+      ],
+      "focused_string_count": 144,
+      "objc_header_count": 33
+    },
+    {
+      "name": "IntelligenceFlowFeedbackDataCollector",
+      "version": "218.5.0.0.0",
+      "uuid": "E2402F5D-F9D4-3046-B906-12C5E3355AC6",
+      "extracted_size": 139688,
+      "direct_dependency_count": 36,
+      "notable_dependencies": [
+        "IntelligenceFlow",
+        "BiomeLibrary",
+        "BiomeStreams",
+        "ToolKit"
+      ],
+      "focused_string_count": 32,
+      "objc_header_count": 4
+    },
+    {
+      "name": "IntelligenceFlowPlannerRuntime",
+      "version": "218.5.0.0.0",
+      "uuid": "DEDF66CE-4EC1-34BA-B0E9-CDBAC5B962E7",
+      "extracted_size": 6873160,
+      "direct_dependency_count": 105,
+      "notable_dependencies": [
+        "IntelligenceFlow",
+        "ToolKit",
+        "Siri",
+        "Trial",
+        "AppIntents",
+        "CoreSpotlight",
+        "Spotlight",
+        "AssistantServices",
+        "BiomeLibrary",
+        "BiomeStreams",
+        "GenerativeFunctions",
+        "GenerativeModels",
+        "IntelligencePlatform"
+      ],
+      "focused_string_count": 1238,
+      "objc_header_count": 114
+    },
+    {
+      "name": "IntelligenceFlowPlannerSupport",
+      "version": "218.5.0.0.0",
+      "uuid": "9DFA6E67-2D55-3F6E-A36C-5D6F539A7BF3",
+      "extracted_size": 10010168,
+      "direct_dependency_count": 64,
+      "notable_dependencies": [
+        "IntelligenceFlow",
+        "ToolKit",
+        "Siri",
+        "AssistantServices",
+        "IntelligencePlatform"
+      ],
+      "focused_string_count": 1036,
+      "objc_header_count": 27
+    },
+    {
+      "name": "IntelligenceFlowRuntime",
+      "version": "218.5.0.0.0",
+      "uuid": "55880F1E-F222-3D3A-BC34-2845625D7764",
+      "extracted_size": 3447872,
+      "direct_dependency_count": 72,
+      "notable_dependencies": [
+        "IntelligenceFlow",
+        "BiomeStreams",
+        "BiomeLibrary",
+        "Siri",
+        "ToolKit",
+        "CoreSpotlight",
+        "Spotlight",
+        "GenerativeFunctions",
+        "IntelligencePlatform"
+      ],
+      "focused_string_count": 421,
+      "objc_header_count": 58
+    },
+    {
+      "name": "IntelligenceFlowShared",
+      "version": "218.5.0.0.0",
+      "uuid": "AEEEBFA7-6927-3608-B9E9-4A0402CDED68",
+      "extracted_size": 682408,
+      "direct_dependency_count": 33,
+      "notable_dependencies": [
+        "IntelligenceFlow",
+        "ToolKit"
+      ],
+      "focused_string_count": 126,
+      "objc_header_count": 5
+    }
+  ],
+  "service_evidence": {
+    "launchd_gui_labels": [
+      "com.apple.intelligenceflowd",
+      "com.apple.intelligencecontextd",
+      "com.apple.intelligenceflow.context",
+      "com.apple.intelligenceflow.contextIntelligence",
+      "com.apple.intelligenceflow.internal",
+      "com.apple.intelligenceflow.orchestrator",
+      "com.apple.intelligenceflow.querydecoration",
+      "com.apple.intelligenceflow.snippet-streaming",
+      "com.apple.intelligenceflow.toolbox",
+      "com.apple.intelligenceflow.transcript-entity-querying",
+      "com.apple.intelligenceflow.uiContext"
+    ],
+    "entitlement_subjects": {
+      "intelligenceflowd": [
+        "com.apple.intelligenceflow.context",
+        "com.apple.intelligenceflow.querydecoration",
+        "com.apple.intelligenceflow.uiContext",
+        "com.apple.intelligenceplatform.View",
+        "com.apple.linkd.transcript.privileged",
+        "com.apple.modelmanager.inference",
+        "com.apple.private.biome.client-identifier",
+        "com.apple.private.biome.read-only",
+        "com.apple.private.biome.read-write",
+        "com.apple.private.intelligenceplatform.views.read-only"
+      ],
+      "intelligencecontextd": [
+        "com.apple.intelligenceplatform.Knosis",
+        "com.apple.intelligenceplatform.View",
+        "com.apple.intelligenceplatform.knosis.indexes.read-only",
+        "com.apple.modelmanager.inference",
+        "com.apple.private.biome.client-identifier",
+        "com.apple.private.biome.read-only",
+        "com.apple.private.biome.read-write",
+        "com.apple.private.intelligenceplatform.use-cases",
+        "com.apple.private.intelligenceplatform.views.read-only"
+      ],
+      "IntelligenceFlowDiagnostics": [
+        "com.apple.intelligenceflow.context",
+        "com.apple.private.biome.read-only",
+        "com.apple.private.intelligenceplatform.use-cases",
+        "com.apple.security.temporary-exception.mach-lookup.global-name"
+      ]
+    },
+    "biome_streams": [
+      "IntelligenceFlow.ExecutorTelemetry",
+      "IntelligenceFlow.Experimentation",
+      "IntelligenceFlow.IFRequestTelemetry",
+      "IntelligenceFlow.JointResolverTelemetry",
+      "IntelligenceFlow.PlanGenerationTelemetry",
+      "IntelligenceFlow.PlanResolutionTelemetry",
+      "IntelligenceFlow.QueryDecorationTelemetry",
+      "IntelligenceFlow.ResponseGeneration",
+      "IntelligenceFlow.Telemetry",
+      "IntelligenceFlow.Transcript.Datastream",
+      "Sage.Transcript",
+      "Siri.Orchestration.RequestContext"
+    ]
+  },
+  "resource_evidence": {
+    "planner_runtime_resource_highlights": [
+      "Metadata.generativefunctions",
+      "PlanResolutionModel.mlmodelc",
+      "NamespaceDescriptor.INTELLIGENCE_FLOW_QUERY_DECORATOR.plist",
+      "ResponseGenerationPreferences.plist",
+      "ResponseGenerationRequestValidation.plist",
+      "ResponseGenerationResponseValidation.plist",
+      "risk.json",
+      "schemaRisk.json"
+    ],
+    "planner_support_resource_highlights": [
+      "ToolBoxAllowList.plist",
+      "ToolPromptOverride.json",
+      "ToolRetrievalContextAllowList.plist",
+      "ToolUtterancesOverride.json",
+      "spiece_mmap.model"
+    ],
+    "planner_support_missing_on_this_build": [
+      "FlowToolHiddenList.plist",
+      "SiriXPrivilegedToolManifest.json"
+    ],
+    "toolbox_allow_list_counts": {
+      "global": 101,
+      "local": 27
+    }
+  },
+  "header_validation": {
+    "generated_objc_header_count": 284,
+    "objc_signature_linter_raw_id_warnings": 333,
+    "objc_signature_linter_errors": 1,
+    "generated_header_clang_compile": "failed",
+    "triage_candidate_count": 199,
+    "project_presence_header": "headers/IntelligenceFlowPresence.h",
+    "presence_header_verify": {
+      "opened": 9,
+      "fully_present": 9,
+      "missing": 0
+    }
+  }
+}

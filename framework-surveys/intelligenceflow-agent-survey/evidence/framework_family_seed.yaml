@@ -1,5 +1,28 @@
 framework_family: IntelligenceFlow
 as_of: 2026-05-21
+local_observation_macos15_24G325:
+  os: macOS 15.7.2 build 24G325
+  dyld_cache: /System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e
+  dyld_cache_uuid: B395A5F6-C55F-3776-8D60-908CE43D7959
+  framework_version: 218.5.0.0.0
+  confirmed_members: 9
+  service_labels:
+    - com.apple.intelligenceflowd
+    - com.apple.intelligencecontextd
+    - com.apple.intelligenceflow.context
+    - com.apple.intelligenceflow.contextIntelligence
+    - com.apple.intelligenceflow.internal
+    - com.apple.intelligenceflow.orchestrator
+    - com.apple.intelligenceflow.querydecoration
+    - com.apple.intelligenceflow.snippet-streaming
+    - com.apple.intelligenceflow.toolbox
+    - com.apple.intelligenceflow.transcript-entity-querying
+    - com.apple.intelligenceflow.uiContext
+  project_ready_header: headers/IntelligenceFlowPresence.h
+  generated_header_status:
+    header_count: 284
+    raw_id_warnings: 333
+    clang_compile: failed
 local_observation_macos26_25C56:
   os: macOS 26.2 build 25C56
   dyld_cache: /System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e

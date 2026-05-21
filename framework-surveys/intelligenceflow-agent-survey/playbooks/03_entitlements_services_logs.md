@@ -7,7 +7,12 @@ Map capability gates and runtime service labels without injecting into or modify
 ## Entitlement scan
 
 ```zsh
-scripts/collect_entitlements.zsh   ~/iflow-lab/inventory/candidates.txt   ~/iflow-lab/entitlements
+../../macos-private-framework-research/scripts/collect_code_entitlements.py \
+  --paths-file ~/iflow-lab/inventory/candidates.txt \
+  --focus-pattern 'intelligenceflow|intelligenceplatform|biome|mach-lookup|modelmanager|transcript|appintents|shortcuts|siri|assistant' \
+  --only-matching \
+  --output ~/iflow-lab/entitlements/focused_entitlements.md \
+  --json-output ~/iflow-lab/entitlements/focused_entitlements.json
 ```
 
 Search outputs for:
@@ -23,7 +28,7 @@ com.apple.private.biome.read-only
 com.apple.security.exception.mach-lookup.global-name
 ```
 
-On macOS 26.2 build 25C56, local entitlement hits were confirmed on `intelligenceflowd`, `intelligencecontextd`, and `IntelligenceFlowDiagnostics.appex`. See `data/macos26_25C56_probe_summary.json` before broadening claims to other builds.
+Use `scripts/collect_entitlements.zsh` only when raw per-target plist files are needed. On macOS 15.7.2 build 24G325 and macOS 26.2 build 25C56, local entitlement hits were confirmed on `intelligenceflowd`, `intelligencecontextd`, and `IntelligenceFlowDiagnostics.appex`. See the matching `data/macos*_probe_summary.json` before broadening claims to other builds.
 
 ## launchd service map
 
@@ -33,7 +38,7 @@ launchctl print system 2>/dev/null | grep -Ei 'intelligence|foundation|model|sir
 launchctl print "gui/$UID" 2>/dev/null | grep -Ei 'intelligence|foundation|model|siri|assistant|shortcut|spotlight|biome'   > ~/iflow-lab/manifests/launchctl_gui_intelligence.txt || true
 ```
 
-High-signal GUI labels observed on build 25C56 include `com.apple.intelligenceflowd`, `com.apple.intelligencecontextd`, `com.apple.intelligenceflow.context`, `com.apple.intelligenceflow.orchestrator`, `com.apple.intelligenceflow.querydecoration`, `com.apple.intelligenceflow.toolbox`, `com.apple.intelligenceflow.transcript-entity-querying`, and `com.apple.intelligenceflow.uiContext`.
+High-signal GUI labels observed on builds 24G325 and 25C56 include `com.apple.intelligenceflowd`, `com.apple.intelligencecontextd`, `com.apple.intelligenceflow.context`, `com.apple.intelligenceflow.orchestrator`, `com.apple.intelligenceflow.querydecoration`, `com.apple.intelligenceflow.toolbox`, `com.apple.intelligenceflow.transcript-entity-querying`, and `com.apple.intelligenceflow.uiContext`.
 
 ## Unified logs
 

@@ -15,8 +15,17 @@ mkdir -p "$OUT"
   arch
   echo
   echo "# tools"
-  for tool in find stat file shasum otool vtool dwarfdump nm strings swift-demangle codesign plutil launchctl log ipsw dyld-shared-cache-extractor dylibtree; do
-    printf '%-32s %s\n' "$tool" "$(command -v "$tool" 2>/dev/null || echo missing)"
+  tools=(find stat file shasum otool vtool dwarfdump nm strings "xcrun swift-demangle" codesign plutil launchctl log ipsw dyld-shared-cache-extractor dylibtree)
+  for tool in "${tools[@]}"; do
+    case "$tool" in
+      "xcrun swift-demangle")
+        resolved=$(xcrun -f swift-demangle 2>/dev/null || true)
+        ;;
+      *)
+        resolved=$(command -v "$tool" 2>/dev/null || true)
+        ;;
+    esac
+    printf '%-32s %s\n' "$tool" "${resolved:-missing}"
   done
 } | tee "$OUT/system.txt"
 

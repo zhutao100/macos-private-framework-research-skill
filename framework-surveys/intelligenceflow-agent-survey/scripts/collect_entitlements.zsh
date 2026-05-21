@@ -20,7 +20,7 @@ while IFS= read -r candidate_path; do
   raw="$OUT/raw/${safe}.plist"
   json="$OUT/json/${safe}.json"
   if codesign -d --entitlements :- "$candidate_path" > "$raw" 2>/dev/null; then
-    plutil -convert json -o "$json" "$raw" 2>/dev/null || true
+    plutil -convert json -o "$json" "$raw" >/dev/null 2>&1 || rm -f "$json"
     if grep -E -i 'intelligenceflow|intelligenceplatform|biome|mach-lookup|appintents|shortcuts|siri|assistant' "$raw" >/dev/null 2>&1; then
       printf '%s\t%s\n' "$candidate_path" "$json" | tee -a "$OUT/entitlement_index.txt"
       {

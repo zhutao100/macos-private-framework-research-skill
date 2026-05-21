@@ -15,6 +15,10 @@
 
 | Source | What it supports | Evidence grade | Notes |
 |---|---|---:|---|
+| Local macOS 15.7.2 build 24G325 dyld cache | All nine `IntelligenceFlow*` images exist at version `218.5.0.0.0` with UUIDs and extracted Mach-O sizes | A for this build | See `data/macos15_24G325_probe_summary.json`. |
+| Local macOS 15.7.2 build 24G325 launchd/services | `intelligenceflowd`, `intelligencecontextd`, and `com.apple.intelligenceflow.*` service labels are registered in the GUI domain | A for this build | Runtime behavior still requires controlled trial correlation. |
+| Local macOS 15.7.2 build 24G325 entitlements | Context, query decoration, UI context, Biome transcript/telemetry streams, IntelligencePlatform, and model-manager gates on local binaries | A for this build | Applies to named binaries only. |
+| Local macOS 15.7.2 build 24G325 header validation | Class-dump generated metadata is not directly project-ready; `IntelligenceFlowPresence.h` validates non-calling presence checks | A for this build | Full generated headers need per-declaration hardening. |
 | Local macOS 26.2 build 25C56 dyld cache | All nine `IntelligenceFlow*` images exist at version `3505.5.1.0.0` with UUIDs and extracted Mach-O sizes | A for this build | See `data/macos26_25C56_probe_summary.json`. |
 | Local macOS 26.2 build 25C56 launchd/services | `intelligenceflowd`, `intelligencecontextd`, and `com.apple.intelligenceflow.*` service labels are registered in the GUI domain | A for this build | Runtime behavior still requires controlled trial correlation. |
 | Local macOS 26.2 build 25C56 entitlements | Context, query decoration, UI context, Biome transcript/telemetry streams, IntelligencePlatform, and model-manager gates on local binaries | A for this build | Applies to named binaries only. |

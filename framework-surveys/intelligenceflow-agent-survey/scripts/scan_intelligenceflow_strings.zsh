@@ -4,7 +4,7 @@ setopt NULL_GLOB
 
 ROOT=${1:-"$HOME/iflow-lab/dsc-extracted/System/Library/PrivateFrameworks"}
 OUT=${2:-"$HOME/iflow-lab/manifests/intelligenceflow_strings.txt"}
-MAX_LINES_PER_BINARY=${MAX_LINES_PER_BINARY:-220}
+MAX_LINES_PER_BINARY=${MAX_LINES_PER_BINARY:-120}
 mkdir -p "$(dirname "$OUT")"
 
 PATTERN='com\.apple\.intelligenceflow|intelligenceflow|intelligencecontext|orchestrator|planner|context|transcript|biome|tool|appintent|foundationmodels|privatecloudcompute|shortcut|spotlight|assistant|siri'

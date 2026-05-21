@@ -17,6 +17,7 @@ Load:
 
 - `briefs/IntelligenceFlow_tech_brief.md`
 - `evidence/evidence_register.md`
+- `data/macos15_24G325_probe_summary.json` when build 24G325 evidence is relevant
 - `data/macos26_25C56_probe_summary.json` when build 25C56 evidence is relevant
 - `references/public_apple_architecture.md`
 
@@ -61,7 +62,6 @@ Stop when each inferred private signature is represented as a claim card with re
 Load:
 
 - `playbooks/04_app_intents_shortcuts_pcc_trials.md`
-- `examples/*`
 - `templates/lab_runbook.md`
 
 Stop when trials can be correlated across logs, privacy report, and local artifacts.

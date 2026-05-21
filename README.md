@@ -92,7 +92,18 @@ Build a capped framework manifest before loading raw dependency, symbol, or stri
 macos-private-framework-research/scripts/framework_macho_manifest.py \
   --framework DiskManagement \
   --json-output /tmp/DiskManagement.manifest.json \
-  --markdown-output /tmp/DiskManagement.manifest.md
+  --markdown-output /tmp/DiskManagement.manifest.md \
+  --cache-evidence
+```
+
+Collect focused entitlement evidence before loading raw plist dumps:
+
+```bash
+macos-private-framework-research/scripts/collect_code_entitlements.py \
+  --focus-pattern 'diskmanagement|mach-lookup|xpc|sandbox' \
+  --output /tmp/DiskManagement.entitlements.md \
+  --json-output /tmp/DiskManagement.entitlements.json \
+  /path/to/candidate-binary
 ```
 
 Probe candidate C symbols and Objective-C classes without calling them:
@@ -140,15 +151,19 @@ macos-private-framework-research/scripts/objc_signature_linter.py \
 
 ## Validation
 
-Portable validation that does not require macOS-specific tools:
+Repository validation:
 
 ```bash
 macos-private-framework-research/scripts/validate_skill_repo.py .
 macos-private-framework-research/scripts/resolve_toolchains.py --json-output /tmp/macos-pf-toolchains.json \
   >/tmp/macos-pf-toolchains.md
-macos-private-framework-research/scripts/framework_macho_manifest.py --framework IntelligenceFlow \
+macos-private-framework-research/scripts/framework_macho_manifest.py --framework IntelligenceFlow --cache-evidence \
   --json-output /tmp/macos-pf-framework-manifest.json \
   --markdown-output /tmp/macos-pf-framework-manifest.md
+macos-private-framework-research/scripts/collect_code_entitlements.py --focus-pattern 'intelligenceflow|biome|mach-lookup' \
+  --output /tmp/macos-pf-entitlements.md \
+  --json-output /tmp/macos-pf-entitlements.json \
+  /System/Library/PrivateFrameworks/IntelligenceFlowRuntime.framework/Versions/A/intelligenceflowd
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
 macos-private-framework-research/scripts/dlopen_symbol_probe.swift --help >/tmp/macos-pf-dlopen-help.txt

@@ -21,8 +21,8 @@
 
 | File | Format | Use |
 |---|---|---|
-| `llm_index.jsonl` | JSONL | Chunk map for retrieval agents. |
 | `evidence/claim_cards.jsonl` | JSONL | Seed claims and verification tasks. |
+| `data/macos15_24G325_probe_summary.json` | JSON | Local macOS 15.7.2 build 24G325 evidence summary. |
 | `data/macos26_25C56_probe_summary.json` | JSON | Local macOS 26.2 build 25C56 evidence summary. |
 | `evidence/framework_family_seed.yaml` | YAML | Framework names and hypothesized roles. |
 | `evidence/entitlement_surface_seed.yaml` | YAML | Entitlement/service names to search locally. |

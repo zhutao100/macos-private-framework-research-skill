@@ -56,7 +56,7 @@ done
 DSC=/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e
 mkdir -p ~/iflow-lab/headers
 for fw in IntelligenceFlow IntelligenceFlowAppIntentsPreviewToolSupport IntelligenceFlowContext IntelligenceFlowContextRuntime IntelligenceFlowFeedbackDataCollector IntelligenceFlowPlannerRuntime IntelligenceFlowPlannerSupport IntelligenceFlowRuntime IntelligenceFlowShared; do
-  ipsw class-dump "$DSC" "/System/Library/PrivateFrameworks/$fw.framework/Versions/A/$fw" \
+  ipsw class-dump "$DSC" "$fw" \
     --headers --output "$HOME/iflow-lab/headers/$fw" || true
 done
 
@@ -72,7 +72,7 @@ done
   --compile
 ```
 
-On macOS 26.2 build 25C56, the full generated headers are not project-ready as a set: Swift metadata names break direct clang syntax validation. Use `headers/IntelligenceFlowPresence.h` for project presence checks and harden callable signatures one declaration at a time.
+On macOS 15.7.2 build 24G325 and macOS 26.2 build 25C56, the full generated headers are not project-ready as a set: Swift metadata names break direct clang syntax validation. Use `headers/IntelligenceFlowPresence.h` for project presence checks and harden callable signatures one declaration at a time.
 
 ## Analysis fields
 

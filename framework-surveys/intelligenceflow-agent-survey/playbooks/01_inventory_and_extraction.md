@@ -22,7 +22,7 @@ mkdir -p ~/iflow-lab/inventory
 scripts/collect_intelligenceflow_inventory.zsh ~/iflow-lab/inventory
 ```
 
-On macOS 26.2 build 25C56 the framework bundles exist as dyld-cache skeletons: the framework directories and Info/version plists are present, but the main framework binary symlinks do not resolve to standalone files.
+On macOS 15.7.2 build 24G325 and macOS 26.2 build 25C56 the framework bundles exist as dyld-cache skeletons: the framework directories and Info/version plists are present, but the main framework binary symlinks do not resolve to standalone files.
 
 ## Step 3: candidate process/service files
 
@@ -50,9 +50,11 @@ cat "$OUT/intelligenceflow_extracted_paths.txt"
 
 ```zsh
 mkdir -p ~/iflow-lab/manifests
-scripts/build_macho_manifest.py \
-  --output ~/iflow-lab/manifests/intelligenceflow_macho_manifest.json \
+../../macos-private-framework-research/scripts/framework_macho_manifest.py \
+  --json-output ~/iflow-lab/manifests/intelligenceflow_macho_manifest.json \
   --markdown-output ~/iflow-lab/manifests/intelligenceflow_macho_manifest.md \
+  --cache-evidence \
+  --string-pattern 'intelligenceflow|intelligencecontext|orchestrator|planner|context|transcript|biome|tool|appintent|foundationmodels|privatecloudcompute|shortcut|spotlight|assistant|siri' \
   "$OUT"
 ```
 
@@ -61,5 +63,5 @@ scripts/build_macho_manifest.py \
 - `system.txt`
 - `framework_paths.txt`
 - `candidates.txt`
-- `extracted_framework_paths.txt`
+- `intelligenceflow_extracted_paths.txt`
 - `intelligenceflow_macho_manifest.json`
