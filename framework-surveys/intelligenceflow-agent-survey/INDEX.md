@@ -24,7 +24,15 @@
 |---|---|---|
 | `llm_index.jsonl` | JSONL | Chunk map for retrieval agents. |
 | `evidence/claim_cards.jsonl` | JSONL | Seed claims and verification tasks. |
+| `data/macos26_25C56_probe_summary.json` | JSON | Local macOS 26.2 build 25C56 evidence summary. |
 | `evidence/framework_family_seed.yaml` | YAML | Framework names and hypothesized roles. |
 | `evidence/entitlement_surface_seed.yaml` | YAML | Entitlement/service names to search locally. |
 | `sources/sources.json` | JSON | Source registry. |
 | `schemas/*.schema.json` | JSON Schema | Validate local observations/manifests. |
+
+## Project headers
+
+| File | Use |
+|---|---|
+| `headers/IntelligenceFlowPresence.h` | Non-calling dyld/Objective-C presence probes for project diagnostics. |
+| `headers/README.md` | Header validation baseline and generated-header cautions. |

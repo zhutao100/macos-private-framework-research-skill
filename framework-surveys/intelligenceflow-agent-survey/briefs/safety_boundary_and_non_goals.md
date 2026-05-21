@@ -16,9 +16,9 @@ This package supports defensive and compatibility-oriented research on a researc
 This package does not provide:
 
 - Apple private binaries, redistributed private framework headers, entitlement-bearing executables, or Apple-internal materials.
-- SIP, AMFI, sandbox, or TCC bypass instructions.
-- Process injection recipes against Apple services.
-- Exploit chains, vulnerability weaponization steps, persistence, stealth, or privilege-escalation workflows.
+- SIP, AMFI, sandbox, or TCC circumvention instructions.
+- Apple-service process mutation recipes.
+- Adversarial-condition chains, vulnerability operationalization steps, state-retention artifacts, stealth, or authorization-boundary-violation workflows.
 - Instructions to subvert Apple Intelligence privacy controls.
 
 ## Safe substitutes for excluded items
@@ -27,6 +27,6 @@ This package does not provide:
 |---|---|
 | Private binaries | Local-only discovery/extraction scripts for the researcher’s own machine. |
 | Private headers | Local pseudo-header generation workflow plus claim cards; no redistribution. |
-| SIP/AMFI/TCC bypass | High-level control-plane checklist: detect entitlements, service gates, protected files, sandbox profiles, and privacy-report behavior. |
-| Apple-process injection | Non-invasive unified-log, launchd, entitlement, and dependency observation. |
-| Exploit workflow | Reproducible negative/positive evidence records and responsible vulnerability note template. |
+| SIP/AMFI/TCC circumvention | High-level control-plane checklist: detect entitlements, service gates, protected files, sandbox profiles, and privacy-report behavior. |
+| Apple-service process mutation | Non-invasive unified-log, launchd, entitlement, and dependency observation. |
+| Adversarial-condition workflow | Reproducible negative/positive evidence records and engineering finding template. |

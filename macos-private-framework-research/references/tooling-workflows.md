@@ -62,7 +62,30 @@ plutil -p /System/Library/LaunchAgents/com.example.plist
 
 Use entitlement and Mach service names as routing hints, not proof of API behavior.
 
-## 3. Dyld Shared Cache Extraction
+## 3. Framework-Family Manifest
+
+Before opening long `otool`, `nm`, or string dumps, capture a capped manifest:
+
+```bash
+scripts/framework_macho_manifest.py \
+  --framework DiskManagement \
+  --json-output /tmp/DiskManagement.manifest.json \
+  --markdown-output /tmp/DiskManagement.manifest.md
+```
+
+For flat extracted images:
+
+```bash
+scripts/framework_macho_manifest.py \
+  /tmp/macos-private-frameworks \
+  --string-pattern 'disk|mount|session|xpc' \
+  --json-output /tmp/private-frameworks.manifest.json \
+  --markdown-output /tmp/private-frameworks.manifest.md
+```
+
+Use the Markdown table for initial agent context and the JSON for complete capped evidence with `total_count` and `truncated` metadata.
+
+## 4. Dyld Shared Cache Extraction
 
 Preferred single-framework path:
 
@@ -111,7 +134,7 @@ This extracts many cache entries. Locate the target afterward:
 find /tmp/macos-private-frameworks -type f -path '*System/Library/PrivateFrameworks/DiskManagement.framework/*'
 ```
 
-## 4. Header Reconstruction
+## 5. Header Reconstruction
 
 Try multiple independent header/interface sources when fidelity matters:
 
@@ -130,7 +153,7 @@ mkdir -p /tmp/FrameworkName.headers/{ipsw,runtimeviewer,hopper}
 diff -ru /tmp/FrameworkName.headers/ipsw /tmp/FrameworkName.headers/runtimeviewer | less
 ```
 
-## 5. Runtime Presence Probe
+## 6. Runtime Presence Probe
 
 Before treating a name as callable or using it as class metadata, run a read-only presence probe:
 
@@ -156,7 +179,7 @@ The probe records host build metadata, the loaded path, `dlsym` status, `NSClass
 
 Use `scripts/diff_symbol_manifests.py --status present old.json new.json` to compare two probe JSON files or symbol manifests across builds.
 
-## 6. Hopper Companion Workflow
+## 7. Hopper Companion Workflow
 
 When the Hopper skill is installed, use it for binary evidence:
 
@@ -185,7 +208,7 @@ hopper-disassembler-analysis/scripts/hopper_evidence_search.py \
   'selectorName|ClassName|UniqueString'
 ```
 
-## 7. RuntimeViewer Workflow
+## 8. RuntimeViewer Workflow
 
 Use RuntimeViewer when Swift metadata or an MCP bridge can improve the agent loop.
 
@@ -205,7 +228,7 @@ MCP procedure:
 
 Use `assets/runtimeviewer-mcp-config.example.json` only as a placeholder; RuntimeViewer should provide the authoritative config.
 
-## 8. RuntimeBrowser Workflow
+## 9. RuntimeBrowser Workflow
 
 RuntimeBrowser remains useful for fast ObjC runtime browsing:
 
@@ -216,7 +239,7 @@ RuntimeBrowser remains useful for fast ObjC runtime browsing:
 
 Do not rely on RuntimeBrowser for Swift-only types, pure C/C++ APIs, or unloaded framework surfaces.
 
-## 9. Built-In Tool Fallbacks
+## 10. Built-In Tool Fallbacks
 
 ```bash
 file /path/to/binary
@@ -231,7 +254,7 @@ xcrun swift-demangle '$s...'
 
 For symbols and strings, keep output bounded. Large raw dumps are less useful to agents than compact evidence snippets tied to one candidate.
 
-## 10. Cache-Resident Framework Paths
+## 11. Cache-Resident Framework Paths
 
 On modern macOS, a framework bundle can exist on disk while the Mach-O image is cache-resident. In that case, `file`, `nm`, `dyldinfo`, or `strings` on `/System/Library/PrivateFrameworks/Name.framework/Name` may fail even though `dlopen` succeeds.
 

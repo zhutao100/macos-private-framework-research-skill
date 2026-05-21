@@ -42,6 +42,23 @@ User/system request
 | `IntelligenceFlowFeedbackDataCollector.framework` | Private-framework index | Feedback/diagnostics collection | Medium by name, low on internals |
 | `IntelligenceFlowAppIntentsPreviewToolSupport.framework` | Private-framework index | Internal support for App Intents tool preview/testing | Medium by name, low on internals |
 
+## Local macOS 26.2 build 25C56 findings
+
+Build-specific static evidence strengthens the model:
+
+- The arm64e dyld shared cache contains all nine `IntelligenceFlow*` images at version `3505.5.1.0.0`.
+- The filesystem framework bundles are mostly dyld-cache skeletons; the framework binary symlinks do not resolve to standalone files until extracted or loaded by dyld.
+- `IntelligenceFlowRuntime.framework` contains `intelligenceflowd` and `IntelligenceFlowDiagnostics.appex` outside the shared cache.
+- `IntelligenceFlowContextRuntime.framework` contains `intelligencecontextd` outside the shared cache.
+- `launchctl print gui/$UID` shows `com.apple.intelligenceflowd`, `com.apple.intelligencecontextd`, and Mach/XPC labels for `context`, `contextIntelligence`, `internal`, `orchestrator`, `querydecoration`, `snippet-streaming`, `toolbox`, `transcript-entity-querying`, and `uiContext`.
+- `intelligenceflowd` carries `com.apple.intelligenceflow.context`, `com.apple.intelligenceflow.querydecoration`, `com.apple.intelligenceflow.uiContext`, Biome read/write streams, and model-manager access.
+- `intelligencecontextd` carries IntelligencePlatform use-case/view entitlements, Biome streams including `Siri.Orchestration.RequestContext`, and model-manager access.
+- `IntelligenceFlowDiagnostics.appex` carries `com.apple.intelligenceflow.context` and read-only Biome streams `Sage.Transcript`, `IntelligenceFlow.Transcript.Datastream`, and `IntelligenceEngine.Interaction.Donation`.
+- `IntelligenceFlowPlannerRuntime.framework` links AppIntents, CoreSpotlight, AssistantServices, Biome, GenerativeFunctions/GenerativeModels, IntelligencePlatform, Siri, Spotlight, and Trial frameworks. Its resources include `Metadata.generativefunctions`, `PlanResolutionModel.mlmodelc`, and response-generation validation/preference plists.
+- `IntelligenceFlowPlannerSupport.framework` includes tool resources such as `ToolBoxAllowList.plist`, `FlowToolHiddenList.plist`, `SiriXPrivilegedToolManifest.json`, prompt/utterance overrides, and a sentencepiece model. On build 25C56, `ToolBoxAllowList.plist` contains 343 global entries and 0 local entries.
+
+Generated Objective-C headers are useful as metadata, not drop-in project headers. The 25C56 pass produced 293 class-dump headers, 408 raw-`id` linter warnings, and a direct clang syntax failure due Swift metadata names. Use `headers/IntelligenceFlowPresence.h` for project presence checks; keep full generated headers local until individual declarations pass compiler/linter validation.
+
 ## Public architecture anchor points
 
 - Apple documents Apple Intelligence as spanning iPhone, iPad, Mac, Apple Vision Pro, and Apple Watch, with app integration through App Intents and direct model access through Foundation Models.

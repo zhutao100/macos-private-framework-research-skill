@@ -18,6 +18,7 @@ Load:
 
 - `briefs/IntelligenceFlow_tech_brief.md`
 - `evidence/evidence_register.md`
+- `data/macos26_25C56_probe_summary.json` when build 25C56 evidence is relevant
 - `references/public_apple_architecture.md`
 
 Stop when the agent can distinguish Apple-documented surfaces from private-framework hypotheses.
@@ -50,6 +51,8 @@ Load:
 
 - `toolchains/motif_style_type_inference.md`
 - `playbooks/02_static_binary_analysis.md`
+- `headers/README.md`
+- `headers/IntelligenceFlowPresence.h` when project presence checks are needed
 - `templates/agent_prompt_type_inference.md`
 
 Stop when each inferred private signature is represented as a claim card with reproducible evidence.

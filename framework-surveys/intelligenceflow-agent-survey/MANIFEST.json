@@ -1,11 +1,12 @@
 {
   "package": "intelligenceflow_survey_package",
-  "generated_at_utc": "2026-05-21T20:06:28.036033+00:00",
+  "generated_at_utc": "2026-05-21T20:54:06+00:00",
   "date_label": "2026-05-21",
   "scope": "macOS IntelligenceFlow private-framework survey and local exploration guidance",
   "includes_private_apple_binaries": false,
-  "includes_private_headers": false,
-  "includes_bypass_or_injection_recipes": false,
-  "document_count": 43,
-  "source_count": 14
+  "includes_generated_private_headers": false,
+  "includes_project_presence_headers": true,
+  "includes_host_mutation_recipes": false,
+  "document_count": 48,
+  "source_count": 15
 }

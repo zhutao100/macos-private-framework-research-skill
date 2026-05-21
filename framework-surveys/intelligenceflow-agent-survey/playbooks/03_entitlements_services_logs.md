@@ -14,12 +14,16 @@ Search outputs for:
 
 ```text
 com.apple.intelligenceflow.context
+com.apple.intelligenceflow.querydecoration
+com.apple.intelligenceflow.uiContext
 com.apple.intelligenceflow.orchestrator
 com.apple.intelligenceflow.orchestrator.features
 com.apple.intelligenceflow.transcript-entity-querying
 com.apple.private.biome.read-only
 com.apple.security.exception.mach-lookup.global-name
 ```
+
+On macOS 26.2 build 25C56, local entitlement hits were confirmed on `intelligenceflowd`, `intelligencecontextd`, and `IntelligenceFlowDiagnostics.appex`. See `data/macos26_25C56_probe_summary.json` before broadening claims to other builds.
 
 ## launchd service map
 
@@ -28,6 +32,8 @@ mkdir -p ~/iflow-lab/manifests
 launchctl print system 2>/dev/null | grep -Ei 'intelligence|foundation|model|siri|assistant|shortcut|spotlight|biome'   > ~/iflow-lab/manifests/launchctl_system_intelligence.txt || true
 launchctl print "gui/$UID" 2>/dev/null | grep -Ei 'intelligence|foundation|model|siri|assistant|shortcut|spotlight|biome'   > ~/iflow-lab/manifests/launchctl_gui_intelligence.txt || true
 ```
+
+High-signal GUI labels observed on build 25C56 include `com.apple.intelligenceflowd`, `com.apple.intelligencecontextd`, `com.apple.intelligenceflow.context`, `com.apple.intelligenceflow.orchestrator`, `com.apple.intelligenceflow.querydecoration`, `com.apple.intelligenceflow.toolbox`, `com.apple.intelligenceflow.transcript-entity-querying`, and `com.apple.intelligenceflow.uiContext`.
 
 ## Unified logs
 

@@ -18,6 +18,7 @@ See `sources.json` for structured source metadata.
 
 ## Private-framework discovery and binary-diff references
 
+- `../data/macos26_25C56_probe_summary.json`
 - https://theapplewiki.com/wiki/Filesystem%3A/System/Library/PrivateFrameworks
 - https://raw.githubusercontent.com/blacktop/ipsw-diffs/main/26_2_23C5027f__vs_26_2_23C5033h/DYLIBS/IntelligenceFlow.md
 - https://raw.githubusercontent.com/blacktop/ipsw-diffs/main/26_2_23C5027f__vs_26_2_23C5033h/DYLIBS/IntelligenceFlowRuntime.md

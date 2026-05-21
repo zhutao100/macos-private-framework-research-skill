@@ -90,6 +90,17 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 
    Markdown output is bounded for agent ingestion by default; JSON still contains all candidates. Prioritize methods involving `id`, `void *`, anonymous structs, raw collections, blocks, protocol-qualified delegates, XPC-facing classes, entitlement-controlled flows, and selectors observed in client binaries.
 
+   When the target is a framework family rather than a single client dependency, build a capped binary manifest before loading long raw tool output:
+
+   ```bash
+   scripts/framework_macho_manifest.py \
+     --framework FrameworkName \
+     --json-output /tmp/FrameworkName.manifest.json \
+     --markdown-output /tmp/FrameworkName.manifest.md
+   ```
+
+   This records cache-resident framework skeleton metadata, Info/version plists, extracted Mach-O evidence when available, dependency counts, symbol counts, and truncation metadata for agent-sized review.
+
 6. Build a MOTIF-style context bundle for each high-value candidate.
 
    ```bash
@@ -126,6 +137,7 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 |---|---|---|
 | Host/cache/tool inventory | `scripts/macos_private_framework_inventory.py` | manual `sw_vers`, `csrutil status`, `xcodebuild -version` |
 | Client framework discovery | `scripts/discover_private_frameworks.py` | `otool -L`, `plutil`, `codesign -d --entitlements :-` |
+| Framework-family manifest | `scripts/framework_macho_manifest.py` | `otool -L`, `nm -gjU`, `dwarfdump --uuid`, `ipsw dyld info --dylibs` |
 | Single framework extraction | plain `ipsw dyld extract` via `scripts/extract_dyld_framework.sh` | `dyld-shared-cache-extractor`, Hopper dyld cache loader |
 | ObjC baseline headers | `ipsw class-dump`, RuntimeViewer export | RuntimeBrowser, Hopper ObjC header export |
 | Swift metadata/interface | RuntimeViewer | Hopper/IDA/Ghidra plus Swift demangling |
@@ -142,6 +154,7 @@ Use this skill to investigate macOS private frameworks in a repeatable, evidence
 - `scripts/extract_dyld_framework.sh`: Extract a named framework from the active dyld shared cache using `ipsw` or `dyld-shared-cache-extractor`; use `--enrich-objc-stubs` only when needed.
 - `scripts/dlopen_symbol_probe.swift`: Read-only `dlopen`/`dlsym`/`NSClassFromString` presence probe for arbitrary local framework images, with compact TSV or JSON output.
 - `scripts/diff_symbol_manifests.py`: Diff symbol-name manifests or probe-summary records across builds with bounded output.
+- `scripts/framework_macho_manifest.py`: Build compact JSON/Markdown manifests for framework bundles, cache-resident framework skeletons, and flat extracted Mach-O files, with capped arrays and truncation metadata.
 - `scripts/resolve_toolchains.py`: Check optional non-built-in toolchains and report or run the configured installation source from `agents/tool-installation.yaml` only when needed.
 - `scripts/objc_header_triage.py`: Scan reconstructed headers and rank underspecified Objective-C declarations with bounded Markdown and complete JSON.
 - `scripts/build_motif_context.py`: Build complete JSON and bounded Markdown prompt bundles for a single candidate signature.

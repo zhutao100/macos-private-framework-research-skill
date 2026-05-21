@@ -17,11 +17,12 @@
 
 ## Header/pseudo-header references
 
-No private headers are included. For local pseudo-header work, use:
+No generated private headers are included. `headers/IntelligenceFlowPresence.h` is a project-authored presence header that uses `dlopen`, `dlsym`, and Objective-C runtime lookup without declaring callable private APIs. For local pseudo-header work, use:
 
 - `ipsw class-dump` / `ipsw swift-dump` where applicable.
 - `class-dump`, `RuntimeBrowser`, or Ghidra/IDA/Hopper metadata views.
 - Local outputs only; store provenance and build IDs with every pseudo-header.
+- `macos-private-framework-research/scripts/objc_signature_linter.py --compile` before promoting a declaration into project code.
 
 ## Usage recipes included here
 

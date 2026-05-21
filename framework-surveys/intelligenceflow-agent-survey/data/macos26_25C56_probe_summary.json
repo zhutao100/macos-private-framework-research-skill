@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "os": {
+    "product_name": "macOS",
+    "product_version": "26.2",
+    "build_version": "25C56",
+    "darwin_version": "25.2.0",
+    "architecture": "arm64"
+  },
+  "dyld_cache": {
+    "path": "/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e",
+    "uuid": "ACB998B6-263C-3634-B0A8-AE8270A116C2"
+  },
+  "frameworks": [
+    {
+      "name": "IntelligenceFlow",
+      "version": "3505.5.1.0.0",
+      "uuid": "C801CF71-F71D-3F7D-ACE4-147F54BD0BA4",
+      "extracted_size": 3186472,
+      "direct_dependency_count": 39,
+      "notable_dependencies": ["BiomeLibrary", "IntelligenceFlowShared", "ToolKit"],
+      "objc_header_count": 36
+    },
+    {
+      "name": "IntelligenceFlowAppIntentsPreviewToolSupport",
+      "version": "3505.5.1.0.0",
+      "uuid": "39174D4D-B130-379B-B3E7-6C9013A11C81",
+      "extracted_size": 120624,
+      "direct_dependency_count": 33,
+      "notable_dependencies": ["IntelligenceFlow", "IntelligenceFlowPlannerRuntime", "IntelligenceFlowPlannerSupport", "IntelligenceFlowShared", "ToolKit"],
+      "objc_header_count": 0
+    },
+    {
+      "name": "IntelligenceFlowContext",
+      "version": "3505.5.1.0.0",
+      "uuid": "996C2B53-D86C-3E53-9CFB-0FDB4094BAEA",
+      "extracted_size": 460216,
+      "direct_dependency_count": 28,
+      "notable_dependencies": ["IntelligenceFlowShared", "ToolKit"],
+      "objc_header_count": 7
+    },
+    {
+      "name": "IntelligenceFlowContextRuntime",
+      "version": "3505.5.1.0.0",
+      "uuid": "1D59B7C0-B3A4-3E26-A1ED-2A1C6DE9DDF0",
+      "extracted_size": 714112,
+      "direct_dependency_count": 66,
+      "notable_dependencies": ["AppIntents", "AssistantServices", "BiomeLibrary", "BiomeStreams", "IntelligenceFlow", "IntelligenceFlowContext", "IntelligenceFlowPlannerSupport", "IntelligencePlatform", "SiriEntityMatcher", "SiriOntology"],
+      "objc_header_count": 33,
+      "filesystem_payloads": ["intelligencecontextd"]
+    },
+    {
+      "name": "IntelligenceFlowFeedbackDataCollector",
+      "version": "3505.5.1.0.0",
+      "uuid": "0DE15A2A-4333-30CD-B0B3-C8E515BB3786",
+      "extracted_size": 139632,
+      "direct_dependency_count": 33,
+      "notable_dependencies": ["BiomeLibrary", "BiomeStreams", "IntelligenceFlow", "IntelligenceFlowPlannerSupport", "IntelligenceFlowShared", "ToolKit"],
+      "objc_header_count": 4
+    },
+    {
+      "name": "IntelligenceFlowPlannerRuntime",
+      "version": "3505.5.1.0.0",
+      "uuid": "3CE344BC-68A5-3A4C-B9BE-F5E0AC2E24BF",
+      "extracted_size": 7329192,
+      "direct_dependency_count": 98,
+      "notable_dependencies": ["AppIntents", "CoreSpotlight", "AssistantServices", "BiomeLibrary", "BiomeStreams", "GenerativeFunctions", "GenerativeModels", "IntelligenceFlow", "IntelligenceFlowContext", "IntelligenceFlowPlannerSupport", "IntelligencePlatform", "SiriDialogEngine", "SiriInference", "SpotlightServices", "Trial"],
+      "objc_header_count": 115,
+      "resource_highlights": ["Metadata.generativefunctions", "PlanResolutionModel.mlmodelc", "ResponseGenerationPreferences.plist", "NamespaceDescriptor.INTELLIGENCE_FLOW_QUERY_DECORATOR.plist"]
+    },
+    {
+      "name": "IntelligenceFlowPlannerSupport",
+      "version": "3505.5.1.0.0",
+      "uuid": "6A859F1F-BB9F-3B37-80CF-90F473D98A81",
+      "extracted_size": 7363032,
+      "direct_dependency_count": 66,
+      "notable_dependencies": ["AppIntents", "AssistantServices", "IntelligenceFlow", "IntelligenceFlowContext", "IntelligenceFlowShared", "IntelligencePlatform", "SiriEntityMatcher", "SiriOntology", "VoiceShortcutClient"],
+      "objc_header_count": 28,
+      "resource_highlights": ["ToolBoxAllowList.plist", "FlowToolHiddenList.plist", "SiriXPrivilegedToolManifest.json", "ToolPromptOverride.json", "ToolUtterancesOverride.json"],
+      "toolbox_allow_list_counts": {
+        "global": 343,
+        "local": 0
+      }
+    },
+    {
+      "name": "IntelligenceFlowRuntime",
+      "version": "3505.5.1.0.0",
+      "uuid": "20385F0E-F776-39E6-8090-391FF15F71DA",
+      "extracted_size": 3464496,
+      "direct_dependency_count": 72,
+      "notable_dependencies": ["AppIntents", "CoreSpotlight", "AssistantServices", "BiomeLibrary", "BiomeStreams", "GenerativeFunctionsFoundation", "IntelligenceFlow", "IntelligenceFlowContext", "IntelligenceFlowPlannerRuntime", "IntelligenceFlowPlannerSupport", "SiriInference", "SiriMessageTypes"],
+      "objc_header_count": 65,
+      "filesystem_payloads": ["intelligenceflowd", "IntelligenceFlowDiagnostics.appex"]
+    },
+    {
+      "name": "IntelligenceFlowShared",
+      "version": "3505.5.1.0.0",
+      "uuid": "3FD58A40-23CD-3315-ABE5-3CE76CB2703A",
+      "extracted_size": 650512,
+      "direct_dependency_count": 28,
+      "notable_dependencies": ["ToolKit"],
+      "objc_header_count": 5
+    }
+  ],
+  "service_evidence": {
+    "launchd_gui_labels": [
+      "com.apple.intelligenceflowd",
+      "com.apple.intelligencecontextd",
+      "com.apple.intelligenceflow.context",
+      "com.apple.intelligenceflow.contextIntelligence",
+      "com.apple.intelligenceflow.internal",
+      "com.apple.intelligenceflow.orchestrator",
+      "com.apple.intelligenceflow.querydecoration",
+      "com.apple.intelligenceflow.snippet-streaming",
+      "com.apple.intelligenceflow.toolbox",
+      "com.apple.intelligenceflow.transcript-entity-querying",
+      "com.apple.intelligenceflow.uiContext"
+    ],
+    "entitlement_subjects": {
+      "intelligenceflowd": [
+        "com.apple.intelligenceflow.context",
+        "com.apple.intelligenceflow.querydecoration",
+        "com.apple.intelligenceflow.uiContext",
+        "com.apple.private.biome.read-only",
+        "com.apple.private.biome.read-write",
+        "com.apple.modelmanager.inference"
+      ],
+      "intelligencecontextd": [
+        "com.apple.private.biome.client-identifier",
+        "com.apple.private.biome.read-only",
+        "com.apple.private.intelligenceplatform.use-cases",
+        "com.apple.private.intelligenceplatform.views.read-only",
+        "com.apple.modelmanager.inference"
+      ],
+      "IntelligenceFlowDiagnostics.appex": [
+        "com.apple.intelligenceflow.context",
+        "com.apple.private.biome.read-only",
+        "com.apple.private.intelligenceplatform.use-cases",
+        "com.apple.security.temporary-exception.mach-lookup.global-name"
+      ]
+    },
+    "biome_streams": [
+      "IntelligenceFlow.ExecutorTelemetry",
+      "IntelligenceFlow.Experimentation",
+      "IntelligenceFlow.IFRequestTelemetry",
+      "IntelligenceFlow.JointResolverTelemetry",
+      "IntelligenceFlow.PlanGenerationTelemetry",
+      "IntelligenceFlow.PlanResolutionTelemetry",
+      "IntelligenceFlow.QueryDecorationTelemetry",
+      "IntelligenceFlow.ResponseGeneration",
+      "IntelligenceFlow.Telemetry",
+      "IntelligenceFlow.Transcript.Datastream",
+      "Sage.Transcript"
+    ]
+  },
+  "header_validation": {
+    "generated_objc_header_count": 293,
+    "objc_signature_linter_raw_id_warnings": 408,
+    "generated_header_clang_compile": "failed",
+    "project_presence_header": "headers/IntelligenceFlowPresence.h",
+    "presence_header_verify": {
+      "framework_count": 9,
+      "opened": 9,
+      "fully_present": 9,
+      "missing": 0
+    }
+  }
+}

@@ -86,6 +86,15 @@ macos-private-framework-research/scripts/extract_dyld_framework.sh \
 
 Use `--enrich-objc-stubs` only when extraction-time enrichment is needed; run `ipsw class-dump` separately for bounded header output.
 
+Build a capped framework manifest before loading raw dependency, symbol, or string dumps:
+
+```bash
+macos-private-framework-research/scripts/framework_macho_manifest.py \
+  --framework DiskManagement \
+  --json-output /tmp/DiskManagement.manifest.json \
+  --markdown-output /tmp/DiskManagement.manifest.md
+```
+
 Probe candidate C symbols and Objective-C classes without calling them:
 
 ```bash
@@ -137,16 +146,23 @@ Portable validation that does not require macOS-specific tools:
 macos-private-framework-research/scripts/validate_skill_repo.py .
 macos-private-framework-research/scripts/resolve_toolchains.py --json-output /tmp/macos-pf-toolchains.json \
   >/tmp/macos-pf-toolchains.md
+macos-private-framework-research/scripts/framework_macho_manifest.py --framework IntelligenceFlow \
+  --json-output /tmp/macos-pf-framework-manifest.json \
+  --markdown-output /tmp/macos-pf-framework-manifest.md
 python3 -m py_compile macos-private-framework-research/scripts/*.py
 bash -n macos-private-framework-research/scripts/*.sh
 macos-private-framework-research/scripts/dlopen_symbol_probe.swift --help >/tmp/macos-pf-dlopen-help.txt
+zsh -n framework-surveys/intelligenceflow-agent-survey/scripts/*.zsh
+python3 -m py_compile framework-surveys/intelligenceflow-agent-survey/scripts/*.py
 zsh -n framework-surveys/skylight-agent-survey/tools/*.zsh
 python3 -m py_compile framework-surveys/skylight-agent-survey/tools/*.py
 ```
 
-On a macOS host, also run the inventory script, a small app/binary discovery pass, and the SkyLight read-only header verifier when touching the survey package.
+On a macOS host, also run the inventory script, a small app/binary discovery pass, and survey header verifiers when touching the survey packages.
 
 ```bash
+framework-surveys/intelligenceflow-agent-survey/scripts/verify_intelligenceflow_presence_header.zsh \
+  /tmp/intelligenceflow-presence-verify.json
 swift framework-surveys/skylight-agent-survey/tools/dlopen_probe_symbols.swift --json \
   >/tmp/skylight-dlsym-probe.json
 framework-surveys/skylight-agent-survey/tools/verify_skylight_readonly_header.zsh \

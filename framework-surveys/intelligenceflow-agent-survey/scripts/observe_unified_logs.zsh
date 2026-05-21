@@ -13,6 +13,7 @@ PREDICATE='subsystem CONTAINS[c] "intelligence" OR process CONTAINS[c] "intellig
   echo "# predicate=$PREDICATE"
 } > "$OUT"
 
-log stream --style compact --timeout "$SECONDS_TO_RUN" --predicate "$PREDICATE" >> "$OUT"
+log stream --style compact --timeout "$SECONDS_TO_RUN" --predicate "$PREDICATE" >> "$OUT" || true
+echo "# ended_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$OUT"
 
 echo "$OUT"

@@ -19,13 +19,15 @@ mkdir -p ~/iflow-lab/inventory
 ## Step 2: direct filesystem inventory
 
 ```zsh
-find /System/Library/PrivateFrameworks   -maxdepth 1   -name 'IntelligenceFlow*'   -print | sort | tee ~/iflow-lab/inventory/framework_paths.txt
+scripts/collect_intelligenceflow_inventory.zsh ~/iflow-lab/inventory
 ```
+
+On macOS 26.2 build 25C56 the framework bundles exist as dyld-cache skeletons: the framework directories and Info/version plists are present, but the main framework binary symlinks do not resolve to standalone files.
 
 ## Step 3: candidate process/service files
 
 ```zsh
-find /System/Library /usr/libexec /System/Applications /Applications   \( -iname '*intelligence*' -o -iname '*siri*' -o -iname '*shortcut*' \)   -print 2>/dev/null | sort | tee ~/iflow-lab/inventory/candidates.txt
+sed -n '1,120p' ~/iflow-lab/inventory/candidate_summary.txt
 ```
 
 ## Step 4: dyld shared-cache extraction
@@ -35,20 +37,23 @@ Default Apple silicon DSC path:
 ```zsh
 DSC=/System/Volumes/Preboot/Cryptexes/OS/System/Library/dyld/dyld_shared_cache_arm64e
 OUT=~/iflow-lab/dsc-extracted
-mkdir -p "$OUT"
-dyld-shared-cache-extractor "$DSC" "$OUT"
+scripts/extract_dyld_intelligenceflow.zsh "$OUT" "$DSC"
 ```
 
-Then collect extracted paths:
+The script prefers single-image `ipsw dyld extract`, which writes flat files such as `~/iflow-lab/dsc-extracted/IntelligenceFlow`. It falls back to broad `dyld-shared-cache-extractor` output when `ipsw` is unavailable.
 
 ```zsh
-find "$OUT/System/Library/PrivateFrameworks"   -maxdepth 1   -name 'IntelligenceFlow*'   -print | sort | tee ~/iflow-lab/inventory/extracted_framework_paths.txt
+cat "$OUT/intelligenceflow_extracted_paths.txt"
 ```
 
 ## Step 5: manifest
 
 ```zsh
-scripts/build_macho_manifest.py   "$OUT/System/Library/PrivateFrameworks"/IntelligenceFlow*.framework   > ~/iflow-lab/manifests/intelligenceflow_macho_manifest.json
+mkdir -p ~/iflow-lab/manifests
+scripts/build_macho_manifest.py \
+  --output ~/iflow-lab/manifests/intelligenceflow_macho_manifest.json \
+  --markdown-output ~/iflow-lab/manifests/intelligenceflow_macho_manifest.md \
+  "$OUT"
 ```
 
 ## Expected outputs

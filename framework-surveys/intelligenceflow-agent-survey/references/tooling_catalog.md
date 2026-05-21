@@ -15,6 +15,7 @@
 | `log stream`, `log show` | Unified-log observation | Use explicit predicates and time windows. |
 | `dyld-shared-cache-extractor` | Local DSC extraction | Required for many Big Sur+ analysis paths. |
 | `ipsw` | Mach-O, DSC, entitlement, ObjC/Swift dump workflows | Strong all-purpose Apple OS research tool. |
+| `macos-private-framework-research/scripts/framework_macho_manifest.py` | Agent-sized framework-family manifest | Summarizes dyld-cache skeletons, extracted binaries, dependency counts, symbols, and focused strings. |
 | `dylibtree` | Dependency graph | Useful for recursive linkage maps. |
 | Hopper/Ghidra/IDA | Decompilation and metadata navigation | Record tool version and database settings. |
 | ANTLR/linter harness | Pseudo-header validation | Part of MOTIF-style type-inference workflow. |

@@ -1,6 +1,8 @@
 as_of: 2026-05-21
 entitlements_to_search:
   - com.apple.intelligenceflow.context
+  - com.apple.intelligenceflow.querydecoration
+  - com.apple.intelligenceflow.uiContext
   - com.apple.intelligenceflow.orchestrator
   - com.apple.intelligenceflow.orchestrator.features
   - com.apple.intelligenceflow.transcript-entity-querying
@@ -9,8 +11,31 @@ entitlements_to_search:
   - com.apple.private.intelligenceplatform.use-cases
 mach_lookup_names_to_search:
   - com.apple.intelligenceflow.context
+  - com.apple.intelligenceflow.contextIntelligence
+  - com.apple.intelligenceflow.internal
   - com.apple.intelligenceflow.orchestrator
+  - com.apple.intelligenceflow.querydecoration
+  - com.apple.intelligenceflow.snippet-streaming
+  - com.apple.intelligenceflow.toolbox
+  - com.apple.intelligenceflow.transcript-entity-querying
+  - com.apple.intelligenceflow.uiContext
   - com.apple.biome.access.user
+confirmed_on_macos26_25C56:
+  intelligenceflowd:
+    - com.apple.intelligenceflow.context
+    - com.apple.intelligenceflow.querydecoration
+    - com.apple.intelligenceflow.uiContext
+    - com.apple.private.biome.read-only
+    - com.apple.private.biome.read-write
+  intelligencecontextd:
+    - com.apple.private.biome.client-identifier
+    - com.apple.private.biome.read-only
+    - com.apple.private.intelligenceplatform.use-cases
+    - com.apple.private.intelligenceplatform.views.read-only
+  IntelligenceFlowDiagnostics.appex:
+    - com.apple.intelligenceflow.context
+    - com.apple.private.biome.read-only
+    - com.apple.private.intelligenceplatform.use-cases
 string_regexes:
   - '(?i)intelligenceflow'
   - '(?i)intelligencecontext'
