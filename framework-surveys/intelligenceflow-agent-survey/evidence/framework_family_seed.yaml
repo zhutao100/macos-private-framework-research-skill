@@ -1,0 +1,70 @@
+framework_family: IntelligenceFlow
+as_of: 2026-05-21
+members:
+  - name: IntelligenceFlow.framework
+    path_glob: /System/Library/PrivateFrameworks/IntelligenceFlow.framework/**
+    working_role: Core shared pipeline/orchestration types
+    confidence: medium
+    verify:
+      - local_path_presence
+      - dyld_cache_uuid
+      - otool_dependencies
+      - strings_for_intelligenceflow_service_names
+      - local_consumers
+  - name: IntelligenceFlowRuntime.framework
+    working_role: Runtime support for live flow execution
+    confidence: medium
+    verify:
+      - local_path_presence
+      - linkage_to_IntelligenceFlow_and_Context
+      - launchd_or_daemon_consumers
+      - runtime_logs_under_controlled_trials
+  - name: IntelligenceFlowContext.framework
+    working_role: Context access capability boundary
+    confidence: medium
+    verify:
+      - entitlement_references
+      - mach_lookup_names
+      - Biome_or_transcript_strings
+      - context_trial_logs
+  - name: IntelligenceFlowContextRuntime.framework
+    working_role: Runtime support for context queries/services
+    confidence: low_medium
+    verify:
+      - framework_binary_metadata
+      - service_name_strings
+      - consumers
+  - name: IntelligenceFlowPlannerRuntime.framework
+    working_role: Planner/multi-step execution runtime
+    confidence: medium
+    verify:
+      - planner_strings
+      - AppIntents_or_FoundationModels_linkage
+      - controlled_tool_execution_logs
+  - name: IntelligenceFlowPlannerSupport.framework
+    working_role: Shared planner support library
+    confidence: medium
+    verify:
+      - dependency_graph
+      - strings_clusters
+      - ObjC_Swift_metadata
+  - name: IntelligenceFlowShared.framework
+    working_role: Shared data types/utilities
+    confidence: medium
+    verify:
+      - symbols_and_type_names
+      - consumers_across_family
+  - name: IntelligenceFlowFeedbackDataCollector.framework
+    working_role: Feedback/diagnostics collection
+    confidence: medium_by_name_low_on_internals
+    verify:
+      - diagnostics_entitlements
+      - data_stream_strings
+      - consumers
+  - name: IntelligenceFlowAppIntentsPreviewToolSupport.framework
+    working_role: App Intents tool preview/testing support
+    confidence: medium_by_name_low_on_internals
+    verify:
+      - AppIntents_linkage
+      - preview_or_tool_strings
+      - developer_tool_consumers

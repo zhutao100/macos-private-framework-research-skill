@@ -1,0 +1,15 @@
+{"id": "readme", "path": "README.md", "purpose": "Package overview and scope boundaries", "load_priority": 0, "tokens_hint": 700}
+{"id": "index", "path": "INDEX.md", "purpose": "Navigation map", "load_priority": 0, "tokens_hint": 500}
+{"id": "boundary", "path": "briefs/safety_boundary_and_non_goals.md", "purpose": "Included/excluded workflows", "load_priority": 0, "tokens_hint": 450}
+{"id": "tech_brief", "path": "briefs/IntelligenceFlow_tech_brief.md", "purpose": "Main IntelligenceFlow model and evidence grades", "load_priority": 1, "tokens_hint": 1800}
+{"id": "best_practices", "path": "briefs/agentic_private_framework_research_best_practices.md", "purpose": "Agent methodology", "load_priority": 1, "tokens_hint": 1200}
+{"id": "evidence_register", "path": "evidence/evidence_register.md", "purpose": "Evidence table and grading", "load_priority": 1, "tokens_hint": 1000}
+{"id": "framework_seed", "path": "evidence/framework_family_seed.yaml", "purpose": "Framework member hypotheses", "load_priority": 2, "tokens_hint": 700}
+{"id": "entitlements_seed", "path": "evidence/entitlement_surface_seed.yaml", "purpose": "Entitlement and service names to search", "load_priority": 2, "tokens_hint": 300}
+{"id": "toolchain_matrix", "path": "toolchains/toolchain_matrix.md", "purpose": "Tool selection", "load_priority": 2, "tokens_hint": 500}
+{"id": "inventory_playbook", "path": "playbooks/01_inventory_and_extraction.md", "purpose": "Local inventory and extraction steps", "load_priority": 2, "tokens_hint": 900}
+{"id": "static_playbook", "path": "playbooks/02_static_binary_analysis.md", "purpose": "Static analysis steps", "load_priority": 3, "tokens_hint": 850}
+{"id": "service_logs_playbook", "path": "playbooks/03_entitlements_services_logs.md", "purpose": "Entitlements/services/logs", "load_priority": 3, "tokens_hint": 1000}
+{"id": "trials_playbook", "path": "playbooks/04_app_intents_shortcuts_pcc_trials.md", "purpose": "Controlled public-surface trials", "load_priority": 3, "tokens_hint": 900}
+{"id": "claim_triage", "path": "playbooks/05_agent_claim_triage.md", "purpose": "Claim validation rules", "load_priority": 4, "tokens_hint": 700}
+{"id": "sources", "path": "sources/sources.json", "purpose": "Structured source metadata", "load_priority": 4, "tokens_hint": 1000}

@@ -1,0 +1,25 @@
+as_of: 2026-05-21
+entitlements_to_search:
+  - com.apple.intelligenceflow.context
+  - com.apple.intelligenceflow.orchestrator
+  - com.apple.intelligenceflow.orchestrator.features
+  - com.apple.intelligenceflow.transcript-entity-querying
+  - com.apple.private.intelligenceflow.group-identifier
+  - com.apple.private.biome.read-only
+  - com.apple.private.intelligenceplatform.use-cases
+mach_lookup_names_to_search:
+  - com.apple.intelligenceflow.context
+  - com.apple.intelligenceflow.orchestrator
+  - com.apple.biome.access.user
+string_regexes:
+  - '(?i)intelligenceflow'
+  - '(?i)intelligencecontext'
+  - '(?i)orchestrator'
+  - '(?i)planner'
+  - '(?i)transcript'
+  - '(?i)biome'
+  - '(?i)appintent'
+  - '(?i)foundationmodels?'
+notes:
+  - These names are discovery seeds. They are not proof of behavior until found and correlated on the target macOS build.
+  - Cross-OS entitlement evidence should be labeled as a hint, not a macOS fact.

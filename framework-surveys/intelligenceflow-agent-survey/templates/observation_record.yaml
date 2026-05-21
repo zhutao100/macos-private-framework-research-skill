@@ -1,0 +1,39 @@
+schema_version: 1
+observation_id: OBS-YYYYMMDD-HHMMSS-001
+created_at_utc: YYYY-MM-DDTHH:MM:SSZ
+researcher: local
+host:
+  sw_vers: ""
+  build: ""
+  hardware: ""
+  arch: ""
+feature_state:
+  apple_intelligence: unknown
+  siri: unknown
+  shortcuts_use_model: unknown
+  network: unknown
+trial:
+  id: ""
+  surface: "foundation_models|shortcuts|siri|spotlight|idle|static"
+  prompt_or_action: ""
+  start_utc: ""
+  end_utc: ""
+collection:
+  log_predicate: ""
+  commands:
+    - ""
+artifacts:
+  - path: ""
+    sha256: ""
+observations:
+  positive:
+    - ""
+  negative:
+    - ""
+claims_supported:
+  - claim_id: ""
+    confidence_delta: ""
+counterevidence:
+  - ""
+next_steps:
+  - ""

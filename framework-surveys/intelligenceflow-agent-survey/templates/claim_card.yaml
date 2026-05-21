@@ -1,0 +1,22 @@
+schema_version: 1
+claim_id: C-LOCAL-0001
+claim: ""
+claim_type: existence|role|behavior|dependency|entitlement|service|privacy_boundary|method_signature
+scope:
+  os: ""
+  build: ""
+  hardware: ""
+  binary: ""
+  uuid: ""
+evidence:
+  - type: local_static|local_dynamic|apple_public|public_diff|entitlement_catalog|community_note
+    artifact: ""
+    summary: ""
+    supports: ""
+counterevidence:
+  - artifact: ""
+    summary: ""
+confidence: low|medium|high|rejected
+reproduction_status: not_started|local_static_only|locally_reproduced|contradicted
+next_verification_step: ""
+notes: ""

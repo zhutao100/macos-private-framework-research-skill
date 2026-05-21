@@ -1,0 +1,100 @@
+[
+  {
+    "id": "apple_ai_developer",
+    "title": "Apple Intelligence - Apple Developer",
+    "url": "https://developer.apple.com/apple-intelligence/",
+    "type": "primary_public_architecture",
+    "notes": "Apple states Apple Intelligence integrates into apps via App Intents and exposes models through Foundation Models."
+  },
+  {
+    "id": "wwdc25_foundation_models_286",
+    "title": "Meet the Foundation Models framework - WWDC25",
+    "url": "https://developer.apple.com/videos/play/wwdc2025/286/",
+    "type": "primary_public_architecture",
+    "notes": "Public on-device model API; guided generation, tool calling, sessions, transcript handling."
+  },
+  {
+    "id": "wwdc24_bring_your_app_to_siri_10133",
+    "title": "Bring your app to Siri - WWDC24",
+    "url": "https://developer.apple.com/videos/play/wwdc2024/10133/",
+    "type": "primary_public_architecture",
+    "notes": "SiriKit/App Intents/Assistant Schemas path for exposing app actions to Apple Intelligence/Siri."
+  },
+  {
+    "id": "wwdc25_shortcuts_spotlight_260",
+    "title": "Develop for Shortcuts and Spotlight with App Intents - WWDC25",
+    "url": "https://developer.apple.com/videos/play/wwdc2025/260/",
+    "type": "primary_public_architecture",
+    "notes": "Use Model action, App Intents in Shortcuts/Spotlight on Mac, model route choices."
+  },
+  {
+    "id": "apple_privacy_mac_ai_report",
+    "title": "Apple Intelligence and privacy on Mac",
+    "url": "https://support.apple.com/guide/mac-help/apple-intelligence-and-privacy-mchlfc0d4779/mac",
+    "type": "primary_privacy_control",
+    "notes": "Mac Apple Intelligence Report can show PCC requests; useful as controlled-trial side channel."
+  },
+  {
+    "id": "apple_security_pcc",
+    "title": "apple/security-pcc",
+    "url": "https://github.com/apple/security-pcc",
+    "type": "primary_code_reference",
+    "notes": "Apple repository with components for PCC security/privacy verification. Context only for local IntelligenceFlow work."
+  },
+  {
+    "id": "motif_arxiv_2601_01673",
+    "title": "Exposing Hidden Interfaces: LLM-Guided Type Inference for Reverse Engineering macOS Private Frameworks",
+    "url": "https://arxiv.org/abs/2601.01673",
+    "type": "research_methodology",
+    "notes": "MOTIF: LLM-agent type inference using Objective-C metadata, binary inspection, tool calls, and linter constraints."
+  },
+  {
+    "id": "apple_wiki_private_frameworks",
+    "title": "The Apple Wiki: /System/Library/PrivateFrameworks",
+    "url": "https://theapplewiki.com/wiki/Filesystem%3A/System/Library/PrivateFrameworks",
+    "type": "community_index",
+    "notes": "Lists IntelligenceFlow family names; descriptions are unofficial and should be treated as discovery hints."
+  },
+  {
+    "id": "blacktop_ipsw_diffs_intelligenceflow",
+    "title": "blacktop/ipsw-diffs IntelligenceFlow diff",
+    "url": "https://raw.githubusercontent.com/blacktop/ipsw-diffs/main/26_2_23C5027f__vs_26_2_23C5033h/DYLIBS/IntelligenceFlow.md",
+    "type": "binary_diff_signal",
+    "notes": "Shared-cache diff signal for IntelligenceFlow path, version, UUID/function/string counts."
+  },
+  {
+    "id": "blacktop_ipsw_diffs_planner_support",
+    "title": "blacktop/ipsw-diffs IntelligenceFlowPlannerSupport diff",
+    "url": "https://raw.githubusercontent.com/blacktop/ipsw-diffs/main/26_2_23C5027f__vs_26_2_23C5033h/DYLIBS/IntelligenceFlowPlannerSupport.md",
+    "type": "binary_diff_signal",
+    "notes": "Shared-cache diff signal for large PlannerSupport binary."
+  },
+  {
+    "id": "blacktop_ipsw_diffs_runtime",
+    "title": "blacktop/ipsw-diffs IntelligenceFlowRuntime diff",
+    "url": "https://raw.githubusercontent.com/blacktop/ipsw-diffs/main/26_2_23C5027f__vs_26_2_23C5033h/DYLIBS/IntelligenceFlowRuntime.md",
+    "type": "binary_diff_signal",
+    "notes": "Shared-cache diff signal for Runtime binary."
+  },
+  {
+    "id": "newosxbook_iflow_diagnostics_entitlements",
+    "title": "NewOSXBook entitlement record: IntelligenceFlowDiagnostics",
+    "url": "https://newosxbook.com/ent.php?exec=IntelligenceFlowDiagnostics&osVer=iOS18",
+    "type": "entitlement_signal",
+    "notes": "Shows com.apple.intelligenceflow.context and Biome read-only streams for IntelligenceFlow diagnostics; cross-OS hint, not macOS proof."
+  },
+  {
+    "id": "blacktop_ipsw_docs_macho",
+    "title": "ipsw docs: Parse MachO files",
+    "url": "https://blacktop.github.io/ipsw/docs/guides/macho/",
+    "type": "tooling",
+    "notes": "Mach-O, DSC, entitlements, ObjC/Swift dump workflows."
+  },
+  {
+    "id": "dyld_shared_cache_extractor",
+    "title": "keith/dyld-shared-cache-extractor",
+    "url": "https://github.com/keith/dyld-shared-cache-extractor",
+    "type": "tooling",
+    "notes": "Extract macOS dyld shared cache for local analysis."
+  }
+]

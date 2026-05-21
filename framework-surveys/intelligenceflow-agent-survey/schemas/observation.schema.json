@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IntelligenceFlowObservation",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "observation_id",
+    "created_at_utc",
+    "host",
+    "trial",
+    "artifacts",
+    "observations"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer"
+    },
+    "observation_id": {
+      "type": "string"
+    },
+    "created_at_utc": {
+      "type": "string"
+    },
+    "host": {
+      "type": "object"
+    },
+    "feature_state": {
+      "type": "object"
+    },
+    "trial": {
+      "type": "object"
+    },
+    "collection": {
+      "type": "object"
+    },
+    "artifacts": {
+      "type": "array"
+    },
+    "observations": {
+      "type": "object"
+    },
+    "claims_supported": {
+      "type": "array"
+    },
+    "counterevidence": {
+      "type": "array"
+    },
+    "next_steps": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}
